@@ -25,6 +25,7 @@ namespace TrafficSimulator
         {
             this.Name=name;
             this.Time = time;
+            this.Crossings = new Dictionary<Point, Crossing>();
         }
 
         public void setSize(Size s)

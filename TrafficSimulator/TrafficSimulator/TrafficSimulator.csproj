@@ -47,8 +47,6 @@
     <Compile Include="Car.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="Crossing.cs" />
-    <Compile Include="CrossingTypeA.cs" />
-    <Compile Include="CrossingTypeB.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

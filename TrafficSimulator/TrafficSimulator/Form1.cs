@@ -24,6 +24,10 @@ namespace TrafficSimulator
         public Form1()
         {
             InitializeComponent();
+            tbname.Text = "";
+            gridcomboBox.Text = "Medium";
+            this.design = new WorkspaceDesign(tbname.Text, dateTimePicker1.Value);
+            this.controller = new Controller(workpanel.Size, workpanel.CreateGraphics(), design);
         }
 
         private void workpanel_Paint(object sender, PaintEventArgs e)
@@ -42,6 +46,11 @@ namespace TrafficSimulator
         {
             try
             {
+                if (tbname.Text == "")
+                {
+                    MessageBox.Show("The design must have a name!");
+                    return;
+                }
                 this.design = new WorkspaceDesign(tbname.Text, dateTimePicker1.Value);
                 this.controller = new Controller(workpanel.Size, workpanel.CreateGraphics(), design);
                 this.controller.Workspace_size = workpanel.Size;
@@ -57,12 +66,12 @@ namespace TrafficSimulator
 
         private void PBtype1_Click(object sender, EventArgs e)
         {
-            this.Selected_mode = 1;
+            this.Selected_mode = 0;
         }
 
         private void PBtype2_Click(object sender, EventArgs e)
         {
-            this.Selected_mode = 2;
+            this.Selected_mode = 1;
         }
 
         private void buttonclear_Click(object sender, EventArgs e)
@@ -155,6 +164,21 @@ namespace TrafficSimulator
         {
             Form form2 = new Help();
             form2.Show();
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbname_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gridcomboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

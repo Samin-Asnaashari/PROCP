@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,6 +42,7 @@
             this.PBtype1 = new System.Windows.Forms.PictureBox();
             this.crossinglabel = new System.Windows.Forms.Label();
             this.gridpanel = new System.Windows.Forms.Panel();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.tbname = new System.Windows.Forms.TextBox();
             this.timelabel = new System.Windows.Forms.Label();
             this.namelabel = new System.Windows.Forms.Label();
@@ -61,8 +63,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.OverviewlistBox = new System.Windows.Forms.ListBox();
             this.StatuslistBox = new System.Windows.Forms.ListBox();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.menuStrip1.SuspendLayout();
             this.crossingpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PBtype2)).BeginInit();
@@ -80,7 +80,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1131, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1131, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -93,41 +93,48 @@
             this.saveAsToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
+            // 
+            // newToolStripMenuItem
+            // 
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.newToolStripMenuItem.Text = "New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.saveAsToolStripMenuItem.Text = "Save as";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
@@ -172,7 +179,7 @@
             this.crossinglabel.Font = new System.Drawing.Font("Comic Sans MS", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.crossinglabel.Location = new System.Drawing.Point(14, 11);
             this.crossinglabel.Name = "crossinglabel";
-            this.crossinglabel.Size = new System.Drawing.Size(93, 25);
+            this.crossinglabel.Size = new System.Drawing.Size(76, 19);
             this.crossinglabel.TabIndex = 1;
             this.crossinglabel.Text = "Crossing :";
             // 
@@ -191,13 +198,25 @@
             this.gridpanel.Size = new System.Drawing.Size(256, 215);
             this.gridpanel.TabIndex = 0;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CalendarForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dateTimePicker1.CalendarMonthBackground = System.Drawing.SystemColors.ButtonShadow;
+            this.dateTimePicker1.CalendarTitleBackColor = System.Drawing.Color.CadetBlue;
+            this.dateTimePicker1.Location = new System.Drawing.Point(64, 120);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(178, 24);
+            this.dateTimePicker1.TabIndex = 8;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
             // tbname
             // 
             this.tbname.BackColor = System.Drawing.Color.CadetBlue;
             this.tbname.Location = new System.Drawing.Point(70, 80);
             this.tbname.Name = "tbname";
-            this.tbname.Size = new System.Drawing.Size(155, 28);
+            this.tbname.Size = new System.Drawing.Size(155, 24);
             this.tbname.TabIndex = 7;
+            this.tbname.TextChanged += new System.EventHandler(this.tbname_TextChanged);
             // 
             // timelabel
             // 
@@ -205,7 +224,7 @@
             this.timelabel.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.timelabel.Location = new System.Drawing.Point(7, 120);
             this.timelabel.Name = "timelabel";
-            this.timelabel.Size = new System.Drawing.Size(51, 21);
+            this.timelabel.Size = new System.Drawing.Size(40, 16);
             this.timelabel.TabIndex = 5;
             this.timelabel.Text = "Time:";
             // 
@@ -215,7 +234,7 @@
             this.namelabel.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.namelabel.Location = new System.Drawing.Point(4, 88);
             this.namelabel.Name = "namelabel";
-            this.namelabel.Size = new System.Drawing.Size(57, 21);
+            this.namelabel.Size = new System.Drawing.Size(46, 16);
             this.namelabel.TabIndex = 4;
             this.namelabel.Text = "Name:";
             // 
@@ -225,7 +244,7 @@
             this.workspacelabel.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.workspacelabel.Location = new System.Drawing.Point(3, 12);
             this.workspacelabel.Name = "workspacelabel";
-            this.workspacelabel.Size = new System.Drawing.Size(222, 21);
+            this.workspacelabel.Size = new System.Drawing.Size(176, 16);
             this.workspacelabel.TabIndex = 3;
             this.workspacelabel.Text = "Design the Workspace panel:";
             // 
@@ -250,8 +269,9 @@
             "Large"});
             this.gridcomboBox.Location = new System.Drawing.Point(70, 43);
             this.gridcomboBox.Name = "gridcomboBox";
-            this.gridcomboBox.Size = new System.Drawing.Size(86, 28);
+            this.gridcomboBox.Size = new System.Drawing.Size(86, 25);
             this.gridcomboBox.TabIndex = 1;
+            this.gridcomboBox.SelectedIndexChanged += new System.EventHandler(this.gridcomboBox_SelectedIndexChanged);
             // 
             // gridlabel
             // 
@@ -259,7 +279,7 @@
             this.gridlabel.Font = new System.Drawing.Font("Comic Sans MS", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridlabel.Location = new System.Drawing.Point(3, 43);
             this.gridlabel.Name = "gridlabel";
-            this.gridlabel.Size = new System.Drawing.Size(61, 25);
+            this.gridlabel.Size = new System.Drawing.Size(50, 19);
             this.gridlabel.TabIndex = 0;
             this.gridlabel.Text = "Grid :";
             // 
@@ -324,7 +344,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(9, 15);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(79, 20);
+            this.label4.Size = new System.Drawing.Size(67, 17);
             this.label4.TabIndex = 1;
             this.label4.Text = "Controls : ";
             // 
@@ -384,7 +404,7 @@
             // 
             this.OverviewlistBox.BackColor = System.Drawing.Color.CadetBlue;
             this.OverviewlistBox.FormattingEnabled = true;
-            this.OverviewlistBox.ItemHeight = 20;
+            this.OverviewlistBox.ItemHeight = 17;
             this.OverviewlistBox.Items.AddRange(new object[] {
             "Overview:"});
             this.OverviewlistBox.Location = new System.Drawing.Point(883, 58);
@@ -396,34 +416,17 @@
             // 
             this.StatuslistBox.BackColor = System.Drawing.Color.DarkGray;
             this.StatuslistBox.FormattingEnabled = true;
-            this.StatuslistBox.ItemHeight = 20;
+            this.StatuslistBox.ItemHeight = 17;
             this.StatuslistBox.Items.AddRange(new object[] {
             "Status:"});
             this.StatuslistBox.Location = new System.Drawing.Point(883, 440);
             this.StatuslistBox.Name = "StatuslistBox";
-            this.StatuslistBox.Size = new System.Drawing.Size(236, 204);
+            this.StatuslistBox.Size = new System.Drawing.Size(236, 191);
             this.StatuslistBox.TabIndex = 6;
-            // 
-            // newToolStripMenuItem
-            // 
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
-            this.newToolStripMenuItem.Text = "New";
-            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CalendarForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dateTimePicker1.CalendarMonthBackground = System.Drawing.SystemColors.ButtonShadow;
-            this.dateTimePicker1.CalendarTitleBackColor = System.Drawing.Color.CadetBlue;
-            this.dateTimePicker1.Location = new System.Drawing.Point(64, 120);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(178, 28);
-            this.dateTimePicker1.TabIndex = 8;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(1131, 665);

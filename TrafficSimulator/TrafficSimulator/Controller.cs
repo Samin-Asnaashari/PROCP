@@ -36,9 +36,9 @@ namespace TrafficSimulator
             this.Workspace_pen =  new Pen(Brushes.Black);
             this.Sizes = new Dictionary<string, Size>
             {
-                { "small", new Size(25, 25) },
-                { "medium", new Size(15, 15) },
-                { "large", new Size(5, 5) }
+                { "Small", new Size(25, 25) },
+                { "Medium", new Size(15, 15) },
+                { "Large", new Size(5, 5) }
             };
 
             //
@@ -129,9 +129,9 @@ namespace TrafficSimulator
         public void AddCrossing(Point p, int type)
         {
             Point loc = this.CurrentCell(p);
-            Crossing crossing = null;
+            Crossing crossing = new Crossing(loc, type);
 
-            switch (type)
+            /*switch (type)
             {
                 case 1:
                     crossing = new CrossingTypeA(loc);
@@ -141,7 +141,7 @@ namespace TrafficSimulator
                     break;
                 default:
                     throw new ArgumentException("Wrong Type...");
-            };
+            };*/
 
             this.resizeDesignCrossing(crossing);
             if (this.isTakenCell(crossing.Position))
