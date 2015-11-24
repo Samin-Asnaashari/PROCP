@@ -80,7 +80,11 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
+<<<<<<< HEAD
             this.menuStrip1.Size = new System.Drawing.Size(1193, 28);
+=======
+            this.menuStrip1.Size = new System.Drawing.Size(1131, 28);
+>>>>>>> refs/remotes/origin/Samin
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -99,35 +103,55 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+<<<<<<< HEAD
             this.newToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
+=======
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+>>>>>>> refs/remotes/origin/Samin
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+<<<<<<< HEAD
             this.openToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
+=======
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+>>>>>>> refs/remotes/origin/Samin
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+<<<<<<< HEAD
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
+=======
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+>>>>>>> refs/remotes/origin/Samin
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+<<<<<<< HEAD
             this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
+=======
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+>>>>>>> refs/remotes/origin/Samin
             this.saveAsToolStripMenuItem.Text = "Save as";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+<<<<<<< HEAD
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
+=======
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+>>>>>>> refs/remotes/origin/Samin
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -159,8 +183,12 @@
             this.PBtype2.Size = new System.Drawing.Size(108, 116);
             this.PBtype2.TabIndex = 4;
             this.PBtype2.TabStop = false;
+<<<<<<< HEAD
             this.PBtype2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PBtype2_MouseDown);
             this.PBtype2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PBtype2_MouseUp);
+=======
+            this.PBtype2.Click += new System.EventHandler(this.PBtype2_Click);
+>>>>>>> refs/remotes/origin/Samin
             // 
             // PBtype1
             // 
@@ -172,8 +200,12 @@
             this.PBtype1.Size = new System.Drawing.Size(110, 116);
             this.PBtype1.TabIndex = 3;
             this.PBtype1.TabStop = false;
+<<<<<<< HEAD
             this.PBtype1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PBtype1_MouseDown);
             this.PBtype1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PBtype1_MouseUp);
+=======
+            this.PBtype1.Click += new System.EventHandler(this.PBtype1_Click);
+>>>>>>> refs/remotes/origin/Samin
             // 
             // crossinglabel
             // 
@@ -289,9 +321,15 @@
             this.workpanel.Name = "workpanel";
             this.workpanel.Size = new System.Drawing.Size(603, 586);
             this.workpanel.TabIndex = 0;
+<<<<<<< HEAD
             this.workpanel.DragDrop += new System.Windows.Forms.DragEventHandler(this.workpanel_DragDrop);
             this.workpanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.workpanel_DragEnter);
             this.workpanel.Paint += new System.Windows.Forms.PaintEventHandler(this.workpanel_Paint);
+=======
+            this.workpanel.Paint += new System.Windows.Forms.PaintEventHandler(this.workpanel_Paint);
+            this.workpanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.workpanel_MouseClick);
+            this.workpanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.workpanel_MouseDown);
+>>>>>>> refs/remotes/origin/Samin
             // 
             // controlpanel
             // 
@@ -415,22 +453,35 @@
             "Overview:"});
             this.OverviewlistBox.Location = new System.Drawing.Point(883, 58);
             this.OverviewlistBox.Name = "OverviewlistBox";
+<<<<<<< HEAD
             this.OverviewlistBox.Size = new System.Drawing.Size(295, 344);
+=======
+            this.OverviewlistBox.Size = new System.Drawing.Size(236, 344);
+>>>>>>> refs/remotes/origin/Samin
             this.OverviewlistBox.TabIndex = 6;
             // 
             // StatuslistBox
             // 
             this.StatuslistBox.BackColor = System.Drawing.Color.DarkGray;
+<<<<<<< HEAD
             this.StatuslistBox.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StatuslistBox.ForeColor = System.Drawing.Color.DarkRed;
+=======
+>>>>>>> refs/remotes/origin/Samin
             this.StatuslistBox.FormattingEnabled = true;
             this.StatuslistBox.ItemHeight = 20;
             this.StatuslistBox.Items.AddRange(new object[] {
             "Status:"});
+<<<<<<< HEAD
             this.StatuslistBox.Location = new System.Drawing.Point(883, 420);
             this.StatuslistBox.Name = "StatuslistBox";
             this.StatuslistBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.StatuslistBox.Size = new System.Drawing.Size(295, 224);
+=======
+            this.StatuslistBox.Location = new System.Drawing.Point(883, 440);
+            this.StatuslistBox.Name = "StatuslistBox";
+            this.StatuslistBox.Size = new System.Drawing.Size(236, 204);
+>>>>>>> refs/remotes/origin/Samin
             this.StatuslistBox.TabIndex = 6;
             // 
             // Form1
@@ -438,7 +489,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
+<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(1193, 665);
+=======
+            this.ClientSize = new System.Drawing.Size(1131, 665);
+>>>>>>> refs/remotes/origin/Samin
             this.Controls.Add(this.StatuslistBox);
             this.Controls.Add(this.OverviewlistBox);
             this.Controls.Add(this.editpanel);
@@ -451,11 +506,18 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+<<<<<<< HEAD
             this.MaximumSize = new System.Drawing.Size(1211, 712);
             this.MinimumSize = new System.Drawing.Size(1211, 712);
             this.Name = "Form1";
             this.Text = "Traffic Simulator";
             this.Load += new System.EventHandler(this.Form1_Load);
+=======
+            this.MaximumSize = new System.Drawing.Size(1149, 712);
+            this.MinimumSize = new System.Drawing.Size(1149, 712);
+            this.Name = "Form1";
+            this.Text = "Traffic Simulator";
+>>>>>>> refs/remotes/origin/Samin
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.crossingpanel.ResumeLayout(false);

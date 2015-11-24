@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+<<<<<<< HEAD
             this.components = new System.ComponentModel.Container();
+=======
+>>>>>>> refs/remotes/origin/Samin
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SetCrossing));
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -47,7 +50,10 @@
             this.ptextBox1 = new System.Windows.Forms.TextBox();
             this.ptextBox2 = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+<<<<<<< HEAD
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+=======
+>>>>>>> refs/remotes/origin/Samin
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -227,12 +233,15 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
+<<<<<<< HEAD
             // timer1
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 110;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+=======
+>>>>>>> refs/remotes/origin/Samin
             // SetCrossing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -263,7 +272,10 @@
             this.MinimumSize = new System.Drawing.Size(624, 621);
             this.Name = "SetCrossing";
             this.Text = "Set The Crossing:";
+<<<<<<< HEAD
             this.Load += new System.EventHandler(this.SetCrossing_Load);
+=======
+>>>>>>> refs/remotes/origin/Samin
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -290,6 +302,9 @@
         private System.Windows.Forms.TextBox ptextBox2;
         public System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox textBox1;
+<<<<<<< HEAD
         private System.Windows.Forms.Timer timer1;
+=======
+>>>>>>> refs/remotes/origin/Samin
     }
 }

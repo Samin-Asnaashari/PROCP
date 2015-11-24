@@ -95,9 +95,6 @@
     <EmbeddedResource Include="SetupSimulator.resx">
       <DependentUpon>SetupSimulator.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="..\..\..\..\..\ClassDiagram3.cd">
-      <Link>ClassDiagram3.cd</Link>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
