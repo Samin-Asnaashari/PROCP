@@ -14,3 +14,4 @@ C:\Users\User\Desktop\UNIVERSITY\PROCP\Interface\TrafficSimulator\TrafficSimulat
 C:\Users\User\Desktop\UNIVERSITY\PROCP\Interface\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.csproj.GenerateResource.Cache
 C:\Users\User\Desktop\UNIVERSITY\PROCP\Interface\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.exe
 C:\Users\User\Desktop\UNIVERSITY\PROCP\Interface\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.pdb
+C:\Users\User\Desktop\UNIVERSITY\PROCP\Interface\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.csprojResolveAssemblyReference.cache

@@ -14,10 +14,6 @@ namespace TrafficSimulator
     {
         //set the lights p , n
         public Controller controller;
-<<<<<<< HEAD
-        //public bool isType_1=false;
-=======
->>>>>>> refs/remotes/origin/Samin
 
         public Control panel;
 
@@ -31,7 +27,6 @@ namespace TrafficSimulator
 
         private void createbutton_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
             controller.Design.allcreatedcrossings.Add(controller  .C);
             controller.callinvalidate(panel);
             this.Close();
@@ -44,20 +39,7 @@ namespace TrafficSimulator
 
         private void SetCrossing_Load(object sender, EventArgs e)
         {
-            Image im = (Image)(new Bitmap("Type1.png"));
-            if (this.controller.C.image == im)
-            {
-                this.labelpl.Visible = false;
-                this.plightlistBox.Visible = false;
-                this.ptextBox1.Visible = false;
-                this.ptextBox2.Visible = false;
-            }
+            
         }
-=======
-            controller.Design.allcreatedcrossings.Add(controller.C);
-            controller.callinvalidate(panel);
-            this.Close();
-        }
->>>>>>> refs/remotes/origin/Samin
     }
 }

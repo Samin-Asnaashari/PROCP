@@ -8,17 +8,27 @@ namespace TrafficSimulator
 {
     class Simulator
     {
-        public void Start()
+        /// <summary>
+        /// controller for the simulator 
+        /// </summary>
+        public bool Start { get; set; }
+        public bool Pause { get; set; }
+        public bool Stop { get; set; }
+
+        public Simulator()
         {
-        }
-        public void Pause()
-        {
-        }
-        public void Stop()
-        {
+            this.Start = false;
+            this.Pause = false;
+            this.Stop = false;
         }
 
-        public void Overview()
+        public void StartSimulator()
+        {
+        }
+        public void PauseSimulator()
+        {
+        }
+        public void StopSimulator()
         {
         }
     }

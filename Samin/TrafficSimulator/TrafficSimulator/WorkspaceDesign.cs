@@ -10,10 +10,7 @@ using System.Threading.Tasks;
 
 namespace TrafficSimulator
 {
-<<<<<<< HEAD
         [Serializable]
-=======
->>>>>>> refs/remotes/origin/Samin
     public class WorkspaceDesign
     {
         public string Grid { get; set; }
@@ -26,11 +23,14 @@ namespace TrafficSimulator
             this.Grid = grid;
             this.Name=name;
             this.Time = time;
-            allcreatedcrossings = new List<Crossing>();
+            this.allcreatedcrossings = new List<Crossing>();
         }
 
-<<<<<<< HEAD
         //study this 
+        /// <summary>
+        /// load a simulation deasign 
+        /// </summary>
+        /// <param name="steam"></param>
         public void Load(Stream steam)
         {
             IFormatter formatter = new BinaryFormatter();
@@ -43,6 +43,9 @@ namespace TrafficSimulator
         }
 
         //study this 
+        /// <summary>
+        /// save the design  
+        /// </summary>
         public void Save()
         {
             //IFormatter formatter = new BinaryFormatter();
@@ -69,6 +72,10 @@ namespace TrafficSimulator
 
 
         //study this
+        /// <summary>
+        /// save as a design 
+        /// </summary>
+        /// <param name="stream"></param>
         public void SaveAs(Stream stream)
         {
             IFormatter formatter = new BinaryFormatter();
@@ -76,7 +83,5 @@ namespace TrafficSimulator
         }
 
 
-=======
->>>>>>> refs/remotes/origin/Samin
     }
 }

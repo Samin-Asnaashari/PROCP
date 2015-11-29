@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TrafficSimulator
 {
-    class Setting
+    class SimulatorSetting
     {
         public double North { get; set; }
         public double East { get; set; }

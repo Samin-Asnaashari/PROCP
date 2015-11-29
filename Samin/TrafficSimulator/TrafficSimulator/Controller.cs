@@ -9,20 +9,22 @@ using System.Windows.Forms;
 
 namespace TrafficSimulator
 {
-<<<<<<< HEAD
         [Serializable]
-=======
->>>>>>> refs/remotes/origin/Samin
     public class Controller
     {
+            /// <summary>
+            /// class to control the form 
+            /// </summary>
+            
         public WorkspaceDesign Design;
         public float panelw;
         public float panelh;
-        //public Controller controller;
-
         public int lines;
 
         public Crossing C;
+        public int CType { get; set; }
+
+        public Simulator SimulatorController;
 
         public Controller(float pw, float ph , WorkspaceDesign d)
         {
@@ -30,8 +32,13 @@ namespace TrafficSimulator
             this.panelw = pw;
             this.panelh = ph;
             lines = 0;
+            this.CType = 0;
         }
 
+        /// <summary>
+        /// crate a grid in workspace area base on user choice(small,medium,large)
+        /// </summary>
+        /// <param name="gr"></param>
         public void drawthedesigngrid(Graphics gr)
         {
             float x = 0f;
@@ -57,14 +64,19 @@ namespace TrafficSimulator
                 }
         }
 
-        public void drawcrossing(Graphics gr,Point clickedpoint,Crossing C)
+        /// <summary>
+        /// draw one crossing in a chosen cell and crossing type picture 
+        /// user click and drag the crossing type to the workspace area 
+        /// </summary>
+        /// <param name="gr"></param>
+        /// <param name="clickedpoint"></param>
+        /// <param name="C"></param>
+        public void drawcrossing(Graphics gr,Point position,Crossing C)
         {
-<<<<<<< HEAD
             try
             {
-                    Point cellstartpoint = findcell(clickedpoint);
                     int size = Convert.ToInt32(panelw / lines);
-                    Rectangle reg = new Rectangle(cellstartpoint.X - 1, cellstartpoint.Y - 1, Convert.ToInt32(panelw / lines), Convert.ToInt32(panelh / lines));
+                    Rectangle reg = new Rectangle(position.X - 1, position.Y - 1, Convert.ToInt32(panelw / lines), Convert.ToInt32(panelh / lines));
                     gr.DrawImage(C.image, reg);
             }
             catch (Exception ex)
@@ -74,16 +86,13 @@ namespace TrafficSimulator
             }
         }
 
+        
         //study this center of the square 
-=======
-            Point cellstartpoint = findcell(clickedpoint);
-            int size = Convert.ToInt32(panelw / lines);
-            Rectangle reg = new Rectangle(cellstartpoint.X-1 , cellstartpoint.Y-1 , Convert.ToInt32(panelw / lines), Convert.ToInt32(panelh / lines));
-            gr.DrawImage(C.image,reg);
-        }
-
-        //study this 
->>>>>>> refs/remotes/origin/Samin
+        /// <summary>
+        /// find the cell base on the user click position 
+        /// </summary>
+        /// <param name="clickedpoint"></param>
+        /// <returns></returns>
         public Point findcell(Point clickedpoint)
         {
             Point start;
@@ -111,18 +120,22 @@ namespace TrafficSimulator
             return start;
         }
 
-        public void callinvalidate(Control C)
+        public void callinvalidate(Control Control)
         {
-            C.Invalidate();
+            Control.Invalidate();
         }
 
-<<<<<<< HEAD
+        /// <summary>
+        /// check if the cell is occupied
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
         public bool isTakenCell(Point p)
         {
             bool taken = false;
             foreach (var item in this.Design.allcreatedcrossings)
             {
-                if(findcell(item.Position) == findcell(p))
+                if(item.StartPoint == findcell(p))
                 {
                     taken = true;
                 }
@@ -131,7 +144,5 @@ namespace TrafficSimulator
         }
 
 
-=======
->>>>>>> refs/remotes/origin/Samin
     }
 }

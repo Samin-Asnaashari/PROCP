@@ -14,10 +14,9 @@ namespace TrafficSimulator
     public partial class Form1 : Form
     {
         private Controller controller;
-<<<<<<< HEAD
         private Image selectedimage;
         bool showgrid = false;
-
+        bool start = false;
         public Form1()
         {
             InitializeComponent();
@@ -32,72 +31,60 @@ namespace TrafficSimulator
             {
                 string grid = gridcomboBox.SelectedItem.ToString();
                 WorkspaceDesign D = new WorkspaceDesign(grid, name, time);
-                controller = new Controller(this.workpanel.Width, this.workpanel.Height, D);
+                this.controller = new Controller(this.workpanel.Width, this.workpanel.Height, D);
                 if (D.Grid == "Small")
                 {
                     //6*6
-                    controller.lines = 6;
+                    this.controller.lines = 4;
                 }
                 else if (D.Grid == "Medium")
                 {
                     //3*3
-                    controller.lines = 3;
+                    this.controller.lines = 3;
                 }
                 else if (D.Grid == "Large")
                 {
                     //2*2
-                    controller.lines = 2;
+                    this.controller.lines = 2;
                 }
                 selectedimage = null;
-                this.controller.C = new Crossing(new Point(0, 0), null, this.workpanel.Width / this.controller.lines);
+                this.controller.C = new Crossing(null, this.workpanel.Width / this.controller.lines);
                 showgrid = true;
-                workpanel.Invalidate();
+                this.workpanel.Invalidate();
+                StatuslistBox.Items.Clear();
             }
             else
             {
                 string s = "😜";
                 StatuslistBox.Items.Add("Fisrt:Choose the Grid & Name & Time. "+ s);
             }
-=======
-
-        //private Simulator S;
-
-        bool showgrid = false;
-
-        private Image selectedimage;
-
-        public Form1()
-        {
-            InitializeComponent();
-            //controller = new Controller(workpanel.Width , workpanel.Height,D); transfered to creategrid
->>>>>>> refs/remotes/origin/Samin
         }
 
         private void workpanel_Paint(object sender, PaintEventArgs e)
         {
             Graphics gr = e.Graphics;
-<<<<<<< HEAD
             if (showgrid == true)
-=======
-            if(showgrid == true)
->>>>>>> refs/remotes/origin/Samin
             {
-                controller.drawthedesigngrid(gr);
+                this.controller.drawthedesigngrid(gr);
                 for (int i = 0; i < controller.Design.allcreatedcrossings.Count; i++)
                 {
-                    controller.drawcrossing(gr, controller.Design.allcreatedcrossings[i].Position, controller.Design.allcreatedcrossings[i]);
+                    this.controller.drawcrossing(gr, controller.Design.allcreatedcrossings[i].StartPoint, controller.Design.allcreatedcrossings[i]);
+                }
+                if(start == true)
+                {
+                    controller.SimulatorController.StartSimulator();
                 }
             }
         }
 
-<<<<<<< HEAD
         private void PBtype1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (controller!= null)
+            if (this.controller!= null)
             {
                 Cursor.Current = Cursors.Cross;
                 PBtype1.BorderStyle = BorderStyle.FixedSingle;
                 selectedimage = (Image)(new Bitmap(new Bitmap("Type1.png")));
+                controller.CType = 1;
                 PBtype1.DoDragDrop(selectedimage,DragDropEffects.Copy);
             }
             else
@@ -114,6 +101,7 @@ namespace TrafficSimulator
                 Cursor.Current = Cursors.Cross;
                 PBtype2.BorderStyle = BorderStyle.FixedSingle;
                 selectedimage = (Image)(new Bitmap(new Bitmap("Type2.png")));
+                controller.CType = 2;
                 PBtype2.DoDragDrop(selectedimage, DragDropEffects.Copy);
             }
             else
@@ -136,10 +124,18 @@ namespace TrafficSimulator
                     Point p = workpanel.PointToClient(new Point(e.X, e.Y));
                     if (controller.isTakenCell(p) == false)
                     {
-                        this.controller.C = new Crossing(p, selectedimage, this.workpanel.Width / this.controller.lines);
+                        this.controller.C = new Crossing(selectedimage, this.workpanel.Width / this.controller.lines);
+                        controller.C.StartPoint = controller.findcell(p);
                         SetCrossing fcrossing = new SetCrossing();
 
-                        fcrossing.pictureBox1.BackgroundImage = this.controller.C.image;
+                        if (this.controller.CType == 1)
+                        {
+                            fcrossing.pictureBox1.BackgroundImage = (Image)(new Bitmap(new Bitmap("T1.png")));
+                        }
+                        else
+                        {
+                            fcrossing.pictureBox1.BackgroundImage = (Image)(new Bitmap(new Bitmap("T2.png")));
+                        }
                         fcrossing.controller = this.controller;
                         fcrossing.panel = this.workpanel;
                         fcrossing.Show();
@@ -157,54 +153,14 @@ namespace TrafficSimulator
                 }
                 PBtype1.BorderStyle = BorderStyle.None;
                 PBtype2.BorderStyle = BorderStyle.None;
-=======
-        private void gridbutton_Click(object sender, EventArgs e)
-        {
-            string grid = gridcomboBox.SelectedItem.ToString();
-            string name = tbname.Text;
-            DateTime time = dateTimePicker1.Value;
-            WorkspaceDesign D = new WorkspaceDesign(grid,name,time);
-            controller = new Controller(this.workpanel.Width , this.workpanel.Height,D);
-            if (D.Grid == "Small")
-            {
-                //6*6
-                controller.lines = 6;
-            }
-            else if (D.Grid == "Medium")
-            {
-                //3*3
-                controller.lines = 3;
-            }
-            else if (D.Grid == "Large")
-            {
-                //2*2
-                controller.lines = 2;
-            }
-            this.controller.C = new Crossing(new Point(0,0),null,this.workpanel.Width / this.controller.lines);
-            showgrid = true;
-            workpanel.Invalidate();
-        }
-
-        private void PBtype1_Click(object sender, EventArgs e)
-        {
-            //this.controller.C.image = (Image)(new Bitmap(new Bitmap("Type1.png")));
-            selectedimage = (Image)(new Bitmap(new Bitmap("Type1.png")));
-        }
-
-        private void PBtype2_Click(object sender, EventArgs e)
-        {
-            //this.controller.C.image = (Image)(new Bitmap(new Bitmap("Type2.png")));
-            selectedimage = (Image)(new Bitmap(new Bitmap("Type2.png")));
->>>>>>> refs/remotes/origin/Samin
         }
 
         private void buttonclear_Click(object sender, EventArgs e)
         {
             showgrid = false;
-            workpanel.Invalidate();
+            this.workpanel.Invalidate();
         }
 
-<<<<<<< HEAD
         private void editbutton_Click(object sender, EventArgs e)
         {
 
@@ -222,7 +178,7 @@ namespace TrafficSimulator
 
         private void playbutton_Click(object sender, EventArgs e)
         {
-
+            timer1.Enabled = true;
         }
 
         private void pausebutton_Click(object sender, EventArgs e)
@@ -232,65 +188,12 @@ namespace TrafficSimulator
 
         private void stopbutton_Click(object sender, EventArgs e)
         {
-
+            timer1.Enabled = false;
         }
        
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //////////////////////////////////check it
-            Stream sketch = null;
-            OpenFileDialog dialog = new OpenFileDialog();
-
-            dialog.InitialDirectory = "c:\\";
-            dialog.Filter = "bin files (*.bin)|*.bin|All files (*.*)|*.*";
-            dialog.FilterIndex = 2;
-            dialog.RestoreDirectory = true;
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    if ((sketch = dialog.OpenFile()) != null)
-                    {
-                        using (sketch)
-                        {
-                            //this.showgrid = false;
-                            //this.workpanel.Invalidate();
-                            //this.controller = new Controller(this.workpanel.Width,this.workpanel.Height, this.controller.Design);
-                            WorkspaceDesign D = new WorkspaceDesign("", dialog.FileName, System.DateTime.Now);
-                            controller = new Controller(this.workpanel.Width, this.workpanel.Height, D);
-                            if (D.Grid == "Small")
-                            {
-                                //6*6
-                                controller.lines = 6;
-                            }
-                            else if (D.Grid == "Medium")
-                            {
-                                //3*3
-                                controller.lines = 3;
-                            }
-                            else if (D.Grid == "Large")
-                            {
-                                //2*2
-                                controller.lines = 2;
-                            }
-                            this.controller.C = new Crossing(new Point(0, 0), null, this.workpanel.Width / this.controller.lines);
-                            this.controller.Design.Load(sketch);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
-                }
-            }
-
-            showgrid = true;
-            workpanel.Invalidate();
-        }
-
-        private void newToolStripMenuItem_Click(object sender, EventArgs e) ////////////////////
-        {
+            
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -331,7 +234,7 @@ namespace TrafficSimulator
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            workpanel.AllowDrop = true;
+            this.workpanel.AllowDrop = true;
         }
 
         private void PBtype1_MouseUp(object sender, MouseEventArgs e)///////////
@@ -346,88 +249,12 @@ namespace TrafficSimulator
             PBtype2.BorderStyle = BorderStyle.None;
         }
 
-
-=======
-        private void workpanel_MouseClick(object sender, MouseEventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
-            
+                start = true;
+                workpanel.Invalidate();
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
 
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form form2 = new Help();
-            form2.Show();
-        }
-
-        private void editbutton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttonremove_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void setbutton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void playbutton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pausebutton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void stopbutton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void workpanel_MouseDown(object sender, MouseEventArgs e)
-        {
-            Point p;
-            p = new Point(e.X,e.Y);
-            this.controller.C = new Crossing(p, selectedimage, this.workpanel.Width / this.controller.lines);
-
-            SetCrossing fcrossing = new SetCrossing();
-            fcrossing.pictureBox1.BackgroundImage = this.controller.C.image;
-            fcrossing.controller = this.controller;
-
-            fcrossing.panel = this.workpanel;
-
-            fcrossing.Show();
-        }
->>>>>>> refs/remotes/origin/Samin
     }
 }

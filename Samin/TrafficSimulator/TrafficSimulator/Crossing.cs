@@ -7,32 +7,24 @@ using System.Threading.Tasks;
 
 namespace TrafficSimulator
 {
-<<<<<<< HEAD
         [Serializable]
-=======
->>>>>>> refs/remotes/origin/Samin
     public class Crossing
     {
-        //clicked position (where user clicked)
-        public Point Position { get; set; }
         public Image image { get; set; }
         public int Size { get; set; }
+        public Point StartPoint { get; set; }
 
+        public Point[] Neighbor;
+        public List<Lane> Lanes;
 
-        public Crossing(Point position,Image image,int size)
+        public Crossing(Image image,int size)
         {
-            this.Position = position;
             this.image = image;
             this.Size = size;
+            this.StartPoint = new Point(0,0);
+            Neighbor=new Point[4];
+            Lanes = new List<Lane>();
             //this.image = (Image)new Bitmap(new Bitmap(this.Image_Filename.Split('.')[0] + ".png"), this.image.Size);
         }
-<<<<<<< HEAD
-=======
-
-        //public Crossing()
-        //{
-        //    //satisfy the compiler 
-        //}
->>>>>>> refs/remotes/origin/Samin
     }
 }

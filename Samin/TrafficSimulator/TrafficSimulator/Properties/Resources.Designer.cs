@@ -123,9 +123,39 @@ namespace TrafficSimulator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Type11 {
+            get {
+                object obj = ResourceManager.GetObject("Type11", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Type2 {
             get {
                 object obj = ResourceManager.GetObject("Type2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Type21 {
+            get {
+                object obj = ResourceManager.GetObject("Type21", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Type22 {
+            get {
+                object obj = ResourceManager.GetObject("Type22", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
