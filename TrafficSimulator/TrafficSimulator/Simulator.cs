@@ -11,18 +11,24 @@ namespace TrafficSimulator
         /// <summary>
         /// controller for the simulator 
         /// </summary>
-        public delegate void StartCarts();
-        public event StartCarts Start;
-        public delegate void StopCards();
-        public event StartCarts Stop;
+        public bool Start { get; set; }
+        public bool Pause { get; set; }
+        public bool Stop { get; set; }
 
-        public void Start()
+        public Simulator()
+        {
+            this.Start = false;
+            this.Pause = false;
+            this.Stop = false;
+        }
+
+        public void StartSimulator()
         {
         }
-        public void Pause()
+        public void PauseSimulator()
         {
         }
-        public void Stop()
+        public void StopSimulator()
         {
         }
     }

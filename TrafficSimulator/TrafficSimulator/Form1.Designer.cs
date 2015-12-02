@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,6 +39,8 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.crossingpanel = new System.Windows.Forms.Panel();
+            this.PBtype2 = new System.Windows.Forms.PictureBox();
+            this.PBtype1 = new System.Windows.Forms.PictureBox();
             this.crossinglabel = new System.Windows.Forms.Label();
             this.gridpanel = new System.Windows.Forms.Panel();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -50,26 +53,25 @@
             this.gridlabel = new System.Windows.Forms.Label();
             this.workpanel = new System.Windows.Forms.Panel();
             this.controlpanel = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.setbutton = new System.Windows.Forms.Button();
-            this.editpanel = new System.Windows.Forms.Panel();
-            this.editbutton = new System.Windows.Forms.Button();
-            this.OverviewlistBox = new System.Windows.Forms.ListBox();
-            this.StatuslistBox = new System.Windows.Forms.ListBox();
-            this.buttonclear = new System.Windows.Forms.Button();
-            this.buttonremove = new System.Windows.Forms.Button();
             this.stopbutton = new System.Windows.Forms.Button();
             this.pausebutton = new System.Windows.Forms.Button();
             this.playbutton = new System.Windows.Forms.Button();
-            this.PBtype2 = new System.Windows.Forms.PictureBox();
-            this.PBtype1 = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.setbutton = new System.Windows.Forms.Button();
+            this.editpanel = new System.Windows.Forms.Panel();
+            this.buttonclear = new System.Windows.Forms.Button();
+            this.buttonremove = new System.Windows.Forms.Button();
+            this.editbutton = new System.Windows.Forms.Button();
+            this.OverviewlistBox = new System.Windows.Forms.ListBox();
+            this.StatuslistBox = new System.Windows.Forms.ListBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.crossingpanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PBtype2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PBtype1)).BeginInit();
             this.gridpanel.SuspendLayout();
             this.controlpanel.SuspendLayout();
             this.editpanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PBtype2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PBtype1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -101,7 +103,6 @@
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
             this.newToolStripMenuItem.Text = "New";
-            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
@@ -148,6 +149,32 @@
             this.crossingpanel.Name = "crossingpanel";
             this.crossingpanel.Size = new System.Drawing.Size(256, 175);
             this.crossingpanel.TabIndex = 1;
+            // 
+            // PBtype2
+            // 
+            this.PBtype2.BackColor = System.Drawing.Color.Transparent;
+            this.PBtype2.BackgroundImage = global::TrafficSimulator.Properties.Resources.Type22;
+            this.PBtype2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PBtype2.Location = new System.Drawing.Point(134, 45);
+            this.PBtype2.Name = "PBtype2";
+            this.PBtype2.Size = new System.Drawing.Size(108, 116);
+            this.PBtype2.TabIndex = 4;
+            this.PBtype2.TabStop = false;
+            this.PBtype2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PBtype2_MouseDown);
+            this.PBtype2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PBtype2_MouseUp);
+            // 
+            // PBtype1
+            // 
+            this.PBtype1.BackColor = System.Drawing.Color.Transparent;
+            this.PBtype1.BackgroundImage = global::TrafficSimulator.Properties.Resources.Type11;
+            this.PBtype1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PBtype1.Location = new System.Drawing.Point(18, 45);
+            this.PBtype1.Name = "PBtype1";
+            this.PBtype1.Size = new System.Drawing.Size(110, 116);
+            this.PBtype1.TabIndex = 3;
+            this.PBtype1.TabStop = false;
+            this.PBtype1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PBtype1_MouseDown);
+            this.PBtype1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PBtype1_MouseUp);
             // 
             // crossinglabel
             // 
@@ -280,6 +307,42 @@
             this.controlpanel.Size = new System.Drawing.Size(256, 101);
             this.controlpanel.TabIndex = 0;
             // 
+            // stopbutton
+            // 
+            this.stopbutton.BackColor = System.Drawing.Color.DarkGray;
+            this.stopbutton.BackgroundImage = global::TrafficSimulator.Properties.Resources.stop;
+            this.stopbutton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.stopbutton.Location = new System.Drawing.Point(151, 51);
+            this.stopbutton.Name = "stopbutton";
+            this.stopbutton.Size = new System.Drawing.Size(46, 41);
+            this.stopbutton.TabIndex = 8;
+            this.stopbutton.UseVisualStyleBackColor = false;
+            this.stopbutton.Click += new System.EventHandler(this.stopbutton_Click);
+            // 
+            // pausebutton
+            // 
+            this.pausebutton.BackColor = System.Drawing.Color.DarkGray;
+            this.pausebutton.BackgroundImage = global::TrafficSimulator.Properties.Resources.pause;
+            this.pausebutton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pausebutton.Location = new System.Drawing.Point(99, 51);
+            this.pausebutton.Name = "pausebutton";
+            this.pausebutton.Size = new System.Drawing.Size(46, 41);
+            this.pausebutton.TabIndex = 8;
+            this.pausebutton.UseVisualStyleBackColor = false;
+            this.pausebutton.Click += new System.EventHandler(this.pausebutton_Click);
+            // 
+            // playbutton
+            // 
+            this.playbutton.BackColor = System.Drawing.Color.DarkGray;
+            this.playbutton.BackgroundImage = global::TrafficSimulator.Properties.Resources.start;
+            this.playbutton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.playbutton.Location = new System.Drawing.Point(47, 51);
+            this.playbutton.Name = "playbutton";
+            this.playbutton.Size = new System.Drawing.Size(46, 41);
+            this.playbutton.TabIndex = 8;
+            this.playbutton.UseVisualStyleBackColor = false;
+            this.playbutton.Click += new System.EventHandler(this.playbutton_Click);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -309,6 +372,28 @@
             this.editpanel.Name = "editpanel";
             this.editpanel.Size = new System.Drawing.Size(256, 79);
             this.editpanel.TabIndex = 5;
+            // 
+            // buttonclear
+            // 
+            this.buttonclear.BackgroundImage = global::TrafficSimulator.Properties.Resources.clear;
+            this.buttonclear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buttonclear.Location = new System.Drawing.Point(151, 15);
+            this.buttonclear.Name = "buttonclear";
+            this.buttonclear.Size = new System.Drawing.Size(53, 48);
+            this.buttonclear.TabIndex = 0;
+            this.buttonclear.UseVisualStyleBackColor = true;
+            this.buttonclear.Click += new System.EventHandler(this.buttonclear_Click);
+            // 
+            // buttonremove
+            // 
+            this.buttonremove.BackgroundImage = global::TrafficSimulator.Properties.Resources.eraser_;
+            this.buttonremove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buttonremove.Location = new System.Drawing.Point(92, 15);
+            this.buttonremove.Name = "buttonremove";
+            this.buttonremove.Size = new System.Drawing.Size(53, 48);
+            this.buttonremove.TabIndex = 0;
+            this.buttonremove.UseVisualStyleBackColor = true;
+            this.buttonremove.Click += new System.EventHandler(this.buttonremove_Click);
             // 
             // editbutton
             // 
@@ -349,89 +434,9 @@
             this.StatuslistBox.Size = new System.Drawing.Size(295, 224);
             this.StatuslistBox.TabIndex = 6;
             // 
-            // buttonclear
+            // timer1
             // 
-            this.buttonclear.BackgroundImage = global::TrafficSimulator.Properties.Resources.clear;
-            this.buttonclear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.buttonclear.Location = new System.Drawing.Point(151, 15);
-            this.buttonclear.Name = "buttonclear";
-            this.buttonclear.Size = new System.Drawing.Size(53, 48);
-            this.buttonclear.TabIndex = 0;
-            this.buttonclear.UseVisualStyleBackColor = true;
-            this.buttonclear.Click += new System.EventHandler(this.buttonclear_Click);
-            // 
-            // buttonremove
-            // 
-            this.buttonremove.BackgroundImage = global::TrafficSimulator.Properties.Resources.eraser_;
-            this.buttonremove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.buttonremove.Location = new System.Drawing.Point(92, 15);
-            this.buttonremove.Name = "buttonremove";
-            this.buttonremove.Size = new System.Drawing.Size(53, 48);
-            this.buttonremove.TabIndex = 0;
-            this.buttonremove.UseVisualStyleBackColor = true;
-            this.buttonremove.Click += new System.EventHandler(this.buttonremove_Click);
-            // 
-            // stopbutton
-            // 
-            this.stopbutton.BackColor = System.Drawing.Color.DarkGray;
-            this.stopbutton.BackgroundImage = global::TrafficSimulator.Properties.Resources.stop;
-            this.stopbutton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.stopbutton.Location = new System.Drawing.Point(151, 51);
-            this.stopbutton.Name = "stopbutton";
-            this.stopbutton.Size = new System.Drawing.Size(46, 41);
-            this.stopbutton.TabIndex = 8;
-            this.stopbutton.UseVisualStyleBackColor = false;
-            this.stopbutton.Click += new System.EventHandler(this.stopbutton_Click);
-            // 
-            // pausebutton
-            // 
-            this.pausebutton.BackColor = System.Drawing.Color.DarkGray;
-            this.pausebutton.BackgroundImage = global::TrafficSimulator.Properties.Resources.pause;
-            this.pausebutton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pausebutton.Location = new System.Drawing.Point(99, 51);
-            this.pausebutton.Name = "pausebutton";
-            this.pausebutton.Size = new System.Drawing.Size(46, 41);
-            this.pausebutton.TabIndex = 8;
-            this.pausebutton.UseVisualStyleBackColor = false;
-            this.pausebutton.Click += new System.EventHandler(this.pausebutton_Click);
-            // 
-            // playbutton
-            // 
-            this.playbutton.BackColor = System.Drawing.Color.DarkGray;
-            this.playbutton.BackgroundImage = global::TrafficSimulator.Properties.Resources.start;
-            this.playbutton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.playbutton.Location = new System.Drawing.Point(47, 51);
-            this.playbutton.Name = "playbutton";
-            this.playbutton.Size = new System.Drawing.Size(46, 41);
-            this.playbutton.TabIndex = 8;
-            this.playbutton.UseVisualStyleBackColor = false;
-            this.playbutton.Click += new System.EventHandler(this.playbutton_Click);
-            // 
-            // PBtype2
-            // 
-            this.PBtype2.BackColor = System.Drawing.Color.Transparent;
-            this.PBtype2.BackgroundImage = global::TrafficSimulator.Properties.Resources.Type22;
-            this.PBtype2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PBtype2.Location = new System.Drawing.Point(134, 45);
-            this.PBtype2.Name = "PBtype2";
-            this.PBtype2.Size = new System.Drawing.Size(108, 116);
-            this.PBtype2.TabIndex = 4;
-            this.PBtype2.TabStop = false;
-            this.PBtype2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PBtype2_MouseDown);
-            this.PBtype2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PBtype2_MouseUp);
-            // 
-            // PBtype1
-            // 
-            this.PBtype1.BackColor = System.Drawing.Color.Transparent;
-            this.PBtype1.BackgroundImage = global::TrafficSimulator.Properties.Resources.Type11;
-            this.PBtype1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PBtype1.Location = new System.Drawing.Point(18, 45);
-            this.PBtype1.Name = "PBtype1";
-            this.PBtype1.Size = new System.Drawing.Size(110, 116);
-            this.PBtype1.TabIndex = 3;
-            this.PBtype1.TabStop = false;
-            this.PBtype1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PBtype1_MouseDown);
-            this.PBtype1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PBtype1_MouseUp);
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -460,13 +465,13 @@
             this.menuStrip1.PerformLayout();
             this.crossingpanel.ResumeLayout(false);
             this.crossingpanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PBtype2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PBtype1)).EndInit();
             this.gridpanel.ResumeLayout(false);
             this.gridpanel.PerformLayout();
             this.controlpanel.ResumeLayout(false);
             this.controlpanel.PerformLayout();
             this.editpanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PBtype2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PBtype1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -508,6 +513,7 @@
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         public System.Windows.Forms.Panel workpanel;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
