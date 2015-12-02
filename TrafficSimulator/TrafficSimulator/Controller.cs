@@ -97,7 +97,7 @@ namespace TrafficSimulator
             int xx = 0;
             int yy = 0;
 
-            for (int x = 0; x <= panelw; x += Convert.ToInt32(panelw / lines))
+            for (int x = 0; x <= panelw + Convert.ToInt32(panelw / lines); x += Convert.ToInt32(panelw / lines))
             {
                 if (x > clickedpoint.X)
                 {
@@ -106,11 +106,11 @@ namespace TrafficSimulator
                 }
             }
 
-            for (int y = 0; y <= panelh; y += Convert.ToInt32(panelw / lines))
+            for (int y = 0; y <= panelh + Convert.ToInt32(panelw / lines); y += Convert.ToInt32(panelh / lines))
             {
                 if (y > clickedpoint.Y)
                 {
-                    yy = y - Convert.ToInt32(panelw / lines);
+                    yy = y - Convert.ToInt32(panelh / lines);
                     break;
                 }
             }
@@ -136,6 +136,7 @@ namespace TrafficSimulator
                 if (item.StartPoint == findcell(p))
                 {
                     taken = true;
+                    break;
                 }
             }
             return taken;
