@@ -7,30 +7,27 @@ using System.Threading.Tasks;
 
 namespace TrafficSimulator
 {
-        [Serializable]
+    [Serializable]
     public class Crossing
     {
-        //clicked position (where user clicked)
-        public Point ClickedPosition { get; set; }
         public Image image { get; set; }
         public int Size { get; set; }
+        public Point StartPoint { get; set; }
 
-        public int Lights { get; set; }
-        public int pedestrainLights { get; set; }
+        public Point[] Neighbor; //may not needed 
 
-        public Crossing(Point position,Image image,int size)
+        public List<Point> Entrance;
+
+        public Crossing(Image image, int size)
         {
-            this.ClickedPosition = position;
             this.image = image;
             this.Size = size;
-            this.Lights=new int();
-            this.pedestrainLights = new int();
+            this.StartPoint = new Point(0, 0);
+            Neighbor = new Point[4];
+
+            Entrance = new List<Point>();
+
             //this.image = (Image)new Bitmap(new Bitmap(this.Image_Filename.Split('.')[0] + ".png"), this.image.Size);
-        }
-
-        public void SetCrossingLights()
-        {
-
         }
     }
 }

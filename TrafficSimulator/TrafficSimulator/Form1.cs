@@ -13,13 +13,29 @@ namespace TrafficSimulator
 {
     public partial class Form1 : Form
     {
+        //maybe better when a window pups up main one become background 
+
         private Controller controller;
         private Image selectedimage;
         bool showgrid = false;
+        bool start = false;
+
+
+
 
         public Form1()
         {
             InitializeComponent();
+
+            PBtype1.Enabled = false;
+            PBtype2.Enabled = false;
+            editbutton.Enabled = false;
+            buttonremove.Enabled = false;
+            buttonclear.Enabled = false;
+            setbutton.Enabled = false;
+            playbutton.Enabled = false;
+            pausebutton.Enabled = false;
+            stopbutton.Enabled = false;
         }
 
         private void gridbutton_Click(object sender, EventArgs e)
@@ -35,7 +51,7 @@ namespace TrafficSimulator
                 if (D.Grid == "Small")
                 {
                     //6*6
-                    this.controller.lines = 6;
+                    this.controller.lines = 4;
                 }
                 else if (D.Grid == "Medium")
                 {
@@ -48,15 +64,23 @@ namespace TrafficSimulator
                     this.controller.lines = 2;
                 }
                 selectedimage = null;
-                this.controller.C = new Crossing(new Point(0, 0), null, this.workpanel.Width / this.controller.lines);
+                this.controller.C = new Crossing(null, this.workpanel.Width / this.controller.lines);
                 showgrid = true;
                 this.workpanel.Invalidate();
                 StatuslistBox.Items.Clear();
+
+                PBtype1.Enabled = true;
+                PBtype2.Enabled = true;
+                editbutton.Enabled = true;
+                buttonremove.Enabled = true;
+                buttonclear.Enabled = true;
+                setbutton.Enabled = true;
+
             }
             else
             {
                 string s = "😜";
-                StatuslistBox.Items.Add("Fisrt:Choose the Grid & Name & Time. "+ s);
+                StatuslistBox.Items.Add("Fisrt:Choose the Grid & Name & Time. " + s);
             }
         }
 
@@ -68,20 +92,23 @@ namespace TrafficSimulator
                 this.controller.drawthedesigngrid(gr);
                 for (int i = 0; i < controller.Design.allcreatedcrossings.Count; i++)
                 {
-                    this.controller.drawcrossing(gr, controller.Design.allcreatedcrossings[i].ClickedPosition, controller.Design.allcreatedcrossings[i]);
+                    this.controller.drawcrossing(gr, controller.Design.allcreatedcrossings[i].StartPoint, controller.Design.allcreatedcrossings[i]);
+                }
+                if (start == true)
+                {
                 }
             }
         }
 
         private void PBtype1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (this.controller!= null)
+            if (this.controller != null) //is not needed anymore 
             {
                 Cursor.Current = Cursors.Cross;
                 PBtype1.BorderStyle = BorderStyle.FixedSingle;
                 selectedimage = (Image)(new Bitmap(new Bitmap("Type1.png")));
                 controller.CType = 1;
-                PBtype1.DoDragDrop(selectedimage,DragDropEffects.Copy);
+                PBtype1.DoDragDrop(selectedimage, DragDropEffects.Copy);
             }
             else
             {
@@ -92,7 +119,7 @@ namespace TrafficSimulator
 
         private void PBtype2_MouseDown(object sender, MouseEventArgs e)
         {
-            if (controller != null)
+            if (controller != null) //is not needed anymore
             {
                 Cursor.Current = Cursors.Cross;
                 PBtype2.BorderStyle = BorderStyle.FixedSingle;
@@ -114,46 +141,46 @@ namespace TrafficSimulator
 
         private void workpanel_DragDrop(object sender, DragEventArgs e)
         {
-                if (selectedimage != null)
+            if (selectedimage != null)
+            {
+                //Point p = new Point(e.X, e.Y) ;
+                Point p = workpanel.PointToClient(new Point(e.X, e.Y));
+                if (controller.isTakenCell(p) == false)
                 {
-                    //Point p = new Point(e.X, e.Y) ;
-                    Point p = workpanel.PointToClient(new Point(e.X, e.Y));
-                    if (controller.isTakenCell(p) == false)
-                    {
-                        this.controller.C = new Crossing(p, selectedimage, this.workpanel.Width / this.controller.lines);
-                        SetCrossing fcrossing = new SetCrossing();
+                    this.controller.C = new Crossing(selectedimage, this.workpanel.Width / this.controller.lines);
+                    controller.C.StartPoint = controller.findcell(p);
+                    SetCrossing fcrossing = new SetCrossing();
 
-                        if (this.controller.CType == 1)
-                        {
-                            fcrossing.pictureBox1.BackgroundImage = (Image)(new Bitmap(new Bitmap("T1.png")));
-                        }
-                        else
-                        {
-                            fcrossing.pictureBox1.BackgroundImage = (Image)(new Bitmap(new Bitmap("T2.png")));
-                        }
-                        fcrossing.controller = this.controller;
-                        fcrossing.panel = this.workpanel;
-                        fcrossing.Show();
+                    if (this.controller.CType == 1)
+                    {
+                        fcrossing.pictureBox1.BackgroundImage = (Image)(new Bitmap(new Bitmap("T1.png")));
                     }
                     else
                     {
-                        string s = "😘";
-                        StatuslistBox.Items.Add("Cell is already Taken. " + s);
+                        fcrossing.pictureBox1.BackgroundImage = (Image)(new Bitmap(new Bitmap("T2.png")));
                     }
+                    fcrossing.controller = this.controller;
+                    fcrossing.panel = this.workpanel;
+                    fcrossing.Show();
                 }
                 else
                 {
-                    string s = "😅";
-                    StatuslistBox.Items.Add("First choose a crossing. " + s);
+                    string s = "😘";
+                    StatuslistBox.Items.Add("Cell is already Taken. " + s);
                 }
-                PBtype1.BorderStyle = BorderStyle.None;
-                PBtype2.BorderStyle = BorderStyle.None;
+            }
+            else
+            {
+                string s = "😅";
+                StatuslistBox.Items.Add("First choose a crossing. " + s);
+            }
+            PBtype1.BorderStyle = BorderStyle.None;
+            PBtype2.BorderStyle = BorderStyle.None;
         }
 
         private void buttonclear_Click(object sender, EventArgs e)
         {
-            showgrid = false;
-            this.workpanel.Invalidate();
+            //////
         }
 
         private void editbutton_Click(object sender, EventArgs e)
@@ -168,12 +195,25 @@ namespace TrafficSimulator
 
         private void setbutton_Click(object sender, EventArgs e)
         {
-
+            if (controller.Design.CheckIfIsValidToSetUpSimulator())
+            {
+                SetupSimulator CarsDirectionStatic = new SetupSimulator();
+                CarsDirectionStatic.controller = this.controller;
+                CarsDirectionStatic.ControlPlay = playbutton;
+                CarsDirectionStatic.ControlPause = pausebutton;
+                CarsDirectionStatic.ControlStop = stopbutton;
+                CarsDirectionStatic.Show();
+            }
+            else
+            {
+                StatuslistBox.Items.Add("All crossing need to have a path!!");
+                StatuslistBox.Items.Add("Please fix the design first..😅");
+            }
         }
 
         private void playbutton_Click(object sender, EventArgs e)
         {
-
+            timer1.Enabled = true;
         }
 
         private void pausebutton_Click(object sender, EventArgs e)
@@ -183,65 +223,12 @@ namespace TrafficSimulator
 
         private void stopbutton_Click(object sender, EventArgs e)
         {
-
+            timer1.Enabled = false;
         }
-       
+
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //////////////////////////////////check it
-            Stream sketch = null;
-            OpenFileDialog dialog = new OpenFileDialog();
 
-            dialog.InitialDirectory = "c:\\";
-            dialog.Filter = "bin files (*.bin)|*.bin|All files (*.*)|*.*";
-            dialog.FilterIndex = 2;
-            dialog.RestoreDirectory = true;
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    if ((sketch = dialog.OpenFile()) != null)
-                    {
-                        using (sketch)
-                        {
-                            //this.showgrid = false;
-                            //this.workpanel.Invalidate();
-                            //this.controller = new Controller(this.workpanel.Width,this.workpanel.Height, this.controller.Design);
-                            WorkspaceDesign D = new WorkspaceDesign("", dialog.FileName, System.DateTime.Now);
-                            controller = new Controller(this.workpanel.Width, this.workpanel.Height, D);
-                            if (D.Grid == "Small")
-                            {
-                                //6*6
-                                controller.lines = 6;
-                            }
-                            else if (D.Grid == "Medium")
-                            {
-                                //3*3
-                                controller.lines = 3;
-                            }
-                            else if (D.Grid == "Large")
-                            {
-                                //2*2
-                                controller.lines = 2;
-                            }
-                            this.controller.C = new Crossing(new Point(0, 0), null, this.workpanel.Width / this.controller.lines);
-                            this.controller.Design.Load(sketch);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
-                }
-            }
-
-            showgrid = true;
-            this.workpanel.Invalidate();
-        }
-
-        private void newToolStripMenuItem_Click(object sender, EventArgs e) ////////////////////
-        {
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -295,6 +282,12 @@ namespace TrafficSimulator
         {
             selectedimage = null;
             PBtype2.BorderStyle = BorderStyle.None;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            start = true;
+            workpanel.Invalidate();
         }
 
 

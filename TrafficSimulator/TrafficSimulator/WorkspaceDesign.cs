@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace TrafficSimulator
 {
-        [Serializable]
+    [Serializable]
     public class WorkspaceDesign
     {
         public string Grid { get; set; }
@@ -18,10 +18,10 @@ namespace TrafficSimulator
         public DateTime Time { get; set; }
         public List<Crossing> allcreatedcrossings;
 
-        public WorkspaceDesign(string grid,string name, DateTime time)
+        public WorkspaceDesign(string grid, string name, DateTime time)
         {
             this.Grid = grid;
-            this.Name=name;
+            this.Name = name;
             this.Time = time;
             this.allcreatedcrossings = new List<Crossing>();
         }
@@ -82,6 +82,50 @@ namespace TrafficSimulator
             formatter.Serialize(stream, this);
         }
 
+
+        public bool CheckIfIsValidToSetUpSimulator()
+        {
+            int count = 0;
+
+            for (int i = 0; i < allcreatedcrossings.Count; i++)
+            {
+                for (int j = 1; j < allcreatedcrossings.Count; j++)
+                {
+                    if (
+                        ((allcreatedcrossings[i].StartPoint.Y - allcreatedcrossings[i].Size) == allcreatedcrossings[j].StartPoint.Y)
+                        &&
+                        (allcreatedcrossings[i].StartPoint.X == allcreatedcrossings[j].StartPoint.X)
+
+                        ||
+                        ((allcreatedcrossings[i].StartPoint.X + allcreatedcrossings[i].Size) == allcreatedcrossings[j].StartPoint.X)
+                        &&
+                        (allcreatedcrossings[i].StartPoint.Y == allcreatedcrossings[j].StartPoint.Y)
+
+                        ||
+                        ((allcreatedcrossings[i].StartPoint.X - allcreatedcrossings[i].Size) == allcreatedcrossings[j].StartPoint.X)
+                        &&
+                        (allcreatedcrossings[i].StartPoint.Y == allcreatedcrossings[j].StartPoint.Y)
+
+                        ||
+                        ((allcreatedcrossings[i].StartPoint.Y + allcreatedcrossings[i].Size) == allcreatedcrossings[j].StartPoint.Y)
+                        &&
+                        (allcreatedcrossings[i].StartPoint.X == allcreatedcrossings[j].StartPoint.X)
+                      )
+                    {
+                        count++;
+                        break;
+                    }
+                }
+            }
+            if (count == allcreatedcrossings.Count)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
     }
 }

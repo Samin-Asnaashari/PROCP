@@ -9,24 +9,22 @@ using System.Windows.Forms;
 
 namespace TrafficSimulator
 {
-        [Serializable]
+    [Serializable]
     public class Controller
     {
-            /// <summary>
-            /// class to control the form 
-            /// </summary>
-            
+        /// <summary>
+        /// class to control the form 
+        /// </summary>
+
         public WorkspaceDesign Design;
         public float panelw;
         public float panelh;
-        //public Controller controller;
-
         public int lines;
 
         public Crossing C;
         public int CType { get; set; }
 
-        public Controller(float pw, float ph , WorkspaceDesign d)
+        public Controller(float pw, float ph, WorkspaceDesign d)
         {
             this.Design = d;
             this.panelw = pw;
@@ -43,25 +41,25 @@ namespace TrafficSimulator
         {
             float x = 0f;
             float y = 0f;
-            Pen mypen = new Pen(Brushes.Black,1);
+            Pen mypen = new Pen(Brushes.Black, 1);
 
             float xspace = panelw / lines;
             float yspace = panelh / lines;
 
-                //vertical
-                for (int i = 0; i < lines + 1; i++)
-                {
-                    gr.DrawLine(mypen, x,y,x,panelh);
-                    x += xspace;
-                }
-                //horizontal 
-                x = 0f;
-                //y = 0f;
-                for (int i = 0; i < lines + 1; i++)
-                {
-                    gr.DrawLine(mypen, x, y, panelw, y);
-                    y += yspace;
-                }
+            //vertical
+            for (int i = 0; i < lines + 1; i++)
+            {
+                gr.DrawLine(mypen, x, y, x, panelh);
+                x += xspace;
+            }
+            //horizontal 
+            x = 0f;
+            //y = 0f;
+            for (int i = 0; i < lines + 1; i++)
+            {
+                gr.DrawLine(mypen, x, y, panelw, y);
+                y += yspace;
+            }
         }
 
         /// <summary>
@@ -71,14 +69,13 @@ namespace TrafficSimulator
         /// <param name="gr"></param>
         /// <param name="clickedpoint"></param>
         /// <param name="C"></param>
-        public void drawcrossing(Graphics gr,Point clickedpoint,Crossing C)
+        public void drawcrossing(Graphics gr, Point position, Crossing C)
         {
             try
             {
-                    Point cellstartpoint = findcell(clickedpoint);
-                    int size = Convert.ToInt32(panelw / lines);
-                    Rectangle reg = new Rectangle(cellstartpoint.X - 1, cellstartpoint.Y - 1, Convert.ToInt32(panelw / lines), Convert.ToInt32(panelh / lines));
-                    gr.DrawImage(C.image, reg);
+                int size = Convert.ToInt32(panelw / lines);
+                Rectangle reg = new Rectangle(position.X - 1, position.Y - 1, Convert.ToInt32(panelw / lines), Convert.ToInt32(panelh / lines));
+                gr.DrawImage(C.image, reg);
             }
             catch (Exception ex)
             {
@@ -87,7 +84,7 @@ namespace TrafficSimulator
             }
         }
 
-        
+
         //study this center of the square 
         /// <summary>
         /// find the cell base on the user click position 
@@ -97,7 +94,7 @@ namespace TrafficSimulator
         public Point findcell(Point clickedpoint)
         {
             Point start;
-            int xx= 0 ;
+            int xx = 0;
             int yy = 0;
 
             for (int x = 0; x <= panelw; x += Convert.ToInt32(panelw / lines))
@@ -113,17 +110,17 @@ namespace TrafficSimulator
             {
                 if (y > clickedpoint.Y)
                 {
-                    yy= y - Convert.ToInt32(panelw / lines);
+                    yy = y - Convert.ToInt32(panelw / lines);
                     break;
                 }
             }
-            start = new Point(xx,yy);
+            start = new Point(xx, yy);
             return start;
         }
 
-        public void callinvalidate(Control C)
+        public void callinvalidate(Control Control)
         {
-            C.Invalidate();
+            Control.Invalidate();
         }
 
         /// <summary>
@@ -136,14 +133,13 @@ namespace TrafficSimulator
             bool taken = false;
             foreach (var item in this.Design.allcreatedcrossings)
             {
-                if(findcell(item.ClickedPosition) == findcell(p))
+                if (item.StartPoint == findcell(p))
                 {
                     taken = true;
                 }
             }
             return taken;
         }
-
 
     }
 }

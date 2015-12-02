@@ -47,20 +47,26 @@
     <Compile Include="Car.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="Crossing.cs" />
+    <Compile Include="CrossingTypeA.cs" />
+    <Compile Include="CrossingTypeB.cs" />
+    <Compile Include="Direction.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="GroupLightsType1.cs" />
-    <Compile Include="GroupLightsType2.cs" />
     <Compile Include="Help.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Help.Designer.cs">
       <DependentUpon>Help.cs</DependentUpon>
     </Compile>
+    <Compile Include="Lane.cs" />
+    <Compile Include="LaneType1.cs" />
+    <Compile Include="LaneType2.cs" />
+    <Compile Include="Light.cs" />
+    <Compile Include="Moving.cs" />
     <Compile Include="Overview.cs" />
     <Compile Include="Pedestrain.cs" />
     <Compile Include="Program.cs" />
@@ -71,7 +77,7 @@
     <Compile Include="SetCrossing.Designer.cs">
       <DependentUpon>SetCrossing.cs</DependentUpon>
     </Compile>
-    <Compile Include="Setting.cs" />
+    <Compile Include="SimulatorSetting.cs" />
     <Compile Include="SetupSimulator.cs">
       <SubType>Form</SubType>
     </Compile>

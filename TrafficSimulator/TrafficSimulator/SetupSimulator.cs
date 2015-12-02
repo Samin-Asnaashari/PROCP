@@ -12,9 +12,22 @@ namespace TrafficSimulator
 {
     public partial class SetupSimulator : Form
     {
+        public Controller controller;
+
+        public Control ControlPlay;
+        public Control ControlPause;
+        public Control ControlStop;
+
         public SetupSimulator()
         {
             InitializeComponent();
+        }
+
+        private void setbutton_Click(object sender, EventArgs e)
+        {
+            ControlPlay.Enabled = true;
+            ControlPause.Enabled = true;
+            ControlStop.Enabled = true;
         }
     }
 }
