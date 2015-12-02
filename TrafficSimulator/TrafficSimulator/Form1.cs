@@ -19,7 +19,7 @@ namespace TrafficSimulator
         private Image selectedimage;
         bool showgrid = false;
         bool start = false;
-
+        Graphics selectCrossing;
 
 
 
@@ -288,6 +288,26 @@ namespace TrafficSimulator
         {
             start = true;
             workpanel.Invalidate();
+        }
+
+        //select a crossing when click.
+        private void workpanel_MouseClick(object sender, MouseEventArgs e)
+        {
+            Point cellstartpoint = controller.findcell(new Point(e.X, e.Y));
+            if (controller.isTakenCell(cellstartpoint) == true)
+            {
+                foreach (var crossing in controller.Design.allcreatedcrossings)
+                {
+                    if (crossing.StartPoint == controller.findcell(cellstartpoint))
+                    {
+                        //add more code ...
+                        selectCrossing = this.workpanel.CreateGraphics();
+                        selectCrossing.DrawRectangle(new Pen(Brushes.Black, 3), new Rectangle(cellstartpoint.X, cellstartpoint.Y, Convert.ToInt32(controller.panelw / controller.lines), Convert.ToInt32(controller.panelw / controller.lines)));
+                    }
+
+
+                }
+            }
         }
 
 
