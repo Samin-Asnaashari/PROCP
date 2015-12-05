@@ -46,7 +46,7 @@
             this.label1.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(15, 220);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(218, 29);
+            this.label1.Size = new System.Drawing.Size(171, 23);
             this.label1.TabIndex = 3;
             this.label1.Text = "Green Lights Timing:";
             // 
@@ -54,13 +54,13 @@
             // 
             this.lightlistBox.BackColor = System.Drawing.Color.Gainsboro;
             this.lightlistBox.FormattingEnabled = true;
-            this.lightlistBox.ItemHeight = 20;
+            this.lightlistBox.ItemHeight = 17;
             this.lightlistBox.Items.AddRange(new object[] {
             "",
             "Light Number 1:"});
             this.lightlistBox.Location = new System.Drawing.Point(12, 261);
             this.lightlistBox.Name = "lightlistBox";
-            this.lightlistBox.Size = new System.Drawing.Size(431, 244);
+            this.lightlistBox.Size = new System.Drawing.Size(431, 242);
             this.lightlistBox.TabIndex = 4;
             // 
             // createbutton
@@ -71,7 +71,7 @@
             this.createbutton.Name = "createbutton";
             this.createbutton.Size = new System.Drawing.Size(119, 60);
             this.createbutton.TabIndex = 5;
-            this.createbutton.Text = "Create";
+            this.createbutton.Text = "Apply\r\n";
             this.createbutton.UseVisualStyleBackColor = false;
             this.createbutton.Click += new System.EventHandler(this.createbutton_Click);
             // 
@@ -102,10 +102,10 @@
             // 
             // SetCrossing
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CadetBlue;
-            this.ClientSize = new System.Drawing.Size(606, 574);
+            this.ClientSize = new System.Drawing.Size(608, 582);
             this.Controls.Add(this.createbutton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
