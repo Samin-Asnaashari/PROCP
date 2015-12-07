@@ -27,6 +27,11 @@ namespace TrafficSimulator
 
         private void createbutton_Click(object sender, EventArgs e)
         {
+            if (controller.Design.allcreatedcrossings.Contains(controller.C))
+            {
+                controller.Design.allcreatedcrossings.Remove(controller.C);
+            }
+
             controller.Design.allcreatedcrossings.Add(controller.C);
             controller.callinvalidate(panel);
             this.Close();

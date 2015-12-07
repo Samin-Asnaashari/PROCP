@@ -83,7 +83,7 @@ namespace TrafficSimulator
             else
             {
                 string s = "😜";
-                StatuslistBox.Items.Add("Fisrt:Choose the Grid & Name & Time. " + s);
+                StatuslistBox.Items.Add("First:Choose the Grid & Name & Time. " + s);
             }
         }
 
@@ -186,39 +186,53 @@ namespace TrafficSimulator
         {
             this.controller.Design.allcreatedcrossings.Clear();
             this.workpanel.Invalidate();
+            selectedCrossing = null;
         }
 
         //EDITD selectedCrossing;
         private void editbutton_Click(object sender, EventArgs e)
         {
-            //It`s not working properly, must be checked... 
-            SetCrossing editCrossing = new SetCrossing();
-            editCrossing.pictureBox1.BackgroundImage = selectedCrossing.image;
-            editCrossing.controller = controller;
-            editCrossing.panel = workpanel;
-            editCrossing.Show();   
+            //It`s not working properly, must be checked...
+            if (selectedCrossing != null)
+            {
+                SetCrossing editCrossing = new SetCrossing();
+                editCrossing.pictureBox1.BackgroundImage = selectedCrossing.image;
+                editCrossing.controller = controller;
+                editCrossing.panel = workpanel;
+                editCrossing.Show();
+                selectedCrossing = null;
+            }
+            else
+            {
+                MessageBox.Show("Select a crossing on the grid first.");
+            } 
         }
         //REMOVE seletedCrossing;
         private void buttonremove_Click(object sender, EventArgs e)
         {
             Crossing cross = null;
-            //make a list of crossings and if the selectedCrossing is found then the information is stored in cross and it`s used in  allcrossings.remove(cross)...
-            foreach (Crossing crossing in controller.Design.allcreatedcrossings)
-            {
-                if (crossing.StartPoint == controller.findcell(selectedCrossing.StartPoint))
-                {
-                    cross = crossing;
-                }
 
+            //make a list of crossings and if the selectedCrossing is found then the information is stored in cross and it`s used in  allcrossings.remove(cross)...
+            if (selectedCrossing != null)
+            {
+                foreach (Crossing crossing in controller.Design.allcreatedcrossings)
+                {
+                    if (crossing.StartPoint == controller.findcell(selectedCrossing.StartPoint))
+                    {
+                        cross = crossing;
+                    }
+                }
             }
+            
             if (cross != null)
             {
                 controller.Design.allcreatedcrossings.Remove(cross);
                 this.workpanel.Invalidate();
+                selectedCrossing = null;
             }
             else
             {
-                MessageBox.Show("Try again...");
+                MessageBox.Show("Select a crossing on the grid first.");
             }
         }
 
