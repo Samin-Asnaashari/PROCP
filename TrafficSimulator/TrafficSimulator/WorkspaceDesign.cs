@@ -7,12 +7,14 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace TrafficSimulator
 {
     [Serializable]
     public class WorkspaceDesign
     {
+        private string savedFile;
         public string Grid { get; set; }
         public string Name { get; set; }
         public DateTime Time { get; set; }
@@ -46,28 +48,20 @@ namespace TrafficSimulator
         /// <summary>
         /// save the design  
         /// </summary>
-        public void Save()
+        public bool Save(Controller controler)
         {
-            //IFormatter formatter = new BinaryFormatter();
-            //Stream stream = new FileStream(this.Name+".bin", FileMode.Create, FileAccess.Write, FileShare.None);
-            //formatter.Serialize(stream, this);
-            //stream.Close();
-
-            FileStream fs = null;
-            BinaryFormatter bf;
-            try
+            Stream saveStream = null;
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.FileName = savedFile;
+            if ((saveStream = saveFileDialog.OpenFile()) != null)
             {
-                fs = new FileStream(this.Name + ".bin", FileMode.Create, FileAccess.Write);
-                bf = new BinaryFormatter();
-
-                bf.Serialize(fs, this);
+                IFormatter formater = new BinaryFormatter();
+                formater.Serialize(saveStream, controler);
+                saveStream.Close();
+                return true;
             }
-            catch (IOException ioex)
-            {
-                throw new IOException(ioex.Message);
-            }
-            finally
-            { if (fs != null) fs.Close(); }
+            else
+                return false;
         }
 
 
@@ -76,10 +70,30 @@ namespace TrafficSimulator
         /// save as a design 
         /// </summary>
         /// <param name="stream"></param>
-        public void SaveAs(Stream stream)
+        public bool SaveAs(Controller controler)
         {
-            IFormatter formatter = new BinaryFormatter();
-            formatter.Serialize(stream, this);
+            SaveFileDialog dialog = new SaveFileDialog();
+
+            dialog.FileName = "Simulation1";
+            dialog.Filter = "SimulatorExtension files (*.simex)|*.simex";
+            dialog.FilterIndex = 1;
+            dialog.RestoreDirectory = true;
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                FileStream fs = null;
+                BinaryFormatter bf = null;
+
+                fs = new FileStream(dialog.FileName, FileMode.Create, FileAccess.Write);
+                bf = new BinaryFormatter();
+                this.savedFile = dialog.FileName;
+                bf.Serialize(fs, controler);
+                fs.Close();
+                return true;
+
+            }
+            return false;
+
         }
 
 
