@@ -272,66 +272,62 @@ namespace TrafficSimulator
         //OPEN a simulation file;
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            if (this.showgrid == true)
             {
-                FileStream fs = null;
-                BinaryFormatter bf = null;
 
-                openFileDialog.Filter = "SimulatorExtension files (*.simex)|*.simex";
-                openFileDialog.FilterIndex = 1;
-                openFileDialog.RestoreDirectory = true;
-
-
-                fs = new FileStream(openFileDialog.FileName, FileMode.Open, FileAccess.Read);
-                bf = new BinaryFormatter();
-                Controller loadController = (Controller)(bf.Deserialize(fs));
-                this.controller = loadController;
-                this.controller.Design.allcreatedcrossings = loadController.Design.allcreatedcrossings;
-                showgrid = true;
-                PBtype1.Enabled = true;
-                PBtype2.Enabled = true;
-                editbutton.Enabled = true;
-                buttonremove.Enabled = true;
-                buttonclear.Enabled = true;
-                workpanel.Invalidate();
-
-
+                DialogResult dialogResult = MessageBox.Show("Would you like to save your current work?", "Save file ?", MessageBoxButtons.YesNo);
+                //if user clicks YES
+                if (dialogResult == DialogResult.Yes)
+                {
+                    this.controller.Design.SaveAs(this.controller);
+                    OpenFile();
+                }
+                else
+                    this.OpenFile();
             }
+            else
+            {
+                this.OpenFile();
+            }
+
+            showgrid = true;
+            PBtype1.Enabled = true;
+            PBtype2.Enabled = true;
+            editbutton.Enabled = true;
+            buttonremove.Enabled = true;
+            buttonclear.Enabled = true;
+            workpanel.Invalidate();
         }
 
         //SAVE AS  simulation file;
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.controller.Design.Save();
+            this.controller.Design.Save(this.controller);
         }
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog dialog = new SaveFileDialog();
-
-            dialog.FileName = "Simulation1";
-            dialog.Filter = "SimulatorExtension files (*.simex)|*.simex";
-            dialog.FilterIndex = 1;
-            dialog.RestoreDirectory = true;
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                FileStream fs = null;
-                BinaryFormatter bf = null;
-
-                fs = new FileStream(dialog.FileName, FileMode.Create, FileAccess.Write);
-                bf = new BinaryFormatter();
-                bf.Serialize(fs, controller);
-                fs.Close();
-
-            }
+            this.controller.Design.SaveAs(this.controller);
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (this.showgrid == true) 
+            {
+                DialogResult dialogResult = MessageBox.Show("Would you like to save your current work?", "Save file ?", MessageBoxButtons.YesNo);
+                //User clicks YES
+                if (dialogResult == DialogResult.Yes)
+                {
+                    this.controller.Design.SaveAs(this.controller);
+                    this.Close();
+                }
+                else
+                {
+                    this.Close();
+                }
+            }
+            else
+                this.Close(); 
         }
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
@@ -386,20 +382,91 @@ namespace TrafficSimulator
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.controller.Design.allcreatedcrossings.Clear();
-            showgrid = false;
-            this.tbname.Clear();
-            this.gridcomboBox.Invalidate();
-            PBtype1.Enabled = false;
-            PBtype2.Enabled = false;
-            editbutton.Enabled = false;
-            buttonremove.Enabled = false;
-            buttonclear.Enabled = false;
-            setbutton.Enabled = false;
-            playbutton.Enabled = false;
-            pausebutton.Enabled = false;
-            stopbutton.Enabled = false;
-            this.workpanel.Invalidate();
+            if (showgrid == false)
+            {
+                this.tbname.Clear();
+                this.gridcomboBox.Invalidate();
+                PBtype1.Enabled = false;
+                PBtype2.Enabled = false;
+                editbutton.Enabled = false;
+                buttonremove.Enabled = false;
+                buttonclear.Enabled = false;
+                setbutton.Enabled = false;
+                playbutton.Enabled = false;
+                pausebutton.Enabled = false;
+                stopbutton.Enabled = false;
+                this.workpanel.Invalidate();
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show("Would you like to save your current work?", "Save file ?", MessageBoxButtons.YesNo);
+                //User clicks YES
+                if (dialogResult == DialogResult.Yes)
+                {
+                    this.controller.Design.SaveAs(this.controller);
+                    if (this.controller.Design.allcreatedcrossings.Count != 0)
+                    {
+                        this.controller.Design.allcreatedcrossings.Clear();
+                    }
+                    showgrid = false;
+                    this.tbname.Clear();
+                    this.gridcomboBox.Invalidate();
+                    PBtype1.Enabled = false;
+                    PBtype2.Enabled = false;
+                    editbutton.Enabled = false;
+                    buttonremove.Enabled = false;
+                    buttonclear.Enabled = false;
+                    setbutton.Enabled = false;
+                    playbutton.Enabled = false;
+                    pausebutton.Enabled = false;
+                    stopbutton.Enabled = false;
+                    this.workpanel.Invalidate();
+                }
+                else
+                    if (this.controller.Design.allcreatedcrossings.Count != 0)
+                    {
+                        this.controller.Design.allcreatedcrossings.Clear();
+                    }
+                showgrid = false;
+                this.tbname.Clear();
+                this.gridcomboBox.Invalidate();
+                PBtype1.Enabled = false;
+                PBtype2.Enabled = false;
+                editbutton.Enabled = false;
+                buttonremove.Enabled = false;
+                buttonclear.Enabled = false;
+                setbutton.Enabled = false;
+                playbutton.Enabled = false;
+                pausebutton.Enabled = false;
+                stopbutton.Enabled = false;
+                this.workpanel.Invalidate();
+            }
+        }
+
+        public bool OpenFile()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                FileStream fs = null;
+                BinaryFormatter bf = null;
+
+                openFileDialog.Filter = "SimulatorExtension files (*.simex)|*.simex";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+
+                fs = new FileStream(openFileDialog.FileName, FileMode.Open, FileAccess.Read);
+                bf = new BinaryFormatter();
+                Controller loadController = (Controller)(bf.Deserialize(fs));
+                this.controller = loadController;
+                this.controller.Design.allcreatedcrossings = loadController.Design.allcreatedcrossings;
+                return true;
+            }
+            else
+                return false;
+
         }
 
 
