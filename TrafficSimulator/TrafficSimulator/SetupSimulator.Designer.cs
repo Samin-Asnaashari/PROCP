@@ -31,10 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SetupSimulator));
             this.setbutton = new System.Windows.Forms.Button();
             this.sidelistBox = new System.Windows.Forms.ListBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBoxNorth = new System.Windows.Forms.TextBox();
+            this.textBoxEast = new System.Windows.Forms.TextBox();
+            this.textBoxWest = new System.Windows.Forms.TextBox();
+            this.textBoxSouth = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // setbutton
@@ -54,7 +54,7 @@
             this.sidelistBox.BackColor = System.Drawing.Color.CadetBlue;
             this.sidelistBox.Font = new System.Drawing.Font("Comic Sans MS", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sidelistBox.FormattingEnabled = true;
-            this.sidelistBox.ItemHeight = 30;
+            this.sidelistBox.ItemHeight = 24;
             this.sidelistBox.Items.AddRange(new object[] {
             "",
             "  North:",
@@ -67,51 +67,51 @@
             this.sidelistBox.Location = new System.Drawing.Point(19, 20);
             this.sidelistBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.sidelistBox.Name = "sidelistBox";
-            this.sidelistBox.Size = new System.Drawing.Size(278, 274);
+            this.sidelistBox.Size = new System.Drawing.Size(278, 268);
             this.sidelistBox.TabIndex = 1;
             // 
-            // textBox1
+            // textBoxNorth
             // 
-            this.textBox1.BackColor = System.Drawing.Color.Silver;
-            this.textBox1.Location = new System.Drawing.Point(126, 52);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 28);
-            this.textBox1.TabIndex = 2;
+            this.textBoxNorth.BackColor = System.Drawing.Color.Silver;
+            this.textBoxNorth.Location = new System.Drawing.Point(126, 47);
+            this.textBoxNorth.Name = "textBoxNorth";
+            this.textBoxNorth.Size = new System.Drawing.Size(100, 24);
+            this.textBoxNorth.TabIndex = 2;
             // 
-            // textBox2
+            // textBoxEast
             // 
-            this.textBox2.BackColor = System.Drawing.Color.Silver;
-            this.textBox2.Location = new System.Drawing.Point(126, 114);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 28);
-            this.textBox2.TabIndex = 2;
+            this.textBoxEast.BackColor = System.Drawing.Color.Silver;
+            this.textBoxEast.Location = new System.Drawing.Point(126, 95);
+            this.textBoxEast.Name = "textBoxEast";
+            this.textBoxEast.Size = new System.Drawing.Size(100, 24);
+            this.textBoxEast.TabIndex = 2;
             // 
-            // textBox3
+            // textBoxWest
             // 
-            this.textBox3.BackColor = System.Drawing.Color.Silver;
-            this.textBox3.Location = new System.Drawing.Point(126, 174);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 28);
-            this.textBox3.TabIndex = 2;
+            this.textBoxWest.BackColor = System.Drawing.Color.Silver;
+            this.textBoxWest.Location = new System.Drawing.Point(126, 142);
+            this.textBoxWest.Name = "textBoxWest";
+            this.textBoxWest.Size = new System.Drawing.Size(100, 24);
+            this.textBoxWest.TabIndex = 2;
             // 
-            // textBox4
+            // textBoxSouth
             // 
-            this.textBox4.BackColor = System.Drawing.Color.Silver;
-            this.textBox4.Location = new System.Drawing.Point(126, 238);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 28);
-            this.textBox4.TabIndex = 2;
+            this.textBoxSouth.BackColor = System.Drawing.Color.Silver;
+            this.textBoxSouth.Location = new System.Drawing.Point(126, 192);
+            this.textBoxSouth.Name = "textBoxSouth";
+            this.textBoxSouth.Size = new System.Drawing.Size(100, 24);
+            this.textBoxSouth.TabIndex = 2;
             // 
             // SetupSimulator
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(433, 310);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxSouth);
+            this.Controls.Add(this.textBoxWest);
+            this.Controls.Add(this.textBoxEast);
+            this.Controls.Add(this.textBoxNorth);
             this.Controls.Add(this.sidelistBox);
             this.Controls.Add(this.setbutton);
             this.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -130,9 +130,9 @@
 
         private System.Windows.Forms.Button setbutton;
         private System.Windows.Forms.ListBox sidelistBox;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBoxNorth;
+        private System.Windows.Forms.TextBox textBoxEast;
+        private System.Windows.Forms.TextBox textBoxWest;
+        private System.Windows.Forms.TextBox textBoxSouth;
     }
 }
