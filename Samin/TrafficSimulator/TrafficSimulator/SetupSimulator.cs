@@ -35,6 +35,7 @@ namespace TrafficSimulator
             ControlPlay.Enabled = true;
             ControlPause.Enabled = true;
             ControlStop.Enabled = true;
+            this.Close();
         }
     }
 }

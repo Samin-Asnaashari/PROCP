@@ -20,6 +20,10 @@ namespace TrafficSimulator
         public DateTime Time { get; set; }
         public List<Crossing> allcreatedcrossings;
 
+        public List<Lane> Lanes;
+        public List<Lane> EnterancesLanes;
+
+
         public WorkspaceDesign(string grid, string name, DateTime time)
         {
             this.Grid = grid;
@@ -97,7 +101,6 @@ namespace TrafficSimulator
         public bool CheckIfIsValidToSetUpSimulator() 
         {
             this.allcreatedcrossings.Sort();
-            //bool check = true;
             if (allcreatedcrossings.Count == 1)
             {
                 return true;
@@ -135,52 +138,54 @@ namespace TrafficSimulator
         }
 
 
-        public void SetUpLanes(List<Crossing> All, out List<LaneType1> T1,out List<LaneType2> T2,out List<EmptyLane> Empty)
+        public List<Lane> SetUpLanes(List<Crossing> All/*, out List<LaneWithOneDirection> T1,out List<LaneWithTwoDirection> T2,out List<EmptyLane> Empty*/)
         {
             All.Sort();
-
-            T1 = new List<LaneType1>();
-            T2 = new List<LaneType2>();
-            Empty = new List<EmptyLane>();
+            List<Lane> L = new List<Lane>();
+            //T1 = new List<LaneWithOneDirection>();
+            //T2 = new List<LaneWithTwoDirection>();
+            //Empty = new List<EmptyLane>();
 
             foreach (var item in All)
             {
                 if (item.CType == 1)
                 {
-                    T1.Add(new LaneType1(new Point(item.StartPoint.X + ((Int32)0.4*(item.Size)),item.StartPoint.Y), 
-                        new Point(item.StartPoint.X + ((Int32)0.4*item.Size),item.StartPoint.Y + ((Int32)(1/3)*item.Size))));
-                    T2.Add(new LaneType2(new Point(item.StartPoint.X + ((Int32)0.5 * (item.Size)), item.StartPoint.Y),
-                        new Point(item.StartPoint.X + ((Int32)0.5 * item.Size), item.StartPoint.Y + ((Int32)(1 / 3) * item.Size))));
-                    Empty.Add(new EmptyLane(new Point(item.StartPoint.X + ((Int32)0.6 * (item.Size)), item.StartPoint.Y + ((Int32)(1 / 3) * item.Size)),
-                       new Point(item.StartPoint.X + ((Int32)0.6 * item.Size), item.StartPoint.Y)));
+                    L.Add(new LaneWithOneDirection(new Point(item.StartPoint.X + ((Int32)0.4 * (item.Size)), item.StartPoint.Y), 
+                        new Point(item.StartPoint.X + ((Int32)0.4*item.Size),item.StartPoint.Y + ((Int32)(1/3)*item.Size)),Direction.south));
+                    L.Add(new LaneWithTwoDirection(new Point(item.StartPoint.X + ((Int32)0.5 * (item.Size)), item.StartPoint.Y),
+                        new Point(item.StartPoint.X + ((Int32)0.5 * item.Size), item.StartPoint.Y + ((Int32)(1 / 3) * item.Size)),Direction.south));
+                    L.Add(new EmptyLane(new Point(item.StartPoint.X + ((Int32)0.6 * (item.Size)), item.StartPoint.Y + ((Int32)(1 / 3) * item.Size)),
+                       new Point(item.StartPoint.X + ((Int32)0.6 * item.Size), item.StartPoint.Y),Direction.north));
 
-                    T1.Add(new LaneType1(new Point(item.StartPoint.X + ((Int32)0.4 * (item.Size)), item.StartPoint.Y + ((Int32)0.4 * item.Size)),
-                        new Point(item.StartPoint.X + ((Int32)(2/3) * item.Size), item.StartPoint.Y + ((Int32)0.4 * item.Size))));
-                    T2.Add(new LaneType2(new Point(item.StartPoint.X + item.Size , item.StartPoint.Y + ((Int32)0.5 * item.Size)),
-                        new Point(item.StartPoint.X + ((Int32)(2/3) * item.Size), item.StartPoint.Y + ((Int32)0.5 * item.Size))));
-                    Empty.Add(new EmptyLane(new Point(item.StartPoint.X + ((Int32)(2/3) * (item.Size)), item.StartPoint.Y + ((Int32)(0.6) * item.Size)),
-                       new Point(item.StartPoint.X +item.Size, item.StartPoint.Y + ((Int32)0.6 * item.Size))));
+                    L.Add(new LaneWithOneDirection(new Point(item.StartPoint.X + ((Int32)0.4 * (item.Size)), item.StartPoint.Y + ((Int32)0.4 * item.Size)),
+                        new Point(item.StartPoint.X + ((Int32)(2/3) * item.Size), item.StartPoint.Y + ((Int32)0.4 * item.Size)),Direction.west));
+                    L.Add(new LaneWithTwoDirection(new Point(item.StartPoint.X + item.Size, item.StartPoint.Y + ((Int32)0.5 * item.Size)),
+                        new Point(item.StartPoint.X + ((Int32)(2/3) * item.Size), item.StartPoint.Y + ((Int32)0.5 * item.Size)),Direction.west));
+                    L.Add(new EmptyLane(new Point(item.StartPoint.X + ((Int32)(2 / 3) * (item.Size)), item.StartPoint.Y + ((Int32)(0.6) * item.Size)),
+                       new Point(item.StartPoint.X +item.Size, item.StartPoint.Y + ((Int32)0.6 * item.Size)),Direction.east));
 
-                    T1.Add(new LaneType1(new Point(item.StartPoint.X + ((Int32)0.4 * (item.Size)), item.StartPoint.Y + item.Size),
-                       new Point(item.StartPoint.X + ((Int32)0.6 * item.Size), item.StartPoint.Y + ((Int32)(2/3) * item.Size))));
-                    T2.Add(new LaneType2(new Point(item.StartPoint.X + ((Int32)0.5 * item.Size), item.StartPoint.Y + item.Size),
-                        new Point(item.StartPoint.X + ((Int32)(1/ 2) * item.Size), item.StartPoint.Y + ((Int32)(2/3) * item.Size))));
-                    Empty.Add(new EmptyLane(new Point(item.StartPoint.X + ((Int32)0.4 * (item.Size)), item.StartPoint.Y + item.Size),
-                       new Point(item.StartPoint.X + ((Int32)0.4* (item.Size)), item.StartPoint.Y + ((Int32)(2 / 3) * item.Size))));
+                    L.Add(new LaneWithOneDirection(new Point(item.StartPoint.X + ((Int32)0.4 * (item.Size)), item.StartPoint.Y + item.Size),
+                       new Point(item.StartPoint.X + ((Int32)0.6 * item.Size), item.StartPoint.Y + ((Int32)(2/3) * item.Size)),Direction.north));
+                    L.Add(new LaneWithTwoDirection(new Point(item.StartPoint.X + ((Int32)0.5 * item.Size), item.StartPoint.Y + item.Size),
+                        new Point(item.StartPoint.X + ((Int32)(1/ 2) * item.Size), item.StartPoint.Y + ((Int32)(2/3) * item.Size)),Direction.north));
+                    L.Add(new EmptyLane(new Point(item.StartPoint.X + ((Int32)0.4 * (item.Size)), item.StartPoint.Y + item.Size),
+                       new Point(item.StartPoint.X + ((Int32)0.4* (item.Size)), item.StartPoint.Y + ((Int32)(2 / 3) * item.Size)),Direction.south));
 
-                    T1.Add(new LaneType1(new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)0.6 * item.Size)),
-                      new Point(item.StartPoint.X + ((Int32)(1/3) * item.Size), item.StartPoint.Y + ((Int32)0.6 * item.Size))));
-                    T2.Add(new LaneType2(new Point(item.StartPoint.X , item.StartPoint.Y + ((Int32)0.5 * item.Size)),
-                        new Point(item.StartPoint.X + ((Int32)(1 / 3) * item.Size), item.StartPoint.Y + ((Int32)0.5 * item.Size))));
-                    Empty.Add(new EmptyLane(new Point(item.StartPoint.X + ((Int32)(1 / 3) * (item.Size)), item.StartPoint.Y + ((Int32)0.4 * item.Size)),
-                       new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)0.4 * item.Size))));
-
+                    L.Add(new LaneWithOneDirection(new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)0.6 * item.Size)),
+                      new Point(item.StartPoint.X + ((Int32)(1/3) * item.Size), item.StartPoint.Y + ((Int32)0.6 * item.Size)),Direction.east));
+                    L.Add(new LaneWithTwoDirection(new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)0.5 * item.Size)),
+                        new Point(item.StartPoint.X + ((Int32)(1 / 3) * item.Size), item.StartPoint.Y + ((Int32)0.5 * item.Size)),Direction.east));
+                    L.Add(new EmptyLane(new Point(item.StartPoint.X + ((Int32)(1 / 3) * (item.Size)), item.StartPoint.Y + ((Int32)0.4 * item.Size)),
+                       new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)0.4 * item.Size)),Direction.west));
                 }
                 else if(item.CType == 2)
                 {
-
+                    //needs to be set 
                 }
             }
+
+            L.Sort();
+            return L;
         }
 
 

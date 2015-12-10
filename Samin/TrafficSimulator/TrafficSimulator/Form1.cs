@@ -87,24 +87,26 @@ namespace TrafficSimulator
 
         private void workpanel_Paint(object sender, PaintEventArgs e)
         {
-            Graphics gr = e.Graphics;
+            //Graphics gr = e.Graphics;
             if (showgrid == true)
             {
                 if (selectedCrossinginpanel != null)
                 {
-                    gr.DrawRectangle(new Pen(Brushes.DarkCyan, 3), new Rectangle(selectedCrossinginpanel.StartPoint.X, selectedCrossinginpanel.StartPoint.Y,
+                    e.Graphics.DrawRectangle(new Pen(Brushes.DarkCyan, 3), new Rectangle(selectedCrossinginpanel.StartPoint.X, selectedCrossinginpanel.StartPoint.Y,
                         Convert.ToInt32(workpanel.Width / controller.lines), Convert.ToInt32(workpanel.Height / controller.lines)));
                 } //maybe the better way
 
-                this.controller.drawthedesigngrid(gr);
+                this.controller.drawthedesigngrid(e.Graphics);
 
                 for (int i = 0; i < controller.Design.allcreatedcrossings.Count; i++)
                 {
-                    this.controller.drawcrossing(gr, controller.Design.allcreatedcrossings[i].StartPoint, controller.Design.allcreatedcrossings[i]);
+                    this.controller.drawcrossing(e.Graphics, controller.Design.allcreatedcrossings[i].StartPoint, controller.Design.allcreatedcrossings[i]);
                 }
                 if (start == true)
                 {
-                    //calls the start to move the cars 
+                    //draw cars
+                    controller.DrawCars(e.Graphics);
+                    
                 }
                 
             }
@@ -172,6 +174,7 @@ namespace TrafficSimulator
                         fcrossing.pictureBox1.BackgroundImage = (Image)(new Bitmap(new Bitmap("T2.png")));
                     }
                     fcrossing.controller = this.controller;
+                    fcrossing.setgrouplights();
                     fcrossing.panel = this.workpanel;
                     fcrossing.Show();
                 }
@@ -195,7 +198,8 @@ namespace TrafficSimulator
         {
             this.controller.Design.allcreatedcrossings.Clear();
             this.workpanel.Invalidate();
-            this.controller.C = new Crossing(new Point(0, 0), null, this.workpanel.Width / this.controller.lines);
+            //this.controller.C = new Crossing(new Point(0, 0), null, this.workpanel.Width / this.controller.lines);
+            this.controller.C = null;
             selectedimage = null;
             selectedCrossinginpanel = null;
         }
@@ -236,12 +240,31 @@ namespace TrafficSimulator
 
         private void playbutton_Click(object sender, EventArgs e)
         {
+            PBtype1.Enabled = false;
+            PBtype2.Enabled = false;
+            cursorbutton.Enabled = false;
+            buttonremove.Enabled = false;
+            buttonclear.Enabled = false;
+            setbutton.Enabled = false;
+            playbutton.Enabled = false;
+            gridbutton.Enabled = false;
+            this.controller.Design.Lanes=controller.Design.SetUpLanes(controller.Design.allcreatedcrossings);
             timer1.Enabled = true;
         }
 
         private void stopbutton_Click(object sender, EventArgs e)
         {
+            PBtype1.Enabled = true;
+            PBtype2.Enabled = true;
+            cursorbutton.Enabled = true;
+            buttonremove.Enabled = true;
+            buttonclear.Enabled = true;
+            setbutton.Enabled = true;
+            playbutton.Enabled = true;
+            start = false;
             timer1.Enabled = false;
+            gridbutton.Enabled = true;
+            workpanel.Invalidate();
         }
 
         //OPEN a simulation file;

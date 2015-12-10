@@ -48,6 +48,7 @@
             this.setbutton.TabIndex = 0;
             this.setbutton.Text = "Set";
             this.setbutton.UseVisualStyleBackColor = false;
+            this.setbutton.Click += new System.EventHandler(this.setbutton_Click);
             // 
             // sidelistBox
             // 

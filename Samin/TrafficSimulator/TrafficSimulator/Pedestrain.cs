@@ -8,6 +8,7 @@ namespace TrafficSimulator
 {
     public class Pedestrain
     {
+        //Fix it 
         private int x;
         private int y;
         private int dirX;

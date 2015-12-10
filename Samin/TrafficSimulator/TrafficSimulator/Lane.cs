@@ -10,62 +10,84 @@ namespace TrafficSimulator
     /// <summary>
     /// group of possibilities for green lights for crossing type 1
     /// </summary>
-    public enum GroupLightsTypeA
+    public enum GroupLightsForCrossingType1
     {
         Lights123, Lights345, Lights567, Lights1357, Lights178
     }
     /// <summary>
     /// group of possibilities for green lights for crossing type 2
     /// </summary>
-    public enum GroupLightsType2
+    public enum GroupLightsForCrossingType2
     {
         Light2, Light6, Lights34, Lights14, Lights35, Lights17, Lights73, Lights78, Lights84, Lights85
     }
-    public class Lane :IComparable
+    public class Lane : IComparable
     {
         public Point Entrance { get; set; }
         public Point Intersection { get; set; }
+        public Direction DirectionIsTo { get; set; }
+        public List<Car> Cars { get; set; }
+        public int CountCars;
+        public Light Light;
+        public List<int> Group;
 
-        public Car[] Cars { get; set; }
-
-        public Lane(Point enter , Point intersect)
+        public Lane(Point enter , Point intersect,Direction D)
         {
             this.Entrance = enter;
             this.Intersection = intersect;
-            Cars = new Car[5];
+            this.DirectionIsTo = D;
+            Light = new Light();
+            CountCars = 0;
+            Cars = new List<Car>();
+            Group = new List<int>();
         }
 
         public int CompareTo(object obj)
         {
-            return 0; ///write this 
+            if (this.Entrance.X < ((Lane)obj).Entrance.X)
+            {
+                return -1;
+            }
+            else if (this.Entrance.X == ((Lane)obj).Entrance.X && this.Entrance.Y < ((Lane)obj).Entrance.Y)
+            {
+                return -1;
+            }
+            else if (this.Entrance.X > ((Lane)obj).Entrance.X)
+            {
+                return 1;
+            }
+            else if (this.Entrance.X == ((Lane)obj).Entrance.X && this.Entrance.Y > ((Lane)obj).Entrance.Y)
+            {
+                return 1;
+            }
+            { return 0; }
         }
 
     }
 
-    class LaneType1 : Lane
+    public class LaneWithOneDirection : Lane
     {
-        public string PossibleDirection { get; set; }
+        public Direction PossibleDirection { get; set; }
 
-        public LaneType1(Point e,Point i):base(e,i)
+        public LaneWithOneDirection(Point e,Point i,Direction d):base(e,i,d)
         {
-            this.PossibleDirection = null;
+           
         }
     }
 
-    class LaneType2 : Lane
+    public class LaneWithTwoDirection : Lane
     {
         public string[] PossibleDirection;
 
-        public LaneType2(Point e, Point i): base(e,i)
+        public LaneWithTwoDirection(Point e, Point i, Direction d): base(e, i, d)
         {
             this.PossibleDirection = new string[2];
         }
     }
 
-    class EmptyLane : Lane
+    public class EmptyLane : Lane
     {
-        public EmptyLane(Point e, Point i)
-            : base(e, i)
+        public EmptyLane(Point ei, Point exit,Direction d):base(ei,exit,d)
         {
             
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,15 +8,18 @@ using System.Threading.Tasks;
 namespace TrafficSimulator
 {
     public enum LightColor{red,green}
-    class Light
+    public class Light
     {
-        public int Group { get; set; }
+        public Point Position { get; set; }
         public LightColor Color { get; set; }
+        
+        //time
+        //group
 
-        public Light(int group)
+        public Light()
         {
-            this.Group = group;
             this.Color = LightColor.red;
         }
     }
+    
 }

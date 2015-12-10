@@ -72,14 +72,12 @@
     <Compile Include="SetCrossing.Designer.cs">
       <DependentUpon>SetCrossing.cs</DependentUpon>
     </Compile>
-    <Compile Include="SimulatorSetting.cs" />
     <Compile Include="SetupSimulator.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SetupSimulator.Designer.cs">
       <DependentUpon>SetupSimulator.cs</DependentUpon>
     </Compile>
-    <Compile Include="Simulator.cs" />
     <Compile Include="WorkspaceDesign.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

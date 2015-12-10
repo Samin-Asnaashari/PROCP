@@ -142,5 +142,90 @@ namespace TrafficSimulator
             return taken;
         }
 
+        public int CarSize()
+        {
+            if (lines == 4)
+            {
+                return 6;
+            }
+            else if(lines == 3)
+            {
+                return 5;
+            }
+            else /*if(lines == 2)*/
+            {
+                return 4;
+            }
+        }
+
+        public void DrawCars(Graphics gr)
+        {
+            int s = CarSize(); 
+
+            for (int i = 0; i < /*Design.EnterancesLanes*/Design.Lanes.Count; i++) //(list of the entrances add car to the enterances lane)
+            {
+                if (Design.Lanes[i].CountCars < 5)
+                {
+                    Direction D = Direction.north; //for satisfing the compiler 
+                    if (Design.Lanes[i] is LaneWithOneDirection || Design.Lanes[i] is EmptyLane)
+                    {
+                        D = Design.Lanes[i].DirectionIsTo;
+                    }
+                    else if (Design.Lanes[i] is LaneWithTwoDirection)
+                    {
+                        //random direction
+                    }
+
+                    Design.Lanes[i].Cars.Add(new Car(Design.Lanes[i].Entrance, D, s));
+                    Design.Lanes[i].CountCars++;
+                }
+            }
+
+            for (int i = 0; i < Design.Lanes.Count; i++)
+            {
+                for (int j = 0; j < Design.Lanes[i].Cars.Count; j++)
+                {
+                    if (Design.Lanes[i].Cars[j].Position != Design.Lanes[i].Intersection)
+                    {
+                        Design.Lanes[i].Cars[j].MoveTheCar(Design.Lanes[i].DirectionIsTo);
+                        Design.Lanes[i].Cars[j].DrawCar(gr);
+                    }
+                    else
+                    {
+                        if (Design.Lanes[i] is LaneWithOneDirection || Design.Lanes[i] is LaneWithTwoDirection)
+                        {
+                            if (Design.Lanes[i].Light.Color == LightColor.green)
+                            {
+                                //but need to go to the right next lane 
+                                Design.Lanes[j + 1].Cars.Add(Design.Lanes[i].Cars[j]); //if is possible add it
+                                Design.Lanes[i].Cars.Remove(Design.Lanes[i].Cars[j]);
+                            }
+                            //if green go to next lane delete from the list of the lane cars 
+                            //if red wait 
+                        }
+                        else
+                        {
+                            Design.Lanes[j + 1].Cars.Add(Design.Lanes[i].Cars[j]); //if is possible add it 
+                            Design.Lanes[i].Cars.Remove(Design.Lanes[i].Cars[j]);
+                        }
+                    }
+                }
+            }
+           
+        }
+
+
+
+
+
+
+
+
     }
 }
+
+
+
+
+
+
