@@ -60,7 +60,7 @@
             "Light Number 1:"});
             this.lightlistBox.Location = new System.Drawing.Point(12, 261);
             this.lightlistBox.Name = "lightlistBox";
-            this.lightlistBox.Size = new System.Drawing.Size(431, 244);
+            this.lightlistBox.Size = new System.Drawing.Size(431, 224);
             this.lightlistBox.TabIndex = 4;
             // 
             // createbutton
@@ -118,7 +118,6 @@
             this.MinimumSize = new System.Drawing.Size(624, 621);
             this.Name = "SetCrossing";
             this.Text = "Set The Crossing:";
-            this.Load += new System.EventHandler(this.SetCrossing_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.ResumeLayout(false);

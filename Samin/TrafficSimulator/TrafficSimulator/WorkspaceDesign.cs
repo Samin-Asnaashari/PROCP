@@ -7,26 +7,27 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace TrafficSimulator
 {
-        [Serializable]
+    [Serializable]
     public class WorkspaceDesign
     {
+        private string savedFile;
         public string Grid { get; set; }
         public string Name { get; set; }
         public DateTime Time { get; set; }
         public List<Crossing> allcreatedcrossings;
 
-        public WorkspaceDesign(string grid,string name, DateTime time)
+        public WorkspaceDesign(string grid, string name, DateTime time)
         {
             this.Grid = grid;
-            this.Name=name;
+            this.Name = name;
             this.Time = time;
             this.allcreatedcrossings = new List<Crossing>();
         }
 
-        //study this 
         /// <summary>
         /// load a simulation deasign 
         /// </summary>
@@ -42,44 +43,144 @@ namespace TrafficSimulator
             this.allcreatedcrossings = deserialized.allcreatedcrossings;
         }
 
-        //study this 
         /// <summary>
         /// save the design  
         /// </summary>
-        public void Save()
+        public bool Save(Controller controler)
         {
-            //IFormatter formatter = new BinaryFormatter();
-            //Stream stream = new FileStream(this.Name+".bin", FileMode.Create, FileAccess.Write, FileShare.None);
-            //formatter.Serialize(stream, this);
-            //stream.Close();
-
-            FileStream fs = null;
-            BinaryFormatter bf;
-            try
+            Stream saveStream = null;
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.FileName = savedFile;
+            if ((saveStream = saveFileDialog.OpenFile()) != null)
             {
-                fs = new FileStream(this.Name + ".bin", FileMode.Create, FileAccess.Write);
-                bf = new BinaryFormatter();
-
-                bf.Serialize(fs, this);
+                IFormatter formater = new BinaryFormatter();
+                formater.Serialize(saveStream, controler);
+                saveStream.Close();
+                return true;
             }
-            catch (IOException ioex)
-            {
-                throw new IOException(ioex.Message);
-            }
-            finally
-            { if (fs != null) fs.Close(); }
+            else
+                return false;
         }
 
 
-        //study this
         /// <summary>
         /// save as a design 
         /// </summary>
         /// <param name="stream"></param>
-        public void SaveAs(Stream stream)
+        public bool SaveAs(Controller controler)
         {
-            IFormatter formatter = new BinaryFormatter();
-            formatter.Serialize(stream, this);
+            SaveFileDialog dialog = new SaveFileDialog();
+
+            dialog.FileName = "Simulation1";
+            dialog.Filter = "SimulatorExtension files (*.simex)|*.simex";
+            dialog.FilterIndex = 1;
+            dialog.RestoreDirectory = true;
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                FileStream fs = null;
+                BinaryFormatter bf = null;
+
+                fs = new FileStream(dialog.FileName, FileMode.Create, FileAccess.Write);
+                bf = new BinaryFormatter();
+                this.savedFile = dialog.FileName;
+                bf.Serialize(fs, controler);
+                fs.Close();
+                return true;
+
+            }
+            return false;
+
+        }
+
+
+        public bool CheckIfIsValidToSetUpSimulator() 
+        {
+            this.allcreatedcrossings.Sort();
+            //bool check = true;
+            if (allcreatedcrossings.Count == 1)
+            {
+                return true;
+            }
+            else
+            {
+                for (int i = 0; i < allcreatedcrossings.Count -1; i++)
+                {
+                    if (!(
+                        ((allcreatedcrossings[i].StartPoint.Y - allcreatedcrossings[i].Size) == allcreatedcrossings[i + 1].StartPoint.Y)
+                        &&
+                        (allcreatedcrossings[i].StartPoint.X == allcreatedcrossings[i + 1].StartPoint.X)
+
+                        ||
+                        ((allcreatedcrossings[i].StartPoint.X + allcreatedcrossings[i].Size) == allcreatedcrossings[i + 1].StartPoint.X)
+                        &&
+                        (allcreatedcrossings[i].StartPoint.Y == allcreatedcrossings[i + 1].StartPoint.Y)
+
+                        ||
+                        ((allcreatedcrossings[i].StartPoint.X - allcreatedcrossings[i].Size) == allcreatedcrossings[i + 1].StartPoint.X)
+                        &&
+                        (allcreatedcrossings[i].StartPoint.Y == allcreatedcrossings[i + 1].StartPoint.Y)
+
+                        ||
+                        ((allcreatedcrossings[i].StartPoint.Y + allcreatedcrossings[i].Size) == allcreatedcrossings[i + 1].StartPoint.Y)
+                        &&
+                        (allcreatedcrossings[i].StartPoint.X == allcreatedcrossings[i + 1].StartPoint.X)
+                      ))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+
+        public void SetUpLanes(List<Crossing> All, out List<LaneType1> T1,out List<LaneType2> T2,out List<EmptyLane> Empty)
+        {
+            All.Sort();
+
+            T1 = new List<LaneType1>();
+            T2 = new List<LaneType2>();
+            Empty = new List<EmptyLane>();
+
+            foreach (var item in All)
+            {
+                if (item.CType == 1)
+                {
+                    T1.Add(new LaneType1(new Point(item.StartPoint.X + ((Int32)0.4*(item.Size)),item.StartPoint.Y), 
+                        new Point(item.StartPoint.X + ((Int32)0.4*item.Size),item.StartPoint.Y + ((Int32)(1/3)*item.Size))));
+                    T2.Add(new LaneType2(new Point(item.StartPoint.X + ((Int32)0.5 * (item.Size)), item.StartPoint.Y),
+                        new Point(item.StartPoint.X + ((Int32)0.5 * item.Size), item.StartPoint.Y + ((Int32)(1 / 3) * item.Size))));
+                    Empty.Add(new EmptyLane(new Point(item.StartPoint.X + ((Int32)0.6 * (item.Size)), item.StartPoint.Y + ((Int32)(1 / 3) * item.Size)),
+                       new Point(item.StartPoint.X + ((Int32)0.6 * item.Size), item.StartPoint.Y)));
+
+                    T1.Add(new LaneType1(new Point(item.StartPoint.X + ((Int32)0.4 * (item.Size)), item.StartPoint.Y + ((Int32)0.4 * item.Size)),
+                        new Point(item.StartPoint.X + ((Int32)(2/3) * item.Size), item.StartPoint.Y + ((Int32)0.4 * item.Size))));
+                    T2.Add(new LaneType2(new Point(item.StartPoint.X + item.Size , item.StartPoint.Y + ((Int32)0.5 * item.Size)),
+                        new Point(item.StartPoint.X + ((Int32)(2/3) * item.Size), item.StartPoint.Y + ((Int32)0.5 * item.Size))));
+                    Empty.Add(new EmptyLane(new Point(item.StartPoint.X + ((Int32)(2/3) * (item.Size)), item.StartPoint.Y + ((Int32)(0.6) * item.Size)),
+                       new Point(item.StartPoint.X +item.Size, item.StartPoint.Y + ((Int32)0.6 * item.Size))));
+
+                    T1.Add(new LaneType1(new Point(item.StartPoint.X + ((Int32)0.4 * (item.Size)), item.StartPoint.Y + item.Size),
+                       new Point(item.StartPoint.X + ((Int32)0.6 * item.Size), item.StartPoint.Y + ((Int32)(2/3) * item.Size))));
+                    T2.Add(new LaneType2(new Point(item.StartPoint.X + ((Int32)0.5 * item.Size), item.StartPoint.Y + item.Size),
+                        new Point(item.StartPoint.X + ((Int32)(1/ 2) * item.Size), item.StartPoint.Y + ((Int32)(2/3) * item.Size))));
+                    Empty.Add(new EmptyLane(new Point(item.StartPoint.X + ((Int32)0.4 * (item.Size)), item.StartPoint.Y + item.Size),
+                       new Point(item.StartPoint.X + ((Int32)0.4* (item.Size)), item.StartPoint.Y + ((Int32)(2 / 3) * item.Size))));
+
+                    T1.Add(new LaneType1(new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)0.6 * item.Size)),
+                      new Point(item.StartPoint.X + ((Int32)(1/3) * item.Size), item.StartPoint.Y + ((Int32)0.6 * item.Size))));
+                    T2.Add(new LaneType2(new Point(item.StartPoint.X , item.StartPoint.Y + ((Int32)0.5 * item.Size)),
+                        new Point(item.StartPoint.X + ((Int32)(1 / 3) * item.Size), item.StartPoint.Y + ((Int32)0.5 * item.Size))));
+                    Empty.Add(new EmptyLane(new Point(item.StartPoint.X + ((Int32)(1 / 3) * (item.Size)), item.StartPoint.Y + ((Int32)0.4 * item.Size)),
+                       new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)0.4 * item.Size))));
+
+                }
+                else if(item.CType == 2)
+                {
+
+                }
+            }
         }
 
 

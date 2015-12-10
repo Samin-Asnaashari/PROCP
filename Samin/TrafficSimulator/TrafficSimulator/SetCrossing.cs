@@ -27,19 +27,14 @@ namespace TrafficSimulator
 
         private void createbutton_Click(object sender, EventArgs e)
         {
-            controller.Design.allcreatedcrossings.Add(controller  .C);
+            controller.Design.allcreatedcrossings.Add(controller.C);
             controller.callinvalidate(panel);
             this.Close();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            axWindowsMediaPlayer1.Ctlcontrols.play();            
-        }
-
-        private void SetCrossing_Load(object sender, EventArgs e)
-        {
-            
+            axWindowsMediaPlayer1.Ctlcontrols.play();
         }
     }
 }

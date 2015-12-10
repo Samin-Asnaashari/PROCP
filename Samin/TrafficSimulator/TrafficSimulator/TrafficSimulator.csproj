@@ -47,8 +47,6 @@
     <Compile Include="Car.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="Crossing.cs" />
-    <Compile Include="CrossingTypeA.cs" />
-    <Compile Include="CrossingTypeB.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -64,7 +62,6 @@
     </Compile>
     <Compile Include="Lane.cs" />
     <Compile Include="Light.cs" />
-    <Compile Include="Moving.cs" />
     <Compile Include="Overview.cs" />
     <Compile Include="Pedestrain.cs" />
     <Compile Include="Program.cs" />
@@ -168,6 +165,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Type22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\cursor.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

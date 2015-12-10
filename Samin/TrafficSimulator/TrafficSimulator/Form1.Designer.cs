@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,7 +61,7 @@
             this.editpanel = new System.Windows.Forms.Panel();
             this.buttonclear = new System.Windows.Forms.Button();
             this.buttonremove = new System.Windows.Forms.Button();
-            this.editbutton = new System.Windows.Forms.Button();
+            this.cursorbutton = new System.Windows.Forms.Button();
             this.OverviewlistBox = new System.Windows.Forms.ListBox();
             this.StatuslistBox = new System.Windows.Forms.ListBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -88,6 +89,7 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItem,
             this.openToolStripMenuItem,
             this.saveToolStripMenuItem,
             this.saveAsToolStripMenuItem,
@@ -95,6 +97,12 @@
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
+            // 
+            // newToolStripMenuItem
+            // 
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
+            this.newToolStripMenuItem.Text = "New";
             // 
             // openToolStripMenuItem
             // 
@@ -153,7 +161,6 @@
             this.PBtype2.TabIndex = 4;
             this.PBtype2.TabStop = false;
             this.PBtype2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PBtype2_MouseDown);
-            this.PBtype2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PBtype2_MouseUp);
             // 
             // PBtype1
             // 
@@ -166,7 +173,6 @@
             this.PBtype1.TabIndex = 3;
             this.PBtype1.TabStop = false;
             this.PBtype1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PBtype1_MouseDown);
-            this.PBtype1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PBtype1_MouseUp);
             // 
             // crossinglabel
             // 
@@ -278,13 +284,14 @@
             // workpanel
             // 
             this.workpanel.BackColor = System.Drawing.Color.DarkGray;
-            this.workpanel.Location = new System.Drawing.Point(274, 58);
+            this.workpanel.Location = new System.Drawing.Point(274, 46);
             this.workpanel.Name = "workpanel";
-            this.workpanel.Size = new System.Drawing.Size(603, 586);
+            this.workpanel.Size = new System.Drawing.Size(600, 600);
             this.workpanel.TabIndex = 0;
             this.workpanel.DragDrop += new System.Windows.Forms.DragEventHandler(this.workpanel_DragDrop);
             this.workpanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.workpanel_DragEnter);
             this.workpanel.Paint += new System.Windows.Forms.PaintEventHandler(this.workpanel_Paint);
+            this.workpanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.workpanel_MouseClick);
             // 
             // controlpanel
             // 
@@ -321,7 +328,6 @@
             this.pausebutton.Size = new System.Drawing.Size(46, 41);
             this.pausebutton.TabIndex = 8;
             this.pausebutton.UseVisualStyleBackColor = false;
-            this.pausebutton.Click += new System.EventHandler(this.pausebutton_Click);
             // 
             // playbutton
             // 
@@ -359,7 +365,7 @@
             // 
             this.editpanel.Controls.Add(this.buttonclear);
             this.editpanel.Controls.Add(this.buttonremove);
-            this.editpanel.Controls.Add(this.editbutton);
+            this.editpanel.Controls.Add(this.cursorbutton);
             this.editpanel.Location = new System.Drawing.Point(12, 458);
             this.editpanel.Name = "editpanel";
             this.editpanel.Size = new System.Drawing.Size(256, 79);
@@ -387,17 +393,18 @@
             this.buttonremove.UseVisualStyleBackColor = true;
             this.buttonremove.Click += new System.EventHandler(this.buttonremove_Click);
             // 
-            // editbutton
+            // cursorbutton
             // 
-            this.editbutton.BackColor = System.Drawing.Color.DarkGray;
-            this.editbutton.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.editbutton.Location = new System.Drawing.Point(19, 15);
-            this.editbutton.Name = "editbutton";
-            this.editbutton.Size = new System.Drawing.Size(67, 48);
-            this.editbutton.TabIndex = 2;
-            this.editbutton.Text = "Edit";
-            this.editbutton.UseVisualStyleBackColor = false;
-            this.editbutton.Click += new System.EventHandler(this.editbutton_Click);
+            this.cursorbutton.BackColor = System.Drawing.Color.LightGray;
+            this.cursorbutton.BackgroundImage = global::TrafficSimulator.Properties.Resources.cursor;
+            this.cursorbutton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.cursorbutton.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cursorbutton.Location = new System.Drawing.Point(33, 15);
+            this.cursorbutton.Name = "cursorbutton";
+            this.cursorbutton.Size = new System.Drawing.Size(53, 48);
+            this.cursorbutton.TabIndex = 2;
+            this.cursorbutton.UseVisualStyleBackColor = false;
+            this.cursorbutton.Click += new System.EventHandler(this.cursorbutton_Click);
             // 
             // OverviewlistBox
             // 
@@ -423,12 +430,11 @@
             this.StatuslistBox.Location = new System.Drawing.Point(883, 420);
             this.StatuslistBox.Name = "StatuslistBox";
             this.StatuslistBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.StatuslistBox.Size = new System.Drawing.Size(295, 224);
+            this.StatuslistBox.Size = new System.Drawing.Size(295, 204);
             this.StatuslistBox.TabIndex = 6;
             // 
             // timer1
             // 
-            this.timer1.Interval = 10;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
@@ -500,9 +506,10 @@
         private System.Windows.Forms.Button buttonclear;
         private System.Windows.Forms.Button buttonremove;
         private System.Windows.Forms.Button setbutton;
-        private System.Windows.Forms.Button editbutton;
+        private System.Windows.Forms.Button cursorbutton;
         private System.Windows.Forms.ListBox OverviewlistBox;
         private System.Windows.Forms.ListBox StatuslistBox;
+        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         public System.Windows.Forms.Panel workpanel;
         private System.Windows.Forms.Timer timer1;
