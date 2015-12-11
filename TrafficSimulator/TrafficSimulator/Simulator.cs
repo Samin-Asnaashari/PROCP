@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TrafficSimulator
 {
-    class Simulator
+    public class Simulator
     {
         /// <summary>
         /// controller for the simulator 
@@ -14,12 +14,14 @@ namespace TrafficSimulator
         public bool Start { get; set; }
         public bool Pause { get; set; }
         public bool Stop { get; set; }
+        public SimulatorSetting Settings { get; set; }
 
         public Simulator()
         {
             this.Start = false;
             this.Pause = false;
             this.Stop = false;
+            this.Settings = new SimulatorSetting();
         }
 
         public void StartSimulator()

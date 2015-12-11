@@ -17,6 +17,7 @@ namespace TrafficSimulator
         /// </summary>
 
         public WorkspaceDesign Design;
+        public Simulator simulator;
         public float panelw;
         public float panelh;
         public int lines;
@@ -24,13 +25,14 @@ namespace TrafficSimulator
         public Crossing C;
         public int CType { get; set; }
 
-        public Controller(float pw, float ph, WorkspaceDesign d)
+        public Controller(float pw, float ph, WorkspaceDesign d, Simulator s)
         {
             this.Design = d;
             this.panelw = pw;
             this.panelh = ph;
             lines = 0;
             this.CType = 0;
+            this.simulator = s;
         }
 
         /// <summary>
@@ -142,5 +144,12 @@ namespace TrafficSimulator
             return taken;
         }
 
+        public void setSimulatorSettings(double north, double east, double west, double south)
+        {
+            simulator.Settings.North = north;
+            simulator.Settings.East = east;
+            simulator.Settings.West = west;
+            simulator.Settings.South = south;
+        }
     }
 }
