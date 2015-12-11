@@ -20,6 +20,10 @@ namespace TrafficSimulator
         public DateTime Time { get; set; }
         public List<Crossing> allcreatedcrossings;
 
+        public List<Lane> Lanes;
+        public List<Lane> EnterancesLanes;
+
+
         public WorkspaceDesign(string grid, string name, DateTime time)
         {
             this.Grid = grid;
@@ -28,7 +32,6 @@ namespace TrafficSimulator
             this.allcreatedcrossings = new List<Crossing>();
         }
 
-        //study this 
         /// <summary>
         /// load a simulation deasign 
         /// </summary>
@@ -44,7 +47,6 @@ namespace TrafficSimulator
             this.allcreatedcrossings = deserialized.allcreatedcrossings;
         }
 
-        //study this 
         /// <summary>
         /// save the design  
         /// </summary>
@@ -65,7 +67,6 @@ namespace TrafficSimulator
         }
 
 
-        //study this
         /// <summary>
         /// save as a design 
         /// </summary>
@@ -97,49 +98,92 @@ namespace TrafficSimulator
         }
 
 
-        public bool CheckIfIsValidToSetUpSimulator()
+        public bool CheckIfIsValidToSetUpSimulator() //needs to be fix 
         {
-            int count = 0;
-
-            for (int i = 0; i < allcreatedcrossings.Count; i++)
-            {
-                for (int j = 1; j < allcreatedcrossings.Count; j++)
-                {
-                    if (
-                        ((allcreatedcrossings[i].StartPoint.Y - allcreatedcrossings[i].Size) == allcreatedcrossings[j].StartPoint.Y)
-                        &&
-                        (allcreatedcrossings[i].StartPoint.X == allcreatedcrossings[j].StartPoint.X)
-
-                        ||
-                        ((allcreatedcrossings[i].StartPoint.X + allcreatedcrossings[i].Size) == allcreatedcrossings[j].StartPoint.X)
-                        &&
-                        (allcreatedcrossings[i].StartPoint.Y == allcreatedcrossings[j].StartPoint.Y)
-
-                        ||
-                        ((allcreatedcrossings[i].StartPoint.X - allcreatedcrossings[i].Size) == allcreatedcrossings[j].StartPoint.X)
-                        &&
-                        (allcreatedcrossings[i].StartPoint.Y == allcreatedcrossings[j].StartPoint.Y)
-
-                        ||
-                        ((allcreatedcrossings[i].StartPoint.Y + allcreatedcrossings[i].Size) == allcreatedcrossings[j].StartPoint.Y)
-                        &&
-                        (allcreatedcrossings[i].StartPoint.X == allcreatedcrossings[j].StartPoint.X)
-                      )
-                    {
-                        count++;
-                        break;
-                    }
-                }
-            }
-            if (count == allcreatedcrossings.Count)
+            this.allcreatedcrossings.Sort();
+            if (allcreatedcrossings.Count == 1)
             {
                 return true;
             }
             else
             {
-                return false;
+                for (int i = 0; i < allcreatedcrossings.Count -1; i++)
+                {
+                    if (!(
+                        ((allcreatedcrossings[i].StartPoint.Y - allcreatedcrossings[i].Size) == allcreatedcrossings[i + 1].StartPoint.Y)
+                        &&
+                        (allcreatedcrossings[i].StartPoint.X == allcreatedcrossings[i + 1].StartPoint.X)
+
+                        ||
+                        ((allcreatedcrossings[i].StartPoint.X + allcreatedcrossings[i].Size) == allcreatedcrossings[i + 1].StartPoint.X)
+                        &&
+                        (allcreatedcrossings[i].StartPoint.Y == allcreatedcrossings[i + 1].StartPoint.Y)
+
+                        ||
+                        ((allcreatedcrossings[i].StartPoint.X - allcreatedcrossings[i].Size) == allcreatedcrossings[i + 1].StartPoint.X)
+                        &&
+                        (allcreatedcrossings[i].StartPoint.Y == allcreatedcrossings[i + 1].StartPoint.Y)
+
+                        ||
+                        ((allcreatedcrossings[i].StartPoint.Y + allcreatedcrossings[i].Size) == allcreatedcrossings[i + 1].StartPoint.Y)
+                        &&
+                        (allcreatedcrossings[i].StartPoint.X == allcreatedcrossings[i + 1].StartPoint.X)
+                      ))
+                    {
+                        return false;
+                    }
+                }
             }
+            return true;
         }
+
+        //needs to be fixed 
+        public List<Lane> SetUpLanes(List<Crossing> All/*, out List<LaneWithOneDirection> T1,out List<LaneWithTwoDirection> T2,out List<EmptyLane> Empty*/)
+        {
+            All.Sort();
+            List<Lane> L = new List<Lane>();
+            foreach (var item in All)
+            {
+                if (item.CType == 1)
+                {
+                    L.Add(new LaneWithOneDirection(new Point(item.StartPoint.X + ((Int32) (0.4 * item.Size)), item.StartPoint.Y), 
+                        new Point(item.StartPoint.X + ((Int32)(0.4*item.Size)),item.StartPoint.Y + ((Int32)((1/3)*item.Size))),Direction.south));
+                    L.Add(new LaneWithTwoDirection(new Point(item.StartPoint.X + ((Int32)(0.5 * (item.Size))), item.StartPoint.Y),
+                        new Point(item.StartPoint.X + ((Int32)(0.5 * item.Size)), item.StartPoint.Y + ((Int32)((1 / 3) * item.Size))),Direction.south));
+                    L.Add(new EmptyLane(new Point(item.StartPoint.X + ((Int32)(0.6 * item.Size)), item.StartPoint.Y + ((Int32)(1 / 3) * item.Size)),
+                       new Point(item.StartPoint.X + ((Int32)(0.6 * item.Size)), item.StartPoint.Y),Direction.north));
+
+                    L.Add(new LaneWithOneDirection(new Point(item.StartPoint.X + ((Int32)(0.4 *item.Size)), item.StartPoint.Y + ((Int32)(0.4 * item.Size))),
+                        new Point(item.StartPoint.X + ((Int32)((2/3) * item.Size)), item.StartPoint.Y + ((Int32)(0.4 * item.Size))),Direction.west));
+                    L.Add(new LaneWithTwoDirection(new Point(item.StartPoint.X + item.Size, item.StartPoint.Y + ((Int32)(0.5 * item.Size))),
+                        new Point(item.StartPoint.X + ((Int32)((2/3) * item.Size)), item.StartPoint.Y + ((Int32)(0.5 * item.Size))),Direction.west));
+                    L.Add(new EmptyLane(new Point(item.StartPoint.X + ((Int32)((2 / 3) * (item.Size))), item.StartPoint.Y + ((Int32)(0.6 * item.Size))),
+                       new Point(item.StartPoint.X +item.Size, item.StartPoint.Y + ((Int32)(0.6 * item.Size))),Direction.east));
+
+                    L.Add(new LaneWithOneDirection(new Point(item.StartPoint.X + ((Int32)(0.4 * (item.Size))), item.StartPoint.Y + item.Size),
+                       new Point(item.StartPoint.X + ((Int32)(0.6 * item.Size)), item.StartPoint.Y + ((Int32)((2/3) * item.Size))),Direction.north));
+                    L.Add(new LaneWithTwoDirection(new Point(item.StartPoint.X + ((Int32)(0.5 * item.Size)), item.StartPoint.Y + item.Size),
+                        new Point(item.StartPoint.X + ((Int32)((1/ 2) * item.Size)), item.StartPoint.Y + ((Int32)((2/3) * item.Size))),Direction.north));
+                    L.Add(new EmptyLane(new Point(item.StartPoint.X + ((Int32)(0.4 * (item.Size))), item.StartPoint.Y + item.Size),
+                       new Point(item.StartPoint.X + ((Int32)(0.4* (item.Size))), item.StartPoint.Y + ((Int32)((2 / 3) * item.Size))),Direction.south));
+
+                    L.Add(new LaneWithOneDirection(new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)(0.6 * item.Size))),
+                      new Point(item.StartPoint.X + ((Int32)((1/3) * item.Size)), item.StartPoint.Y + ((Int32)(0.6 * item.Size))),Direction.east));
+                    L.Add(new LaneWithTwoDirection(new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)(0.5 * item.Size))),
+                        new Point(item.StartPoint.X + ((Int32)((1 / 3) * item.Size)), item.StartPoint.Y + ((Int32)(0.5 * item.Size))),Direction.east));
+                    L.Add(new EmptyLane(new Point(item.StartPoint.X + ((Int32)((1 / 3) * (item.Size))), item.StartPoint.Y + ((Int32)(0.4 * item.Size))),
+                       new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)(0.4 * item.Size))),Direction.west));
+                }
+                else if(item.CType == 2)
+                {
+                    //needs to be set 
+                }
+            }
+
+            L.Sort();
+            return L;
+        }
+
 
     }
 }

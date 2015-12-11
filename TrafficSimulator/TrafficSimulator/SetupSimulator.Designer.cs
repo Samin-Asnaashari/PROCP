@@ -48,13 +48,14 @@
             this.setbutton.TabIndex = 0;
             this.setbutton.Text = "Set";
             this.setbutton.UseVisualStyleBackColor = false;
+            this.setbutton.Click += new System.EventHandler(this.setbutton_Click);
             // 
             // sidelistBox
             // 
             this.sidelistBox.BackColor = System.Drawing.Color.CadetBlue;
             this.sidelistBox.Font = new System.Drawing.Font("Comic Sans MS", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sidelistBox.FormattingEnabled = true;
-            this.sidelistBox.ItemHeight = 24;
+            this.sidelistBox.ItemHeight = 30;
             this.sidelistBox.Items.AddRange(new object[] {
             "",
             "  North:",
@@ -67,7 +68,7 @@
             this.sidelistBox.Location = new System.Drawing.Point(19, 20);
             this.sidelistBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.sidelistBox.Name = "sidelistBox";
-            this.sidelistBox.Size = new System.Drawing.Size(278, 268);
+            this.sidelistBox.Size = new System.Drawing.Size(278, 244);
             this.sidelistBox.TabIndex = 1;
             // 
             // textBoxNorth
@@ -75,7 +76,7 @@
             this.textBoxNorth.BackColor = System.Drawing.Color.Silver;
             this.textBoxNorth.Location = new System.Drawing.Point(126, 47);
             this.textBoxNorth.Name = "textBoxNorth";
-            this.textBoxNorth.Size = new System.Drawing.Size(100, 24);
+            this.textBoxNorth.Size = new System.Drawing.Size(100, 28);
             this.textBoxNorth.TabIndex = 2;
             // 
             // textBoxEast
@@ -83,7 +84,7 @@
             this.textBoxEast.BackColor = System.Drawing.Color.Silver;
             this.textBoxEast.Location = new System.Drawing.Point(126, 95);
             this.textBoxEast.Name = "textBoxEast";
-            this.textBoxEast.Size = new System.Drawing.Size(100, 24);
+            this.textBoxEast.Size = new System.Drawing.Size(100, 28);
             this.textBoxEast.TabIndex = 2;
             // 
             // textBoxWest
@@ -91,7 +92,7 @@
             this.textBoxWest.BackColor = System.Drawing.Color.Silver;
             this.textBoxWest.Location = new System.Drawing.Point(126, 142);
             this.textBoxWest.Name = "textBoxWest";
-            this.textBoxWest.Size = new System.Drawing.Size(100, 24);
+            this.textBoxWest.Size = new System.Drawing.Size(100, 28);
             this.textBoxWest.TabIndex = 2;
             // 
             // textBoxSouth
@@ -99,12 +100,12 @@
             this.textBoxSouth.BackColor = System.Drawing.Color.Silver;
             this.textBoxSouth.Location = new System.Drawing.Point(126, 192);
             this.textBoxSouth.Name = "textBoxSouth";
-            this.textBoxSouth.Size = new System.Drawing.Size(100, 24);
+            this.textBoxSouth.Size = new System.Drawing.Size(100, 28);
             this.textBoxSouth.TabIndex = 2;
             // 
             // SetupSimulator
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(433, 310);
@@ -121,6 +122,7 @@
             this.MinimizeBox = false;
             this.Name = "SetupSimulator";
             this.Text = "SetupSimulator";
+            this.Click += new System.EventHandler(this.setbutton_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
 

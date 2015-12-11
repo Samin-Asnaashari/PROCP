@@ -8,26 +8,45 @@ using System.Threading.Tasks;
 namespace TrafficSimulator
 {
     [Serializable]
-    public class Crossing
+    public class Crossing : IComparable
     {
         public Image image { get; set; }
-        public int Size { get; set; }
+        public int Size { get; set; } //PANEL IS REGTANGLE 
         public Point StartPoint { get; set; }
 
-        public Point[] Neighbor; //may not needed 
+        public int CType { get; set; }
+        public List<Lane> Lanes;
 
-        public List<Point> Entrance;
-
-        public Crossing(Image image, int size)
+        public Crossing(Point p,Image image, int size)
         {
             this.image = image;
             this.Size = size;
-            this.StartPoint = new Point(0, 0);
-            Neighbor = new Point[4];
-
-            Entrance = new List<Point>();
-
+            this.StartPoint = p;
+            this.CType = 0;
+            Lanes = new List<Lane>();
             //this.image = (Image)new Bitmap(new Bitmap(this.Image_Filename.Split('.')[0] + ".png"), this.image.Size);
         }
+        
+        public int CompareTo(object obj)
+        {
+            if (this.StartPoint.X < ((Crossing)obj).StartPoint.X)
+            {
+                    return -1;
+            }
+            else if (this.StartPoint.X == ((Crossing)obj).StartPoint.X && this.StartPoint.Y < ((Crossing)obj).StartPoint.Y)
+            {
+                    return -1;
+            }
+            else if (this.StartPoint.X > ((Crossing)obj).StartPoint.X)
+            {
+                return 1;
+            }
+            else if (this.StartPoint.X == ((Crossing)obj).StartPoint.X && this.StartPoint.Y > ((Crossing)obj).StartPoint.Y)
+            {
+                return 1;
+            }
+            { return 0; }
+        }
+
     }
 }

@@ -47,8 +47,6 @@
     <Compile Include="Car.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="Crossing.cs" />
-    <Compile Include="CrossingTypeA.cs" />
-    <Compile Include="CrossingTypeB.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -63,11 +61,9 @@
       <DependentUpon>Help.cs</DependentUpon>
     </Compile>
     <Compile Include="Lane.cs" />
-    <Compile Include="LaneType1.cs" />
-    <Compile Include="LaneType2.cs" />
     <Compile Include="Light.cs" />
-    <Compile Include="Moving.cs" />
     <Compile Include="Overview.cs" />
+    <Compile Include="panelBuffer.cs" />
     <Compile Include="Pedestrain.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,14 +73,12 @@
     <Compile Include="SetCrossing.Designer.cs">
       <DependentUpon>SetCrossing.cs</DependentUpon>
     </Compile>
-    <Compile Include="SimulatorSetting.cs" />
     <Compile Include="SetupSimulator.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SetupSimulator.Designer.cs">
       <DependentUpon>SetupSimulator.cs</DependentUpon>
     </Compile>
-    <Compile Include="Simulator.cs" />
     <Compile Include="WorkspaceDesign.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -170,6 +164,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Type22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\cursor.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
