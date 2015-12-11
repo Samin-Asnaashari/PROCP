@@ -15,6 +15,5 @@ namespace TrafficSimulator
 
         public int[] Light { get; set; }
         public int[] Pedestrainlight { get; set; }
-
     }
 }

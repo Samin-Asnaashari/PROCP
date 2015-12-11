@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace TrafficSimulator
 {
-    class Car
+    public class Car
     {
         /// <summary>
         /// stores the basic info needed for creat a car(point)    maybe not needed 
@@ -47,6 +47,26 @@ namespace TrafficSimulator
         public int setY(int posY)
         {
             return this.y = posY;
+        }
+
+        public int getDirX()
+        {
+            return dirX;
+        }
+
+        public void setDirX(int dirX)
+        {
+            this.dirX = dirX;
+        }
+
+        public int getDirY()
+        {
+            return dirY;
+        }
+
+        public void setDirY(int dirY)
+        {
+            this.dirY = dirY;
         }
 
         public void DrawCar(Graphics gr)

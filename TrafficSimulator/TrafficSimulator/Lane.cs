@@ -32,5 +32,9 @@ namespace TrafficSimulator
             Intersection = new Point[4];
         }
 
+        public void calculateDirection(Car car)
+        {
+
+        }
     }
 }

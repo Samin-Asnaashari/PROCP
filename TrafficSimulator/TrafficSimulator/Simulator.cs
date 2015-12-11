@@ -11,17 +11,19 @@ namespace TrafficSimulator
         /// <summary>
         /// controller for the simulator 
         /// </summary>
+        private SimulatorSetting settings;
+
         public bool Start { get; set; }
         public bool Pause { get; set; }
         public bool Stop { get; set; }
-        public SimulatorSetting Settings { get; set; }
+        public SimulatorSetting Settings { get { return settings; } set { settings = value; } }
 
         public Simulator()
         {
             this.Start = false;
             this.Pause = false;
             this.Stop = false;
-            this.Settings = new SimulatorSetting();
+            this.settings = new SimulatorSetting();
         }
 
         public void StartSimulator()
