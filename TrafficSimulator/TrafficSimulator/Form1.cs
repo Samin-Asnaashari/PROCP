@@ -50,8 +50,12 @@ namespace TrafficSimulator
             {
                 string grid = gridcomboBox.SelectedItem.ToString();
                 WorkspaceDesign D = new WorkspaceDesign(grid, name, time);
+<<<<<<< HEAD
                 this.controller = new Controller(this.workpanel.Width, this.workpanel.Height, D);
 
+=======
+                this.controller = new Controller(this.workpanel.Width, this.workpanel.Height, D, new Simulator());
+>>>>>>> origin/master
                 if (D.Grid == "Small")
                 {
                     //4*4
@@ -254,6 +258,14 @@ namespace TrafficSimulator
             timer1.Enabled = true;
         }
 
+<<<<<<< HEAD
+=======
+        private void pausebutton_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = !timer1.Enabled;
+        }
+
+>>>>>>> origin/master
         private void stopbutton_Click(object sender, EventArgs e)
         {
             PBtype1.Enabled = true;
@@ -326,7 +338,7 @@ namespace TrafficSimulator
                 }
             }
             else
-                this.Close(); 
+                this.Close();
         }
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)

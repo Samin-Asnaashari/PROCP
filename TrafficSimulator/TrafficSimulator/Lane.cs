@@ -42,6 +42,7 @@ namespace TrafficSimulator
             Group = new List<int>();
         }
 
+<<<<<<< HEAD
         public int CompareTo(object obj)
         {
             if (this.Entrance.X < ((Lane)obj).Entrance.X)
@@ -72,6 +73,11 @@ namespace TrafficSimulator
         public LaneWithOneDirection(Point e,Point i,Direction d):base(e,i,d)
         {
            
+=======
+        public void calculateDirection(Car car)
+        {
+
+>>>>>>> origin/master
         }
     }
 

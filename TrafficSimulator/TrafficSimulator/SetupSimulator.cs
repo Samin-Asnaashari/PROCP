@@ -28,14 +28,70 @@ namespace TrafficSimulator
             textBoxEast.Text = "25";
             textBoxWest.Text = "25";
             textBoxSouth.Text = "25";
+            labelTotal.Text = "100";
+        }
+
+        private void textBoxNorth_TextChanged(object sender, EventArgs e)
+        {
+            int north = Convert.ToInt32(textBoxNorth.Text);
+            int east = Convert.ToInt32(textBoxEast.Text);
+            int west = Convert.ToInt32(textBoxWest.Text);
+            int south = Convert.ToInt32(textBoxSouth.Text);
+            labelTotal.Text = "" + (north + east + west + south);
+        }
+
+        private void textBoxEast_TextChanged(object sender, EventArgs e)
+        {
+            int north = Convert.ToInt32(textBoxNorth.Text);
+            int east = Convert.ToInt32(textBoxEast.Text);
+            int west = Convert.ToInt32(textBoxWest.Text);
+            int south = Convert.ToInt32(textBoxSouth.Text);
+            labelTotal.Text = "" + (north + east + west + south);
+        }
+
+        private void textBoxWest_TextChanged(object sender, EventArgs e)
+        {
+            int north = Convert.ToInt32(textBoxNorth.Text);
+            int east = Convert.ToInt32(textBoxEast.Text);
+            int west = Convert.ToInt32(textBoxWest.Text);
+            int south = Convert.ToInt32(textBoxSouth.Text);
+            labelTotal.Text = "" + (north + east + west + south);
+        }
+
+        private void textBoxSouth_TextChanged(object sender, EventArgs e)
+        {
+            int north = Convert.ToInt32(textBoxNorth.Text);
+            int east = Convert.ToInt32(textBoxEast.Text);
+            int west = Convert.ToInt32(textBoxWest.Text);
+            int south = Convert.ToInt32(textBoxSouth.Text);
+            labelTotal.Text = "" + (north + east + west + south);
         }
 
         private void setbutton_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             ControlPlay.Enabled = true;
             ControlPause.Enabled = true;
             ControlStop.Enabled = true;
             this.Close();
+=======
+            if (Convert.ToInt32(labelTotal.Text) == 100)
+            {
+                double north = Convert.ToDouble(textBoxNorth.Text);
+                double east = Convert.ToDouble(textBoxEast.Text);
+                double west = Convert.ToDouble(textBoxWest.Text);
+                double south = Convert.ToDouble(textBoxSouth.Text);
+                controller.setSimulatorSettings(north, east, west, south);
+                ControlPlay.Enabled = true;
+                ControlPause.Enabled = true;
+                ControlStop.Enabled = true;
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("The total value must be 100.");
+            }
+>>>>>>> origin/master
         }
     }
 }
