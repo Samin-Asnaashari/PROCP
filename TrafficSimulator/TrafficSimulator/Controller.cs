@@ -18,7 +18,6 @@ namespace TrafficSimulator
         /// </summary>
 
         public WorkspaceDesign Design;
-        public Simulator simulator;
         public float panelw;
         public float panelh;
         public int lines;
@@ -26,18 +25,13 @@ namespace TrafficSimulator
         public Crossing C;
         public int tempCType;
 
-        public Controller(float pw, float ph, WorkspaceDesign d, Simulator s)
+        public Controller(float pw, float ph, WorkspaceDesign d)
         {
             this.Design = d;
             this.panelw = pw;
             this.panelh = ph;
             lines = 0;
-<<<<<<< HEAD
             tempCType = 0;
-=======
-            this.CType = 0;
-            this.simulator = s;
->>>>>>> origin/master
         }
 
         /// <summary>
@@ -149,7 +143,6 @@ namespace TrafficSimulator
             return taken;
         }
 
-<<<<<<< HEAD
         public int CarSize()
         {
             if (lines == 4)
@@ -229,15 +222,6 @@ namespace TrafficSimulator
 
 
 
-=======
-        public void setSimulatorSettings(double north, double east, double west, double south)
-        {
-            simulator.Settings.North = north;
-            simulator.Settings.East = east;
-            simulator.Settings.West = west;
-            simulator.Settings.South = south;
-        }
->>>>>>> origin/master
     }
 }
 
