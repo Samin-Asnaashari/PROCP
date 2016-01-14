@@ -165,9 +165,9 @@ namespace TrafficSimulator
 
             for (int i = 0; i < /*Design.EnterancesLanes*/Design.Lanes.Count; i++) //(list of the entrances add car to the enterances lane)
             {
-                if (Design.Lanes[i].CountCars < 5 && !(Design.Lanes[i] is EmptyLane))
+                if (Design.Lanes[i].CountCars < 1 && !(Design.Lanes[i] is EmptyLane))
                 {
-                    Direction D = Direction.north; //for satisfing the compiler 
+                    /*Direction D = Direction.north; //for satisfing the compiler 
                     if (Design.Lanes[i] is LaneWithOneDirection || Design.Lanes[i] is EmptyLane)
                     {
                         D = Design.Lanes[i].DirectionIsTo;
@@ -175,7 +175,9 @@ namespace TrafficSimulator
                     else if (Design.Lanes[i] is LaneWithTwoDirection)
                     {
                         //random direction
-                    }
+                    }*/
+
+                    Direction D = Design.Lanes[i].DirectionIsTo;
 
                     Design.Lanes[i].Cars.Add(new Car(Design.Lanes[i].Entrance, D, s));
                     Design.Lanes[i].CountCars++;
@@ -191,24 +193,48 @@ namespace TrafficSimulator
                         Design.Lanes[i].Cars[j].MoveTheCar(Design.Lanes[i].DirectionIsTo);
                         Design.Lanes[i].Cars[j].DrawCar(gr);
                     }
-                    else
+                    else if (Design.Lanes[i].Cars[j].Position == Design.Lanes[i].Intersection)
                     {
-                        if (Design.Lanes[i] is LaneWithOneDirection || Design.Lanes[i] is LaneWithTwoDirection)
+                        if (Design.Lanes[i] is LaneWithOneDirection)
                         {
                             if (Design.Lanes[i].Light.Color == LightColor.green)
                             {
-                                //but need to go to the right next lane 
+                                //but need to go to the right next lane
                                 Design.Lanes[j + 1].Cars.Add(Design.Lanes[i].Cars[j]); //if is possible add it
+                                
+                                for (int k = 0; k < Design.Lanes.Count; k++)
+                                {
+                                    if (Design.Lanes[k].LaneID == Design.Lanes[i].Connections[0])
+                                    {
+                                        Car car = Design.Lanes[i].Cars[j];
+                                        car.Position = Design.Lanes[k].Entrance;
+                                        car.Direction = Design.Lanes[k].DirectionIsTo;
+                                        Design.Lanes[k].Cars.Add(car);
+                                        Design.Lanes[k].CountCars++;
+                                    }
+                                }
+
                                 Design.Lanes[i].Cars.Remove(Design.Lanes[i].Cars[j]);
                             }
                             //if green go to next lane delete from the list of the lane cars 
                             //if red wait 
                         }
-                        else
+                        else if (Design.Lanes[i] is LaneWithTwoDirection)
+                        {
+                            if (Design.Lanes[i].Light.Color == LightColor.green)
+                            {
+                                
+                                Design.Lanes[j + 1].Cars.Add(Design.Lanes[i].Cars[j]); //if is possible add it
+                                Design.Lanes[i].Cars.Remove(Design.Lanes[i].Cars[j]);
+
+                                //Design.Lanes[Design.Lanes[i].Connections[0]].Cars.Add(Design.Lanes[i].Cars[j]);
+                            }
+                        }
+                        /*else
                         {
                             Design.Lanes[j + 1].Cars.Add(Design.Lanes[i].Cars[j]); //if is possible add it 
                             Design.Lanes[i].Cars.Remove(Design.Lanes[i].Cars[j]);
-                        }
+                        }*/
                     }
                 }
             }

@@ -23,6 +23,7 @@ namespace TrafficSimulator
     }
     public class Lane : IComparable
     {
+        public int LaneID { get; set; }
         public Point Entrance { get; set; }
         public Point Intersection { get; set; }
         public Direction DirectionIsTo { get; set; }
@@ -30,9 +31,11 @@ namespace TrafficSimulator
         public int CountCars;
         public Light Light;
         public List<int> Group;
+        public List<int> Connections { get; set; } //which lanes the car may enter in intersection
 
-        public Lane(Point enter , Point intersect,Direction D)
+        public Lane(int laneID, Point enter , Point intersect,Direction D, int c1, int c2)
         {
+            this.LaneID = laneID;
             this.Entrance = enter;
             this.Intersection = intersect;
             this.DirectionIsTo = D;
@@ -40,6 +43,9 @@ namespace TrafficSimulator
             CountCars = 0;
             Cars = new List<Car>();
             Group = new List<int>();
+            Connections = new List<int>();
+            Connections.Add(c1);
+            Connections.Add(c2);
         }
 
         public int CompareTo(object obj)
@@ -69,17 +75,17 @@ namespace TrafficSimulator
     {
         public Direction PossibleDirection { get; set; }
 
-        public LaneWithOneDirection(Point e,Point i,Direction d):base(e,i,d)
+        public LaneWithOneDirection(int id, Point e,Point i,Direction d, int c1, int c2):base(id,e,i,d,c1,c2)
         {
-           
+            
         }
     }
 
     public class LaneWithTwoDirection : Lane
     {
-        public string[] PossibleDirection;
+        public string[] PossibleDirection { get; set; }
 
-        public LaneWithTwoDirection(Point e, Point i, Direction d): base(e, i, d)
+        public LaneWithTwoDirection(int id, Point e, Point i, Direction d, int c1, int c2): base(id,e, i, d,c1,c2)
         {
             this.PossibleDirection = new string[2];
         }
@@ -87,7 +93,7 @@ namespace TrafficSimulator
 
     public class EmptyLane : Lane
     {
-        public EmptyLane(Point ei, Point exit,Direction d):base(ei,exit,d)
+        public EmptyLane(int id, Point ei, Point exit,Direction d, int c1, int c2):base(id, ei,exit,d, c1, c2)
         {
             
         }

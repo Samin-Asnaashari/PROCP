@@ -18,7 +18,7 @@ namespace TrafficSimulator
 
         public Light()
         {
-            this.Color = LightColor.red;
+            this.Color = LightColor.green; //default for now
         }
     }
     
