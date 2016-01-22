@@ -46,6 +46,7 @@ namespace TrafficSimulator
             Connections = new List<int>();
             Connections.Add(c1);
             Connections.Add(c2);
+            Light.Color = LightColor.green; //change this later
         }
 
         public int CompareTo(object obj)

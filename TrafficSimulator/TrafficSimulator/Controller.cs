@@ -17,6 +17,8 @@ namespace TrafficSimulator
         /// class to control the form 
         /// </summary>
 
+        private DebugWindow debug;
+        public bool Started;
         public WorkspaceDesign Design;
         public float panelw;
         public float panelh;
@@ -27,6 +29,9 @@ namespace TrafficSimulator
 
         public Controller(float pw, float ph, WorkspaceDesign d)
         {
+            debug = new DebugWindow();
+            Started = false;
+            debug.Show();
             this.Design = d;
             this.panelw = pw;
             this.panelh = ph;
@@ -161,6 +166,16 @@ namespace TrafficSimulator
 
         public void DrawCars(Graphics gr)
         {
+            if (!Started)
+            {
+                Started = true;
+                for (int i = 0; i < Design.Lanes.Count; i++)
+                {
+                    Lane lane = Design.Lanes[i];
+                    debug.addLog("Lane " + lane.LaneID + " Entrance point: " + lane.Entrance.ToString() + "\n" + "Lane " + lane.LaneID + " Intersection point: " + lane.Intersection.ToString() + "\n");
+                }
+            }
+
             int s = CarSize(); 
 
             for (int i = 0; i < /*Design.EnterancesLanes*/Design.Lanes.Count; i++) //(list of the entrances add car to the enterances lane)
@@ -195,6 +210,8 @@ namespace TrafficSimulator
                     }
                     else if (Design.Lanes[i].Cars[j].Position == Design.Lanes[i].Intersection)
                     {
+                        debug.addLog("Car of lane-id " + Design.Lanes[i].LaneID + " intersected at point " + Design.Lanes[i].Intersection.ToString() + "\n");
+
                         if (Design.Lanes[i] is LaneWithOneDirection)
                         {
                             if (Design.Lanes[i].Light.Color == LightColor.green)

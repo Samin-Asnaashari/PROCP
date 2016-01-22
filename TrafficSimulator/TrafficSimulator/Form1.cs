@@ -251,6 +251,7 @@ namespace TrafficSimulator
             playbutton.Enabled = false;
             gridbutton.Enabled = false;
             this.controller.Design.Lanes=controller.Design.SetUpLanes(controller.Design.allcreatedcrossings);
+            controller.Started = false;
             timer1.Enabled = true;
         }
 
