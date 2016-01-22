@@ -199,6 +199,8 @@ namespace TrafficSimulator
                 }
             }
 
+            Random random = new Random(12);
+
             for (int i = 0; i < Design.Lanes.Count; i++)
             {
                 for (int j = 0; j < Design.Lanes[i].Cars.Count; j++)
@@ -217,7 +219,7 @@ namespace TrafficSimulator
                             if (Design.Lanes[i].Light.Color == LightColor.green)
                             {
                                 //but need to go to the right next lane
-                                Design.Lanes[j + 1].Cars.Add(Design.Lanes[i].Cars[j]); //if is possible add it
+                                //Design.Lanes[j + 1].Cars.Add(Design.Lanes[i].Cars[j]); //if is possible add it
                                 
                                 for (int k = 0; k < Design.Lanes.Count; k++)
                                 {
@@ -240,18 +242,31 @@ namespace TrafficSimulator
                         {
                             if (Design.Lanes[i].Light.Color == LightColor.green)
                             {
-                                
-                                Design.Lanes[j + 1].Cars.Add(Design.Lanes[i].Cars[j]); //if is possible add it
+                                int randomInt = random.Next(2);
+                                debug.addLog("randomInt " + randomInt);
+
+                                for (int k = 0; k < Design.Lanes.Count; k++)
+                                {
+                                    if (Design.Lanes[k].LaneID == Design.Lanes[i].Connections[randomInt])
+                                    {
+                                        debug.addLog("Connection Lane ID: " + Design.Lanes[k].LaneID);
+                                        Car car = Design.Lanes[i].Cars[j];
+                                        car.Position = Design.Lanes[k].Entrance;
+                                        car.Direction = Design.Lanes[k].DirectionIsTo;
+                                        Design.Lanes[k].Cars.Add(car);
+                                        Design.Lanes[k].CountCars++;
+                                    }
+                                }
+                                //Design.Lanes[j + 1].Cars.Add(Design.Lanes[i].Cars[j]); //if is possible add it
                                 Design.Lanes[i].Cars.Remove(Design.Lanes[i].Cars[j]);
 
                                 //Design.Lanes[Design.Lanes[i].Connections[0]].Cars.Add(Design.Lanes[i].Cars[j]);
                             }
                         }
-                        /*else
+                        else if (Design.Lanes[i] is EmptyLane)
                         {
-                            Design.Lanes[j + 1].Cars.Add(Design.Lanes[i].Cars[j]); //if is possible add it 
                             Design.Lanes[i].Cars.Remove(Design.Lanes[i].Cars[j]);
-                        }*/
+                        }
                     }
                 }
             }
