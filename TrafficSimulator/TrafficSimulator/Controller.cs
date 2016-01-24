@@ -17,7 +17,9 @@ namespace TrafficSimulator
         /// class to control the form 
         /// </summary>
 
+        private static Controller instance;
         private DebugWindow debug;
+        private Random random;
         public bool Started;
         public WorkspaceDesign Design;
         public float panelw;
@@ -27,16 +29,31 @@ namespace TrafficSimulator
         public Crossing C;
         public int tempCType;
 
-        public Controller(float pw, float ph, WorkspaceDesign d)
+        private Controller()
         {
             debug = new DebugWindow();
+            random = new Random(12);
             Started = false;
             debug.Show();
+            lines = 0;
+            tempCType = 0;
+        }
+
+        public static Controller getController()
+        {
+            if (instance == null)
+            {
+                instance = new Controller();
+            }
+
+            return instance;
+        }
+
+        public void setSettings(float pw, float ph, WorkspaceDesign d)
+        {
             this.Design = d;
             this.panelw = pw;
             this.panelh = ph;
-            lines = 0;
-            tempCType = 0;
         }
 
         /// <summary>
@@ -166,125 +183,125 @@ namespace TrafficSimulator
 
         public void DrawCars(Graphics gr)
         {
+            List<Crossing> crossings = Design.allcreatedcrossings;
             if (!Started)
             {
                 Started = true;
-                for (int i = 0; i < Design.Lanes.Count; i++)
+                for (int i = 0; i < crossings.Count; i++)
                 {
-                    Lane lane = Design.Lanes[i];
-                    debug.addLog("Lane " + lane.LaneID + " Entrance point: " + lane.Entrance.ToString() + "\n" + "Lane " + lane.LaneID + " Intersection point: " + lane.Intersection.ToString() + "\n");
+                    List<Lane> lanes = crossings[i].Lanes;
+                    for (int j = 0; j < lanes.Count; j++)
+                    {
+                        Lane lane = lanes[i];
+                        debug.addLog("Lane " + lane.LaneID + " Entrance point: " + lane.Entrance.ToString() + "\n" + "Lane " + lane.LaneID + " Intersection point: " + lane.Intersection.ToString() + "\n");
+                    }
                 }
             }
 
-            int s = CarSize(); 
+            int s = CarSize();
 
-            for (int i = 0; i < /*Design.EnterancesLanes*/Design.Lanes.Count; i++) //(list of the entrances add car to the enterances lane)
+            for (int i = 0; i < crossings.Count; i++) //(list of the entrances add car to the enterances lane)
             {
-                if (Design.Lanes[i].CountCars < 1 && !(Design.Lanes[i] is EmptyLane))
+                List<Lane> lanes = crossings[i].Lanes;
+                for (int j = 0; j < lanes.Count; j++)
                 {
-                    /*Direction D = Direction.north; //for satisfing the compiler 
-                    if (Design.Lanes[i] is LaneWithOneDirection || Design.Lanes[i] is EmptyLane)
+                    if (lanes[j].CountCars < 1 && !(lanes[j] is EmptyLane))
                     {
-                        D = Design.Lanes[i].DirectionIsTo;
-                    }
-                    else if (Design.Lanes[i] is LaneWithTwoDirection)
-                    {
-                        //random direction
-                    }*/
-
-                    Direction D = Design.Lanes[i].DirectionIsTo;
-
-                    Design.Lanes[i].Cars.Add(new Car(Design.Lanes[i].Entrance, D, s));
-                    Design.Lanes[i].CountCars++;
-                }
-            }
-
-            Random random = new Random(12);
-
-            for (int i = 0; i < Design.Lanes.Count; i++)
-            {
-                for (int j = 0; j < Design.Lanes[i].Cars.Count; j++)
-                {
-                    if (Design.Lanes[i].Cars[j].Position != Design.Lanes[i].Intersection)
-                    {
-                        Design.Lanes[i].Cars[j].MoveTheCar(Design.Lanes[i].DirectionIsTo);
-                        Design.Lanes[i].Cars[j].DrawCar(gr);
-                    }
-                    else if (Design.Lanes[i].Cars[j].Position == Design.Lanes[i].Intersection)
-                    {
-                        debug.addLog("Car of lane-id " + Design.Lanes[i].LaneID + " intersected at point " + Design.Lanes[i].Intersection.ToString() + "\n");
-
-                        if (Design.Lanes[i] is LaneWithOneDirection)
+                        /*Direction D = Direction.north; //for satisfing the compiler 
+                        if (Design.Lanes[i] is LaneWithOneDirection || Design.Lanes[i] is EmptyLane)
                         {
-                            if (Design.Lanes[i].Light.Color == LightColor.green)
-                            {
-                                //but need to go to the right next lane
-                                //Design.Lanes[j + 1].Cars.Add(Design.Lanes[i].Cars[j]); //if is possible add it
-                                
-                                for (int k = 0; k < Design.Lanes.Count; k++)
-                                {
-                                    if (Design.Lanes[k].LaneID == Design.Lanes[i].Connections[0])
-                                    {
-                                        Car car = Design.Lanes[i].Cars[j];
-                                        car.Position = Design.Lanes[k].Entrance;
-                                        car.Direction = Design.Lanes[k].DirectionIsTo;
-                                        Design.Lanes[k].Cars.Add(car);
-                                        Design.Lanes[k].CountCars++;
-                                    }
-                                }
-
-                                Design.Lanes[i].Cars.Remove(Design.Lanes[i].Cars[j]);
-                            }
-                            //if green go to next lane delete from the list of the lane cars 
-                            //if red wait 
+                            D = Design.Lanes[i].DirectionIsTo;
                         }
                         else if (Design.Lanes[i] is LaneWithTwoDirection)
                         {
-                            if (Design.Lanes[i].Light.Color == LightColor.green)
+                            //random direction
+                        }*/
+
+                        Direction D = lanes[j].DirectionIsTo;
+
+                        lanes[j].Cars.Add(new Car(lanes[j].Entrance, D, s));
+                        lanes[j].CountCars++;
+                    }
+                }
+            }
+
+            for (int i = 0; i < crossings.Count; i++)
+            {
+                List<Lane> lanes = crossings[i].Lanes;
+                for (int j = 0; j < lanes.Count; j++)
+                {
+                    List<Car> cars = lanes[j].Cars;
+                    for (int k = 0; k < cars.Count; k++)
+                    {
+                        if (lanes[j].Cars[k].Position == lanes[j].Intersection)
+                        {
+                            debug.addLog("Car of lane-id " + lanes[j].LaneID + " intersected at point " + lanes[j].Intersection.ToString() + "\n");
+
+                            if (lanes[j] is LaneWithOneDirection)
                             {
-                                int randomInt = random.Next(2);
-                                debug.addLog("randomInt " + randomInt);
-
-                                for (int k = 0; k < Design.Lanes.Count; k++)
+                                if (lanes[j].Light.Color == LightColor.green)
                                 {
-                                    if (Design.Lanes[k].LaneID == Design.Lanes[i].Connections[randomInt])
-                                    {
-                                        debug.addLog("Connection Lane ID: " + Design.Lanes[k].LaneID);
-                                        Car car = Design.Lanes[i].Cars[j];
-                                        car.Position = Design.Lanes[k].Entrance;
-                                        car.Direction = Design.Lanes[k].DirectionIsTo;
-                                        Design.Lanes[k].Cars.Add(car);
-                                        Design.Lanes[k].CountCars++;
-                                    }
-                                }
-                                //Design.Lanes[j + 1].Cars.Add(Design.Lanes[i].Cars[j]); //if is possible add it
-                                Design.Lanes[i].Cars.Remove(Design.Lanes[i].Cars[j]);
+                                    //but need to go to the right next lane
+                                    //Design.Lanes[j + 1].Cars.Add(Design.Lanes[i].Cars[j]); //if is possible add it
 
-                                //Design.Lanes[Design.Lanes[i].Connections[0]].Cars.Add(Design.Lanes[i].Cars[j]);
+                                    for (int l = 0; l < lanes.Count; l++)
+                                    {
+                                        if (lanes[l].LaneID == lanes[j].Connections[0])
+                                        {
+                                            Car car = lanes[j].Cars[k];
+                                            car.Position = lanes[l].Entrance;
+                                            car.Direction = lanes[l].DirectionIsTo;
+                                            lanes[l].Cars.Add(car);
+                                            lanes[l].CountCars++;
+                                        }
+                                    }
+
+                                    lanes[j].Cars.Remove(lanes[j].Cars[k]);
+                                }
+                                //if green go to next lane delete from the list of the lane cars 
+                                //if red wait 
+                            }
+                            else if (lanes[j] is LaneWithTwoDirection)
+                            {
+                                if (lanes[j].Light.Color == LightColor.green)
+                                {
+                                    int randomInt = random.Next(2);
+                                    debug.addLog("randomInt " + randomInt);
+
+                                    for (int l = 0; l < lanes.Count; l++)
+                                    {
+                                        if (lanes[l].LaneID == lanes[l].Connections[randomInt])
+                                        {
+                                            debug.addLog("Connection Lane ID: " + lanes[l].LaneID);
+                                            Car car = lanes[j].Cars[k];
+                                            car.Position = lanes[l].Entrance;
+                                            car.Direction = lanes[l].DirectionIsTo;
+                                            lanes[l].Cars.Add(car);
+                                            lanes[l].CountCars++;
+                                        }
+                                    }
+                                    //Design.Lanes[j + 1].Cars.Add(Design.Lanes[i].Cars[j]); //if is possible add it
+                                    lanes[j].Cars.Remove(lanes[j].Cars[k]);
+
+                                    //Design.Lanes[Design.Lanes[i].Connections[0]].Cars.Add(Design.Lanes[i].Cars[j]);
+                                }
+                            }
+                            else if (lanes[j] is EmptyLane)
+                            {
+                                lanes[j].Cars.Remove(lanes[j].Cars[k]);
                             }
                         }
-                        else if (Design.Lanes[i] is EmptyLane)
+                    }
+                    for (int k = 0; k < cars.Count; k++)
+                    {
+                        if (lanes[j].Cars[k].Position != lanes[j].Intersection)
                         {
-                            Design.Lanes[i].Cars.Remove(Design.Lanes[i].Cars[j]);
+                            lanes[j].Cars[k].MoveTheCar(lanes[j].DirectionIsTo);
+                            lanes[j].Cars[k].DrawCar(gr);
                         }
                     }
                 }
             }
-           
         }
-
-
-
-
-
-
-
-
     }
 }
-
-
-
-
-
-

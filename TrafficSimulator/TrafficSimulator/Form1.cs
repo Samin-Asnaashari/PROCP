@@ -50,7 +50,8 @@ namespace TrafficSimulator
             {
                 string grid = gridcomboBox.SelectedItem.ToString();
                 WorkspaceDesign D = new WorkspaceDesign(grid, name, time);
-                this.controller = new Controller(this.workpanel.Width, this.workpanel.Height, D);
+                this.controller = Controller.getController();
+                this.controller.setSettings(this.workpanel.Width, this.workpanel.Height, D);
 
                 if (D.Grid == "Small")
                 {
