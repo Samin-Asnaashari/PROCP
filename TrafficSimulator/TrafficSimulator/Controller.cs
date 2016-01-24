@@ -292,8 +292,8 @@ namespace TrafficSimulator
                             }
                         }
                     }
-                    for (int k = 0; k < cars.Count; k++)
-                    {
+
+                    for (int k = 0; k < cars.Count; k++) {
                         if (lanes[j].Cars[k].Position != lanes[j].Intersection)
                         {
                             lanes[j].Cars[k].MoveTheCar(lanes[j].DirectionIsTo);

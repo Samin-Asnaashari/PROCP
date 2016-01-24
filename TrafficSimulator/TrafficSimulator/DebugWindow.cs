@@ -19,7 +19,10 @@ namespace TrafficSimulator
 
         public void addLog(string log)
         {
-            debugLog.AppendText(log + "\n");
+            if (!debugLog.IsDisposed)
+            {
+                debugLog.AppendText(log + "\n");
+            }
         }
     }
 }

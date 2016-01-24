@@ -26,6 +26,7 @@ namespace TrafficSimulator
             this.Position = pos;
             this.Size = size;
             this.Direction = D;
+
             this.Color = Color.FromArgb(randonGen.Next(255), randonGen.Next(255), randonGen.Next(255));
         }
 
