@@ -185,6 +185,7 @@ namespace TrafficSimulator
         public void SetCars(Graphics gr)
         {
             AddCar();
+
             List<Crossing> crossings = Design.allcreatedcrossings;
 
             //extra
@@ -318,6 +319,7 @@ namespace TrafficSimulator
                 {
                     Car c = new Car(Design.EnterancesLanes[i].Entrance, Design.EnterancesLanes[i].DirectionIsTo, s);
                     Design.EnterancesLanes[i].Cars.Add(c);
+
                     Design.EnterancesLanes[i].CountCars++;
                 }
             }
@@ -453,7 +455,8 @@ namespace TrafficSimulator
                         {
                             B = new SolidBrush(Color.Red);
                         }
-                        gr.FillEllipse(B, Design.allcreatedcrossings[i].Lanes[j].Intersection.X, Design.allcreatedcrossings[i].Lanes[j].Intersection.Y, CarSize(), CarSize());
+                        //gr.FillEllipse(B, Design.allcreatedcrossings[i].Lanes[j].Intersection.X, Design.allcreatedcrossings[i].Lanes[j].Intersection.Y, CarSize(), CarSize());
+                        gr.FillRectangle(B, Design.allcreatedcrossings[i].Lanes[j].Intersection.X, Design.allcreatedcrossings[i].Lanes[j].Intersection.Y, CarSize(), CarSize());
                     }
                 }
             }

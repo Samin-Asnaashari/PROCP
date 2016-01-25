@@ -232,12 +232,16 @@ namespace TrafficSimulator
         {
             if (controller.Design.allcreatedcrossings.Count != 0)
             {
-                this.controller.Design.Lanes = controller.Design.SetUpLanes(controller.Design.allcreatedcrossings);
-                controller.Design.SetNextLaneCrossingNeigbor();
-                controller.Design.setEnterancesLanes();
+                controller.Design.SetUpLanes(controller.Design.allcreatedcrossings);
+                controller.Design.SetNextLaneCrossingNeigborC1();
+                controller.Design.SetNextLaneCrossingNeigborC2();
+                //controller.Design.setEnterancesLanes();
+
 
                 if (controller.Design.CheckIfIsValidToSetUpSimulator())
                 {
+                    controller.Design.setEnterancesLanes();
+
                     SetupSimulator CarsDirectionStatistic = new SetupSimulator();
                     CarsDirectionStatistic.controller = this.controller;
                     CarsDirectionStatistic.ControlPlay = playbutton;
@@ -270,12 +274,14 @@ namespace TrafficSimulator
                 setbutton.Enabled = false;
                 playbutton.Enabled = false;
                 gridbutton.Enabled = false;
-
-                this.controller.Design.Lanes = controller.Design.SetUpLanes(controller.Design.allcreatedcrossings);
-                controller.Design.SetNextLaneCrossingNeigbor();
-                controller.Design.setEnterancesLanes();
-
                 controller.Started = false;
+
+                //controller.Design.SetUpLanes(controller.Design.allcreatedcrossings);
+                //controller.Design.SetNextLaneCrossingNeigborC1();
+                //controller.Design.SetNextLaneCrossingNeigborC2();
+                //controller.Design.setEnterancesLanes();
+           
+
                 timer1.Enabled = true;
             }
             else
