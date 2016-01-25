@@ -101,3 +101,5 @@ D:\Jaakko\Fontys\Assignments\Backups\PROCP230116\TrafficSimulator\TrafficSimulat
 D:\Jaakko\Fontys\Assignments\Backups\PROCP230116\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.SetCrossing.resources
 D:\Jaakko\Fontys\Assignments\Backups\PROCP230116\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.SetupSimulator.resources
 D:\Jaakko\Fontys\Assignments\Backups\PROCP230116\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.csproj.GenerateResource.Cache
+C:\Users\User\Desktop\UNIVERSITY\PROCP\PRO-CP\PROCP\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\UNIVERSITY\PROCP\PRO-CP\PROCP\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.DebugWindow.resources

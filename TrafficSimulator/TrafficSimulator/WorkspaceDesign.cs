@@ -20,9 +20,8 @@ namespace TrafficSimulator
         public DateTime Time { get; set; }
         public List<Crossing> allcreatedcrossings;
 
-        public List<Lane> Lanes;
         public List<Lane> EnterancesLanes;
-
+        public List<Lane> Lanes;
 
         public WorkspaceDesign(string grid, string name, DateTime time)
         {
@@ -30,7 +29,12 @@ namespace TrafficSimulator
             this.Name = name;
             this.Time = time;
             this.allcreatedcrossings = new List<Crossing>();
+
+            EnterancesLanes = new List<Lane>();
+            Lanes = new List<Lane>();
         }
+
+        
 
         /// <summary>
         /// load a simulation deasign 
@@ -66,7 +70,6 @@ namespace TrafficSimulator
                 return false;
         }
 
-
         /// <summary>
         /// save as a design 
         /// </summary>
@@ -97,50 +100,67 @@ namespace TrafficSimulator
 
         }
 
-
         public bool CheckIfIsValidToSetUpSimulator() //needs to be fix 
         {
-            this.allcreatedcrossings.Sort();
-            if (allcreatedcrossings.Count == 1)
-            {
-                return true;
-            }
-            else
-            {
-                for (int i = 0; i < allcreatedcrossings.Count -1; i++)
-                {
-                    if (!(
-                        ((allcreatedcrossings[i].StartPoint.Y - allcreatedcrossings[i].Size) == allcreatedcrossings[i + 1].StartPoint.Y)
-                        &&
-                        (allcreatedcrossings[i].StartPoint.X == allcreatedcrossings[i + 1].StartPoint.X)
-
-                        ||
-                        ((allcreatedcrossings[i].StartPoint.X + allcreatedcrossings[i].Size) == allcreatedcrossings[i + 1].StartPoint.X)
-                        &&
-                        (allcreatedcrossings[i].StartPoint.Y == allcreatedcrossings[i + 1].StartPoint.Y)
-
-                        ||
-                        ((allcreatedcrossings[i].StartPoint.X - allcreatedcrossings[i].Size) == allcreatedcrossings[i + 1].StartPoint.X)
-                        &&
-                        (allcreatedcrossings[i].StartPoint.Y == allcreatedcrossings[i + 1].StartPoint.Y)
-
-                        ||
-                        ((allcreatedcrossings[i].StartPoint.Y + allcreatedcrossings[i].Size) == allcreatedcrossings[i + 1].StartPoint.Y)
-                        &&
-                        (allcreatedcrossings[i].StartPoint.X == allcreatedcrossings[i + 1].StartPoint.X)
-                      ))
+            ////this.allcreatedcrossings.Sort();
+            //if (allcreatedcrossings.Count == 1)
+            //{
+            //    return true;
+            //}
+            //else
+            //{
+            //    foreach (var citem in allcreatedcrossings)
+            //    {
+            //        int count = 0;
+            //        foreach (var litem in citem.Lanes)
+            //        {
+            //            if (litem.NextCrossingLaneNeighbor != null)
+            //            {
+            //                count++;
+            //            }
+            //        }
+            //        if (count == 0)
+            //        {
+            //            return false;
+            //        }
+            //        else return true;
+            //    }
+            //    return true;//??
+            //}
+                    for (int i = 0; i < allcreatedcrossings.Count -1; i++)
                     {
-                        return false;
+                        if (!(
+                            ((allcreatedcrossings[i].StartPoint.Y - allcreatedcrossings[i].Size) == allcreatedcrossings[i + 1].StartPoint.Y)
+                            &&
+                            (allcreatedcrossings[i].StartPoint.X == allcreatedcrossings[i + 1].StartPoint.X)
+
+                            ||
+                            ((allcreatedcrossings[i].StartPoint.X + allcreatedcrossings[i].Size) == allcreatedcrossings[i + 1].StartPoint.X)
+                            &&
+                            (allcreatedcrossings[i].StartPoint.Y == allcreatedcrossings[i + 1].StartPoint.Y)
+
+                            ||
+                            ((allcreatedcrossings[i].StartPoint.X - allcreatedcrossings[i].Size) == allcreatedcrossings[i + 1].StartPoint.X)
+                            &&
+                            (allcreatedcrossings[i].StartPoint.Y == allcreatedcrossings[i + 1].StartPoint.Y)
+
+                            ||
+                            ((allcreatedcrossings[i].StartPoint.Y + allcreatedcrossings[i].Size) == allcreatedcrossings[i + 1].StartPoint.Y)
+                            &&
+                            (allcreatedcrossings[i].StartPoint.X == allcreatedcrossings[i + 1].StartPoint.X)
+                          ))
+                        {
+                            return false;
+                        }
                     }
-                }
-            }
-            return true;
+                
+                return true;
         }
 
         //needs to be fixed 
         public List<Lane> SetUpLanes(List<Crossing> All/*, out List<LaneWithOneDirection> T1,out List<LaneWithTwoDirection> T2,out List<EmptyLane> Empty*/)
         {
-            All.Sort();
+            //All.Sort();
             List<Lane> L = new List<Lane>();
             //int crossCounter = 0;
 
@@ -205,8 +225,40 @@ namespace TrafficSimulator
 
                 //crossCounter++;
             }
-            //L.Sort();
             return L;
         }
+
+
+        public void SetNextLaneCrossingNeigbor()
+        {
+            for (int i = 0; i < allcreatedcrossings.Count; i++)
+            {
+                for (int j = 0; j < allcreatedcrossings[i].Lanes.Count; j++)
+                {
+                    for (int k = 0; k < Lanes.Count; k++)
+                    {
+                        if (allcreatedcrossings[i].Lanes[j].Entrance == Lanes[k].Entrance)
+                        {
+                            allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Lanes[k];
+                        }
+                    }
+                }
+            }
+        }
+
+        public void setEnterancesLanes()
+        {
+            foreach (var citem in allcreatedcrossings)
+            {
+                foreach (var litem in citem.Lanes)
+                {
+                    if (litem.NextCrossingLaneNeighbor == null && !(litem is EmptyLane))
+                    {
+                        EnterancesLanes.Add(litem);
+                    }
+                }
+            }
+        }
+
     }
 }
