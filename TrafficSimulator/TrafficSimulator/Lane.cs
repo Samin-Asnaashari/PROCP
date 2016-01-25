@@ -10,6 +10,12 @@ namespace TrafficSimulator
     /// <summary>
     /// group of possibilities for green lights for crossing type 1
     /// </summary>
+    /// 
+    public enum GroupType
+    {
+        GroupLightsForCrossingType1, GroupLightsForCrossingType2
+    }
+
     public enum GroupLightsForCrossingType1
     {
         Lights123, Lights345, Lights567, Lights1357, Lights178
@@ -32,7 +38,7 @@ namespace TrafficSimulator
         public int CountCars; //not needed
         public List<Car> Cars;
         public Light Light;
-        public List<int> Group;
+        //public List<int> Group;
         public Lane NextCrossingLaneNeighbor;
         public List<int> Connections { get; set; } //which lanes the car may enter in intersection
 
@@ -46,7 +52,7 @@ namespace TrafficSimulator
             CountCars = 0;
             //Cars = new Car[5];
             Cars = new List<Car>();
-            Group = new List<int>();
+            //Group = new List<int>();
 
             this.NextCrossingLaneNeighbor = null;
             Connections = new List<int>();

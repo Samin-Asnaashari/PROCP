@@ -42,6 +42,8 @@ namespace TrafficSimulator
 
         private void createbutton_Click(object sender, EventArgs e)
         {
+            controller.SetTheLaneGroupsT(controller.C);
+            setLightTime();
             controller.Design.allcreatedcrossings.Add(controller.C);
             controller.callinvalidate(panel);
             this.Close();
@@ -50,6 +52,31 @@ namespace TrafficSimulator
         private void timer1_Tick(object sender, EventArgs e)
         {
             axWindowsMediaPlayer1.Ctlcontrols.play();
+        }
+
+        public void setLightTime()
+        {
+            if (controller.C.CType == 1)
+            {
+                controller.C.Groups.Add(Convert.ToInt32(textBox1.Text));
+                controller.C.Groups.Add(Convert.ToInt32(textBox2.Text));
+                controller.C.Groups.Add(Convert.ToInt32(textBox3.Text));
+                controller.C.Groups.Add(Convert.ToInt32(textBox4.Text));
+                controller.C.Groups.Add(Convert.ToInt32(textBox5.Text));
+            }
+            else
+            {
+                controller.C.Groups.Add(Convert.ToInt32(textBox1.Text));
+                controller.C.Groups.Add(Convert.ToInt32(textBox2.Text));
+                controller.C.Groups.Add(Convert.ToInt32(textBox3.Text));
+                controller.C.Groups.Add(Convert.ToInt32(textBox4.Text));
+                controller.C.Groups.Add(Convert.ToInt32(textBox5.Text));
+                controller.C.Groups.Add(Convert.ToInt32(textBox6.Text));
+                controller.C.Groups.Add(Convert.ToInt32(textBox7.Text));
+                controller.C.Groups.Add(Convert.ToInt32(textBox8.Text));
+                controller.C.Groups.Add(Convert.ToInt32(textBox9.Text));
+                controller.C.Groups.Add(Convert.ToInt32(textBox10.Text));
+            }
         }
     }
 }

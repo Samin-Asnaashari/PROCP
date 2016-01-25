@@ -17,6 +17,8 @@ namespace TrafficSimulator
         public List<Lane> Lanes;
         public List<Crossing> Neighbors;
 
+        public GroupType Group;
+        public List<int> Groups;
         //public Crossing North;
         //public Crossing East;
         //public Crossing West;
@@ -30,8 +32,8 @@ namespace TrafficSimulator
             this.CType = 0;
             Lanes = new List<Lane>();
             Neighbors = new List<Crossing>();
+            this.Groups = new List<int>();
             //this.image = (Image)new Bitmap(new Bitmap(this.Image_Filename.Split('.')[0] + ".png"), this.image.Size);
-
             //North = null;
             //East = null;
             //West = null;

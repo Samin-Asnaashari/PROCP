@@ -57,7 +57,7 @@
             this.label1.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(15, 220);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(218, 29);
+            this.label1.Size = new System.Drawing.Size(171, 23);
             this.label1.TabIndex = 3;
             this.label1.Text = "Green Lights Timing:";
             // 
@@ -65,7 +65,7 @@
             // 
             this.lightlistBox1.BackColor = System.Drawing.Color.Gainsboro;
             this.lightlistBox1.FormattingEnabled = true;
-            this.lightlistBox1.ItemHeight = 20;
+            this.lightlistBox1.ItemHeight = 17;
             this.lightlistBox1.Items.AddRange(new object[] {
             "LightsNumber:",
             "",
@@ -80,7 +80,7 @@
             "Lights 1, 7, 8:"});
             this.lightlistBox1.Location = new System.Drawing.Point(12, 261);
             this.lightlistBox1.Name = "lightlistBox1";
-            this.lightlistBox1.Size = new System.Drawing.Size(251, 244);
+            this.lightlistBox1.Size = new System.Drawing.Size(251, 242);
             this.lightlistBox1.TabIndex = 4;
             // 
             // createbutton
@@ -127,7 +127,7 @@
             this.textBox1.BackColor = System.Drawing.Color.LightGray;
             this.textBox1.Location = new System.Drawing.Point(133, 293);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(46, 28);
+            this.textBox1.Size = new System.Drawing.Size(46, 24);
             this.textBox1.TabIndex = 6;
             this.textBox1.Text = "10";
             // 
@@ -136,7 +136,7 @@
             this.textBox2.BackColor = System.Drawing.Color.LightGray;
             this.textBox2.Location = new System.Drawing.Point(133, 336);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(46, 28);
+            this.textBox2.Size = new System.Drawing.Size(46, 24);
             this.textBox2.TabIndex = 6;
             this.textBox2.Text = "10";
             // 
@@ -145,7 +145,7 @@
             this.textBox3.BackColor = System.Drawing.Color.LightGray;
             this.textBox3.Location = new System.Drawing.Point(133, 370);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(46, 28);
+            this.textBox3.Size = new System.Drawing.Size(46, 24);
             this.textBox3.TabIndex = 6;
             this.textBox3.Text = "10";
             // 
@@ -154,7 +154,7 @@
             this.textBox4.BackColor = System.Drawing.Color.LightGray;
             this.textBox4.Location = new System.Drawing.Point(133, 417);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(46, 28);
+            this.textBox4.Size = new System.Drawing.Size(46, 24);
             this.textBox4.TabIndex = 6;
             this.textBox4.Text = "10";
             // 
@@ -163,7 +163,7 @@
             this.textBox5.BackColor = System.Drawing.Color.LightGray;
             this.textBox5.Location = new System.Drawing.Point(133, 460);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(46, 28);
+            this.textBox5.Size = new System.Drawing.Size(46, 24);
             this.textBox5.TabIndex = 6;
             this.textBox5.Text = "10";
             // 
@@ -171,7 +171,7 @@
             // 
             this.lightlistBox2.BackColor = System.Drawing.Color.Gainsboro;
             this.lightlistBox2.FormattingEnabled = true;
-            this.lightlistBox2.ItemHeight = 20;
+            this.lightlistBox2.ItemHeight = 17;
             this.lightlistBox2.Items.AddRange(new object[] {
             "LightsNumber:",
             "",
@@ -186,7 +186,7 @@
             "Lights 3 ,5                       Lights 8 ,5:  "});
             this.lightlistBox2.Location = new System.Drawing.Point(45, 261);
             this.lightlistBox2.Name = "lightlistBox2";
-            this.lightlistBox2.Size = new System.Drawing.Size(337, 244);
+            this.lightlistBox2.Size = new System.Drawing.Size(337, 242);
             this.lightlistBox2.TabIndex = 4;
             // 
             // textBox6
@@ -194,7 +194,7 @@
             this.textBox6.BackColor = System.Drawing.Color.LightGray;
             this.textBox6.Location = new System.Drawing.Point(307, 293);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(46, 28);
+            this.textBox6.Size = new System.Drawing.Size(46, 24);
             this.textBox6.TabIndex = 6;
             this.textBox6.Text = "10";
             // 
@@ -203,7 +203,7 @@
             this.textBox7.BackColor = System.Drawing.Color.LightGray;
             this.textBox7.Location = new System.Drawing.Point(307, 336);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(46, 28);
+            this.textBox7.Size = new System.Drawing.Size(46, 24);
             this.textBox7.TabIndex = 6;
             this.textBox7.Text = "10";
             // 
@@ -212,7 +212,7 @@
             this.textBox8.BackColor = System.Drawing.Color.LightGray;
             this.textBox8.Location = new System.Drawing.Point(307, 370);
             this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(46, 28);
+            this.textBox8.Size = new System.Drawing.Size(46, 24);
             this.textBox8.TabIndex = 6;
             this.textBox8.Text = "10";
             // 
@@ -221,7 +221,7 @@
             this.textBox9.BackColor = System.Drawing.Color.LightGray;
             this.textBox9.Location = new System.Drawing.Point(307, 417);
             this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(46, 28);
+            this.textBox9.Size = new System.Drawing.Size(46, 24);
             this.textBox9.TabIndex = 6;
             this.textBox9.Text = "10";
             // 
@@ -230,16 +230,16 @@
             this.textBox10.BackColor = System.Drawing.Color.LightGray;
             this.textBox10.Location = new System.Drawing.Point(307, 460);
             this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(46, 28);
+            this.textBox10.Size = new System.Drawing.Size(46, 24);
             this.textBox10.TabIndex = 6;
             this.textBox10.Text = "10";
             // 
             // SetCrossing
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CadetBlue;
-            this.ClientSize = new System.Drawing.Size(555, 574);
+            this.ClientSize = new System.Drawing.Size(557, 582);
             this.Controls.Add(this.textBox10);
             this.Controls.Add(this.textBox9);
             this.Controls.Add(this.textBox5);

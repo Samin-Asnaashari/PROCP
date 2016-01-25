@@ -461,5 +461,30 @@ namespace TrafficSimulator
                 }
             }
         }
+
+        public void SetTheLights(List<int> Group,Crossing C)
+        {
+            //make sure it doesnt return null 
+            Crossing crossing = Design.allcreatedcrossings.Find(x => x == C);
+
+            for (int i = 0; i < crossing.Lanes.Count; i++)
+            {
+                
+            }
+        }
+
+        public void SetTheLaneGroupsT(Crossing C)
+        {
+            if (C.CType == 1)
+            {
+                C.Group = GroupType.GroupLightsForCrossingType1;
+            }
+            else
+            {
+                C.Group = GroupType.GroupLightsForCrossingType2;
+            }
+        }
+
+
     }
 }
