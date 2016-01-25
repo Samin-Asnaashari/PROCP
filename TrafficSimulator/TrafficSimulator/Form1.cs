@@ -439,6 +439,67 @@ namespace TrafficSimulator
             workpanel.Invalidate();
         }
 
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (showgrid == false)
+            {
+                this.tbname.Clear();
+                this.gridcomboBox.Invalidate();
+                PBtype1.Enabled = false;
+                PBtype2.Enabled = false;
+                buttonremove.Enabled = false;
+                buttonclear.Enabled = false;
+                setbutton.Enabled = false;
+                playbutton.Enabled = false;
+                pausebutton.Enabled = false;
+                stopbutton.Enabled = false;
+                this.workpanel.Invalidate();
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show("Would you like to save your current work?", "Save file ?", MessageBoxButtons.YesNo);
+                //User clicks YES
+                if (dialogResult == DialogResult.Yes)
+                {
+                    this.controller.Design.SaveAs(this.controller);
+                    if (this.controller.Design.allcreatedcrossings.Count != 0)
+                    {
+                        this.controller.Design.allcreatedcrossings.Clear();
+                    }
+                    showgrid = false;
+                    this.tbname.Clear();
+                    this.gridcomboBox.Invalidate();
+                    PBtype1.Enabled = false;
+                    PBtype2.Enabled = false;
+                    buttonremove.Enabled = false;
+                    buttonclear.Enabled = false;
+                    setbutton.Enabled = false;
+                    playbutton.Enabled = false;
+                    pausebutton.Enabled = false;
+                    stopbutton.Enabled = false;
+                    this.workpanel.Invalidate();
+                }
+                else
+                    if (this.controller.Design.allcreatedcrossings.Count != 0)
+                    {
+                        this.controller.Design.allcreatedcrossings.Clear();
+                    }
+                showgrid = false;
+                this.tbname.Clear();
+                this.gridcomboBox.Invalidate();
+                PBtype1.Enabled = false;
+                PBtype2.Enabled = false;
+                buttonremove.Enabled = false;
+                buttonclear.Enabled = false;
+                setbutton.Enabled = false;
+                playbutton.Enabled = false;
+                pausebutton.Enabled = false;
+                stopbutton.Enabled = false;
+                this.workpanel.Invalidate();
+            }
+
+        }
+
 
     }
 }

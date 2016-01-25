@@ -121,3 +121,4 @@ C:\Users\User\Desktop\UNIVERSITY\PROCP\Interface\New folder\PROCP\TrafficSimulat
 C:\Users\User\Desktop\UNIVERSITY\PROCP\Interface\New folder\PROCP\TrafficSimulator\TrafficSimulator\bin\Debug\TrafficSimulator.pdb
 C:\Users\User\Desktop\UNIVERSITY\PROCP\Interface\New folder\PROCP\TrafficSimulator\TrafficSimulator\bin\Debug\Interop.WMPLib.dll
 C:\Users\User\Desktop\UNIVERSITY\PROCP\Interface\New folder\PROCP\TrafficSimulator\TrafficSimulator\bin\Debug\AxInterop.WMPLib.dll
+C:\Users\George\Documents\GitHub\PROCP\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.DebugWindow.resources

@@ -8,6 +8,7 @@ using System.Windows.Forms;
 
 namespace TrafficSimulator
 {
+    [Serializable]
     public static class panelBuffer
     {
         public static void MakeDoubleBuffered(this Control control, bool setting)

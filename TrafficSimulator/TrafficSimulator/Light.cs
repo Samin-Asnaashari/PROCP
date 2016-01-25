@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace TrafficSimulator
 {
     public enum LightColor{red,green}
+    [Serializable]
     public class Light
     {
         public Point Position { get; set; }

@@ -18,7 +18,7 @@ namespace TrafficSimulator
         /// </summary>
 
         private static Controller instance;
-        private DebugWindow debug;
+       // private DebugWindow debug;
         private Random random;
         public bool Started;
         public WorkspaceDesign Design;
@@ -30,10 +30,10 @@ namespace TrafficSimulator
 
         private Controller()
         {
-            debug = new DebugWindow();
+           // debug = new DebugWindow();
             random = new Random(12);
             Started = false;
-            debug.Show();
+           // debug.Show();
             lines = 0;
             tempCType = 0;
         }
@@ -199,7 +199,7 @@ namespace TrafficSimulator
                     for (int j = 0; j < lanes.Count; j++)
                     {
                         Lane lane = lanes[i];
-                        debug.addLog("Lane " + lane.LaneID + " Entrance point: " + lane.Entrance.ToString() + "\n" + "Lane " + lane.LaneID + " Intersection point: " + lane.Intersection.ToString() + "\n");
+                       // debug.addLog("Lane " + lane.LaneID + " Entrance point: " + lane.Entrance.ToString() + "\n" + "Lane " + lane.LaneID + " Intersection point: " + lane.Intersection.ToString() + "\n");
                     }
                 }
             }
@@ -217,7 +217,7 @@ namespace TrafficSimulator
                         }
                         else
                         {
-                            debug.addLog("Car of lane-id " + crossings[i].Lanes[j].LaneID + " intersected at point " + crossings[i].Lanes[j].Intersection.ToString() + "\n");
+                           // debug.addLog("Car of lane-id " + crossings[i].Lanes[j].LaneID + " intersected at point " + crossings[i].Lanes[j].Intersection.ToString() + "\n");
 
                             if (crossings[i].Lanes[j] is LaneWithOneDirection)
                             {
@@ -246,13 +246,13 @@ namespace TrafficSimulator
                                 if (crossings[i].Lanes[j].Light.Color == LightColor.green)
                                 {
                                     int randomInt = random.Next(2);
-                                    debug.addLog("randomInt " + randomInt);
+                                    //debug.addLog("randomInt " + randomInt);
 
                                     for (int l = 0; l < crossings[i].Lanes.Count; l++)
                                     {
                                         if (crossings[i].Lanes[l].LaneID == crossings[i].Lanes[l].Connections[randomInt])
                                         {
-                                            debug.addLog("Connection Lane ID: " + crossings[i].Lanes[l].LaneID);
+                                           // debug.addLog("Connection Lane ID: " + crossings[i].Lanes[l].LaneID);
                                             Car car = crossings[i].Lanes[j].Cars[k];
                                             car.Position = crossings[i].Lanes[l].Entrance;
                                             car.Direction = crossings[i].Lanes[l].DirectionIsTo;

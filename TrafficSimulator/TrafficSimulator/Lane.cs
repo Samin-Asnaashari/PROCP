@@ -21,6 +21,7 @@ namespace TrafficSimulator
     {
         Light2, Light6, Lights34, Lights14, Lights35, Lights17, Lights73, Lights78, Lights84, Lights85
     }
+    [Serializable]
     public class Lane 
     {
         public int LaneID { get; set; }
@@ -55,7 +56,7 @@ namespace TrafficSimulator
             Light.Color = LightColor.green; //change this later
         }
     }
-
+    [Serializable]
     public class LaneWithOneDirection : Lane
     {
         //public Direction PossibleDirection { get; set; }
@@ -64,7 +65,7 @@ namespace TrafficSimulator
         {
         }
     }
-
+    [Serializable]
     public class LaneWithTwoDirection : Lane
     {
         public Direction[] PossibleDirection { get; set; }
@@ -76,7 +77,7 @@ namespace TrafficSimulator
             //PossibleDirection[1] = d2;
         }
     }
-
+    [Serializable]
     public class EmptyLane : Lane
     {
         //public Direction PossibleDirection { get; set; }

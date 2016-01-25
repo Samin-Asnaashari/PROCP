@@ -6,6 +6,7 @@ using System.Drawing;
 
 namespace TrafficSimulator
 {
+    [Serializable]
     public class Pedestrain
     {
         //Fix it 

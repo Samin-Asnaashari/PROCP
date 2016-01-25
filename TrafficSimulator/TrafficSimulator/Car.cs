@@ -7,6 +7,7 @@ using System.Drawing;
 
 namespace TrafficSimulator
 {
+    [Serializable]
     public class Car
     {
         /// <summary>

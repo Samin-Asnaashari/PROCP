@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace TrafficSimulator
 {
+    [Serializable]
     public partial class DebugWindow : Form
     {
         public DebugWindow()
