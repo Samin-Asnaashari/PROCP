@@ -244,8 +244,8 @@ namespace TrafficSimulator
         //    //    }
         //    //}
         //}
-        
-        
+
+
         public void SetNextLaneCrossingNeigborC1()
         {
             for (int i = 0; i < allcreatedcrossings.Count; i++)
@@ -256,99 +256,175 @@ namespace TrafficSimulator
                     {
                         if (allcreatedcrossings[i].Lanes[j].LaneID >= 1 && allcreatedcrossings[i].Lanes[j].LaneID <= 3)
                         {
-                            Point p = new Point(allcreatedcrossings[i].StartPoint.X,(allcreatedcrossings[i].StartPoint.Y-allcreatedcrossings[i].Size));
-                            Crossing C = allcreatedcrossings.Find(x => x.StartPoint == p );
-                            if(C != null)
+                            Point p = new Point(allcreatedcrossings[i].StartPoint.X, (allcreatedcrossings[i].StartPoint.Y - allcreatedcrossings[i].Size));
+                            Crossing C = allcreatedcrossings.Find(x => x.StartPoint == p);
+                            if (C != null && (C.CType == 1))
                             {
                                 int a = allcreatedcrossings[i].Lanes[j].LaneID;
-                                if(a == 1)
+                                if (a == 1)
                                 {
-                                     Lane Next = C.Lanes.Find(x => x.LaneID == 9);
-                                     allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 9);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
                                 }
                                 else if (a == 2)
                                 {
-                                     Lane Next = C.Lanes.Find(x => x.LaneID == 8);
-                                     allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 8);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
                                 }
                                 else
                                 {
-                                     Lane Next = C.Lanes.Find(x => x.LaneID == 7);
-                                     allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 7);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
                                 }
-                            }                          
-                        }
-                        else if(allcreatedcrossings[i].Lanes[j].LaneID >= 4 && allcreatedcrossings[i].Lanes[j].LaneID <= 6)
-                        {
-                             Point p = new Point((allcreatedcrossings[i].StartPoint.X+allcreatedcrossings[i].Size),allcreatedcrossings[i].StartPoint.Y);
-                             Crossing C = allcreatedcrossings.Find(x => x.StartPoint == p );
-                            if(C != null)
+                            }
+                            else if (C != null && (C.CType == 2))
                             {
                                 int a = allcreatedcrossings[i].Lanes[j].LaneID;
-                                if(a == 4)
+                                if (a == 1)
                                 {
-                                     Lane Next = C.Lanes.Find(x => x.LaneID == 12);
-                                     allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 6);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                                else if (a == 2)
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 6);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                                else
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 7);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                            }
+                        }
+                        else if (allcreatedcrossings[i].Lanes[j].LaneID >= 4 && allcreatedcrossings[i].Lanes[j].LaneID <= 6)
+                        {
+                            Point p = new Point((allcreatedcrossings[i].StartPoint.X + allcreatedcrossings[i].Size), allcreatedcrossings[i].StartPoint.Y);
+                            Crossing C = allcreatedcrossings.Find(x => x.StartPoint == p);
+                            if (C != null && C.CType == 1)
+                            {
+                                int a = allcreatedcrossings[i].Lanes[j].LaneID;
+                                if (a == 4)
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 12);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
                                 }
                                 else if (a == 5)
                                 {
-                                     Lane Next = C.Lanes.Find(x => x.LaneID == 11);
-                                     allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 11);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
                                 }
                                 else
                                 {
-                                     Lane Next = C.Lanes.Find(x => x.LaneID == 10);
-                                     allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 10);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
                                 }
-                            }                
-                        }
-                        else if(allcreatedcrossings[i].Lanes[j].LaneID >= 7 && allcreatedcrossings[i].Lanes[j].LaneID <= 9)
-                        {
-                             Point p = new Point(allcreatedcrossings[i].StartPoint.X,(allcreatedcrossings[i].StartPoint.Y+allcreatedcrossings[i].Size));
-                            Crossing C = allcreatedcrossings.Find(x => x.StartPoint == p );
-                            if(C != null)
+                            }
+                            else if (C != null && (C.CType == 2))
                             {
                                 int a = allcreatedcrossings[i].Lanes[j].LaneID;
-                                if(a == 7)
+                                if (a == 4)
                                 {
-                                     Lane Next = C.Lanes.Find(x => x.LaneID == 3);
-                                     allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 10);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                                else if (a == 5)
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 9);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                                else
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 8);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                            }
+                        }
+                        else if (allcreatedcrossings[i].Lanes[j].LaneID >= 7 && allcreatedcrossings[i].Lanes[j].LaneID <= 9)
+                        {
+                            Point p = new Point(allcreatedcrossings[i].StartPoint.X, (allcreatedcrossings[i].StartPoint.Y + allcreatedcrossings[i].Size));
+                            Crossing C = allcreatedcrossings.Find(x => x.StartPoint == p);
+                            if (C != null && C.CType == 1)
+                            {
+                                int a = allcreatedcrossings[i].Lanes[j].LaneID;
+                                if (a == 7)
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 3);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
                                 }
                                 else if (a == 8)
                                 {
-                                     Lane Next = C.Lanes.Find(x => x.LaneID == 2);
-                                     allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 2);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
                                 }
                                 else
                                 {
-                                     Lane Next = C.Lanes.Find(x => x.LaneID == 1);
-                                     allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 1);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
                                 }
-                            }                
-                        }
-                        else if(allcreatedcrossings[i].Lanes[j].LaneID >= 10 && allcreatedcrossings[i].Lanes[j].LaneID <= 12)
-                        {
-                            Point p = new Point((allcreatedcrossings[i].StartPoint.X - allcreatedcrossings[i].Size),allcreatedcrossings[i].StartPoint.Y);
-                            Crossing C = allcreatedcrossings.Find(x => x.StartPoint == p );
-                            if(C != null)
+                            }
+                            else if (C != null && (C.CType == 2))
                             {
                                 int a = allcreatedcrossings[i].Lanes[j].LaneID;
-                                if(a == 10)
+                                if (a == 7)
                                 {
-                                     Lane Next = C.Lanes.Find(x => x.LaneID == 6);
-                                     allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 2);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                                else if (a == 8)
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 2);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                                else
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 1);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                            }
+                        }
+                        else if (allcreatedcrossings[i].Lanes[j].LaneID >= 10 && allcreatedcrossings[i].Lanes[j].LaneID <= 12)
+                        {
+                            Point p = new Point((allcreatedcrossings[i].StartPoint.X - allcreatedcrossings[i].Size), allcreatedcrossings[i].StartPoint.Y);
+                            Crossing C = allcreatedcrossings.Find(x => x.StartPoint == p);
+                            if (C != null && C.CType == 1)
+                            {
+                                int a = allcreatedcrossings[i].Lanes[j].LaneID;
+                                if (a == 10)
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 6);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
                                 }
                                 else if (a == 11)
                                 {
-                                     Lane Next = C.Lanes.Find(x => x.LaneID == 5);
-                                     allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 5);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
                                 }
                                 else
                                 {
-                                     Lane Next = C.Lanes.Find(x => x.LaneID == 4);
-                                     allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 4);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
                                 }
-                            }                
+                            }
+                            else if (C != null && (C.CType == 2))
+                            {
+                                int a = allcreatedcrossings[i].Lanes[j].LaneID;
+                                if (a == 10)
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 5);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                                else if (a == 11)
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 4);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                                else
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 3);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                            }
                         }
                     }
                 }
@@ -357,9 +433,169 @@ namespace TrafficSimulator
 
         }
 
-        public void SetNextLaneCrossingNeigborC2()
+        public void SetNextLaneCrossingNeigborC2() //Make random for neigbor T1
         {
-
+            for (int i = 0; i < allcreatedcrossings.Count; i++)
+            {
+                if (allcreatedcrossings[i].CType == 2)
+                {
+                    for (int j = 0; j < allcreatedcrossings[i].Lanes.Count; j++)
+                    {
+                        if (allcreatedcrossings[i].Lanes[j].LaneID >= 1 && allcreatedcrossings[i].Lanes[j].LaneID <= 2)
+                        {
+                            Point p = new Point(allcreatedcrossings[i].StartPoint.X, (allcreatedcrossings[i].StartPoint.Y - allcreatedcrossings[i].Size));
+                            Crossing C = allcreatedcrossings.Find(x => x.StartPoint == p);
+                            if (C != null && (C.CType == 1))
+                            {
+                                int a = allcreatedcrossings[i].Lanes[j].LaneID;
+                                if (a == 1)
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 9);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                                else if (a == 2)
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 7);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                            }
+                            else if (C != null && (C.CType == 2))
+                            {
+                                int a = allcreatedcrossings[i].Lanes[j].LaneID;
+                                if (a == 1)
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 7);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                                else if (a == 2)
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 6);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                            }
+                        }
+                        else if (allcreatedcrossings[i].Lanes[j].LaneID >= 3 && allcreatedcrossings[i].Lanes[j].LaneID <= 5)
+                        {
+                            Point p = new Point((allcreatedcrossings[i].StartPoint.X + allcreatedcrossings[i].Size), allcreatedcrossings[i].StartPoint.Y);
+                            Crossing C = allcreatedcrossings.Find(x => x.StartPoint == p);
+                            if (C != null && C.CType == 1)
+                            {
+                                int a = allcreatedcrossings[i].Lanes[j].LaneID;
+                                if (a == 3)
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 12);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                                else if (a == 4)
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 11);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                                else
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 10);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                            }
+                            else if (C != null && (C.CType == 2))
+                            {
+                                int a = allcreatedcrossings[i].Lanes[j].LaneID;
+                                if (a == 3)
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 10);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                                else if (a == 4)
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 9);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                                else
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 8);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                            }
+                        }
+                        else if (allcreatedcrossings[i].Lanes[j].LaneID >= 6 && allcreatedcrossings[i].Lanes[j].LaneID <= 7)
+                        {
+                            Point p = new Point(allcreatedcrossings[i].StartPoint.X, (allcreatedcrossings[i].StartPoint.Y + allcreatedcrossings[i].Size));
+                            Crossing C = allcreatedcrossings.Find(x => x.StartPoint == p);
+                            if (C != null && C.CType == 1)
+                            {
+                                int a = allcreatedcrossings[i].Lanes[j].LaneID;
+                                if (a == 6)
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 3);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                                else if (a == 7)
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 1);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                            }
+                            else if (C != null && (C.CType == 2))
+                            {
+                                int a = allcreatedcrossings[i].Lanes[j].LaneID;
+                                if (a == 6)
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 2);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                                else if (a == 7)
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 1);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                            }
+                        }
+                        else if (allcreatedcrossings[i].Lanes[j].LaneID >= 8 && allcreatedcrossings[i].Lanes[j].LaneID <= 10)
+                        {
+                            Point p = new Point((allcreatedcrossings[i].StartPoint.X - allcreatedcrossings[i].Size), allcreatedcrossings[i].StartPoint.Y);
+                            Crossing C = allcreatedcrossings.Find(x => x.StartPoint == p);
+                            if (C != null && C.CType == 1)
+                            {
+                                int a = allcreatedcrossings[i].Lanes[j].LaneID;
+                                if (a == 8)
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 6);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                                else if (a == 9)
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 5);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                                else
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 4);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                            }
+                            else if (C != null && (C.CType == 2))
+                            {
+                                int a = allcreatedcrossings[i].Lanes[j].LaneID;
+                                if (a == 8)
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 5);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                                else if (a == 9)
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 4);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                                else
+                                {
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == 3);
+                                    allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
 
