@@ -21,71 +21,109 @@ namespace TrafficSimulator
     {
         Light2, Light6, Lights34, Lights14, Lights35, Lights17, Lights73, Lights78, Lights84, Lights85
     }
-    public class Lane 
+    public class Lane : IComparable
     {
         public int LaneID { get; set; }
         public Point Entrance { get; set; }
         public Point Intersection { get; set; }
         public Direction DirectionIsTo { get; set; }
-        //public Car[] Cars { get; set; }
-        public int CountCars; //not needed
-        public List<Car> Cars;
-        public Light Light;
+        public List<Car> Cars { get; set; }
+        public int CountCars;
+        public Light light;
         public List<int> Group;
-        public Lane NextCrossingLaneNeighbor;
         public List<int> Connections { get; set; } //which lanes the car may enter in intersection
+       
+        //Variable updated on LightChanged event
+        public Boolean IsGreen { get; private set; }
 
-        public Lane(int laneID, Point enter , Point intersect,Direction D, int c1, int c2)
+
+        public Lane(int laneID, Point enter, Point intersect, Direction D, int c1, int c2, Point lightPosition)
         {
             this.LaneID = laneID;
             this.Entrance = enter;
             this.Intersection = intersect;
             this.DirectionIsTo = D;
-            Light = new Light();
+            light = new Light(lightPosition.X, lightPosition.Y);
             CountCars = 0;
-            //Cars = new Car[5];
             Cars = new List<Car>();
             Group = new List<int>();
-
-            this.NextCrossingLaneNeighbor = null;
             Connections = new List<int>();
             Connections.Add(c1);
             Connections.Add(c2);
 
-            Light.Color = LightColor.green; //change this later
+            light.LightChanged += light_LightChanged;
+            IsGreen = false;
         }
+
+        void light_LightChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ChangeLight()
+        {
+            this.light.ChangeLight();
+        }
+
+        //Method that updates IsGreen variable
+        private void LightChanged(object sender, EventArgs e)
+        {
+            this.IsGreen = light.IsGreen();
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (this.Entrance.X < ((Lane)obj).Entrance.X)
+            {
+                return -1;
+            }
+            else if (this.Entrance.X == ((Lane)obj).Entrance.X && this.Entrance.Y < ((Lane)obj).Entrance.Y)
+            {
+                return -1;
+            }
+            else if (this.Entrance.X > ((Lane)obj).Entrance.X)
+            {
+                return 1;
+            }
+            else if (this.Entrance.X == ((Lane)obj).Entrance.X && this.Entrance.Y > ((Lane)obj).Entrance.Y)
+            {
+                return 1;
+            }
+            { return 0; }
+        }
+
     }
 
     public class LaneWithOneDirection : Lane
     {
-        //public Direction PossibleDirection { get; set; }
+        public Direction PossibleDirection { get; set; }
 
-        public LaneWithOneDirection(int id, Point e,Point i,Direction d, int c1, int c2):base(id,e,i,d,c1,c2)
+        public LaneWithOneDirection(int id, Point e, Point i, Direction d, int c1, int c2, Point lightPosition)
+            : base(id, e, i, d, c1, c2, lightPosition)
         {
+            
         }
     }
 
     public class LaneWithTwoDirection : Lane
     {
-        public Direction[] PossibleDirection { get; set; }
+        public string[] PossibleDirection { get; set; }
 
-        public LaneWithTwoDirection(int id, Point e, Point i, Direction currentd1, int c1, int c2): base(id,e, i,currentd1,c1,c2)
+        public LaneWithTwoDirection(int id, Point e, Point i, Direction d, int c1, int c2, Point lightPosition): base(id,e, i, d,c1,c2, lightPosition)
         {
-            //this.PossibleDirection = new Direction[2];
-            //PossibleDirection[0] = currentd1;
-            //PossibleDirection[1] = d2;
+            this.PossibleDirection = new string[2];
         }
     }
 
     public class EmptyLane : Lane
     {
-        //public Direction PossibleDirection { get; set; }
-
-        public EmptyLane(int id, Point ei, Point exit,Direction d, int c1, int c2):base(id, ei,exit,d,c1,c2)
+        public EmptyLane(int id, Point ei, Point exit,Direction d, int c1, int c2, Point lightPosition):base(id, ei,exit,d, c1, c2, lightPosition)
         {
+            
         }
     }
 
 
 
-}
+    }
+

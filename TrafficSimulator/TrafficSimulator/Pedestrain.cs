@@ -8,47 +8,26 @@ namespace TrafficSimulator
 {
     public class Pedestrain
     {
-        //Fix it 
-        private int x;
-        private int y;
-        private int dirX;
-        private int dirY;
-        private int size = 7;
-        private SolidBrush brush;
+       //Properites
+		public int ID {set; get;}
+		public Lane Path {set; get;}
+		public int Speed {set; get;}
+		public Point Position {set; get;}
 
-        public Pedestrain(int X, int Y,int directionX, int directionY)
-        {
-            this.x = X;
-            this.y = Y;
-            this.dirX = directionX;
-            this.dirY = directionY;
-            this.brush = new SolidBrush(Color.Blue);
-        }
+	
+		public Pedestrain(int id, Lane path, int speed, Point position)
+		{
+			this.ID = id;
+			this.Path = path;
+			this.Speed = speed;
+			this.Position = position;
+		}
 
-        public int getX()
+		//Methods
+        public void Draw(Graphics gr)
         {
-            return this.x;
+            SolidBrush brush = new SolidBrush(Color.LightPink);
+            gr.FillEllipse(brush, this.Position.X, this.Position.Y, 1, 1);
         }
-
-        public int setX(int posX)
-        {
-            return this.x = posX;
-        }
-
-        public int getY()
-        {
-            return this.y;
-        }
-
-        public int setY(int posY)
-        {
-            return this.y = posY;
-        }
-
-        public void DrawPedestrian(Graphics g)
-        {
-            g.FillEllipse(brush, this.x, this.y, this.size, this.size);
-        }
-        
-    }
+	}
 }

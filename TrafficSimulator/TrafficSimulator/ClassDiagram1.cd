@@ -3,38 +3,12 @@
   <Class Name="TrafficSimulator.WorkspaceDesign">
     <Position X="5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAQgoAAAAAAAAAAAAAAAAQAAAAAAAAAABAAAAAAAQA=</HashCode>
+      <HashCode>AAAQgoAAAAAAAAAAAAAAAAQAAAKACAAAABQAAAIgAQA=</HashCode>
       <FileName>WorkspaceDesign.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Field Name="allcreatedcrossings" />
     </ShowAsCollectionAssociation>
-  </Class>
-  <Class Name="TrafficSimulator.Simulator">
-    <Position X="7.75" Y="3.25" Width="1.5" />
-    <NestedTypes>
-      <Delegate Name="TrafficSimulator.Simulator.StartCarts" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Simulator.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Delegate>
-      <Delegate Name="TrafficSimulator.Simulator.StopCards" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Simulator.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Delegate>
-    </NestedTypes>
-    <TypeIdentifier>
-      <HashCode>AAAgAAAAACAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
-      <FileName>Simulator.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="TrafficSimulator.Setting">
-    <Position X="9.75" Y="2.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AACAAAAAAAAAAAACAAAAAgAAEAAAAAAAAAAAAAABAAQ=</HashCode>
-      <FileName>Setting.cs</FileName>
-    </TypeIdentifier>
   </Class>
   <Class Name="TrafficSimulator.Overview">
     <Position X="9.75" Y="0.5" Width="1.5" />
@@ -44,9 +18,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="TrafficSimulator.Pedestrain" Collapsed="true">
-    <Position X="9.75" Y="5.75" Width="1.5" />
+    <Position X="8.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAggIgAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Pedestrain.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -60,24 +34,24 @@
   <Class Name="TrafficSimulator.SetCrossing">
     <Position X="0.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAARAACAAIBEAAACAAAACABAAIAAAAAAAAQBAAAA=</HashCode>
+      <HashCode>QCQAAABAASAAkBGCEACAAABCIBAAIAAAEAAAAQBAAIA=</HashCode>
       <FileName>SetCrossing.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="controller" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="TrafficSimulator.SetupSimulator">
-    <Position X="5" Y="3.5" Width="1.5" />
+  <Class Name="TrafficSimulator.SetupSimulator" Collapsed="true">
+    <Position X="7" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACAAAAAIACAAAAAAAACAAABCIAAAAAAAEAAAAAQAAAA=</HashCode>
+      <HashCode>ACAAAAAIBCEAAAEAAACAAAACAAAAEQCAACAAAIQAAAA=</HashCode>
       <FileName>SetupSimulator.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TrafficSimulator.Form1" Collapsed="true">
     <Position X="0.75" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BWCBMgYADCFMAFMCAKKDgAFCGJxAwQSUAgQECDQAQAA=</HashCode>
+      <HashCode>BWSBMhQADCFMAFMiAKKDwAFCGJxA4ECUAgQECCQAQAA=</HashCode>
       <FileName>Form1.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -87,40 +61,41 @@
   <Class Name="TrafficSimulator.Crossing">
     <Position X="7.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAgAIAQAAAAgAAEAAAAACAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAgAQAQAAAAAAAEAAAAAAAAAAAAAIAAAg=</HashCode>
       <FileName>Crossing.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="TrafficSimulator.Controller">
     <Position X="2.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAQAAAAAAACAAEQAAAAAAAACIAAQAAAAAAgQACAAA=</HashCode>
+      <HashCode>AAAAQAACAAAAiAAEAAAAAAAAACIAAQAAAAAAgQACAAI=</HashCode>
       <FileName>Controller.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="C" />
       <Field Name="Design" />
+      <Field Name="C" />
     </ShowAsAssociation>
   </Class>
   <Class Name="TrafficSimulator.Car" Collapsed="true">
-    <Position X="9.75" Y="5" Width="1.5" />
+    <Position X="7" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAgAAAAAAAAgAAgACAAAAABAAAAAAAAAQAAgAAAAAA=</HashCode>
       <FileName>Car.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Enum Name="TrafficSimulator.GroupLightsType2">
+  <Enum Name="TrafficSimulator.GroupLightsForCrossingType2">
     <Position X="11.75" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAABAAAAFAgAgAAAAgAAAAAAAAIBAAACAA=</HashCode>
-      <FileName>GroupLightsType2.cs</FileName>
+      <FileName>Lane.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="TrafficSimulator.GroupLightsType1">
+  <Enum Name="TrafficSimulator.GroupLightsForCrossingType1">
     <Position X="11.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAgEAAAAQAAAQAAAAAA=</HashCode>
-      <FileName>GroupLightsType1.cs</FileName>
+      <FileName>Lane.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

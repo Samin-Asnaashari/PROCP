@@ -22,8 +22,6 @@ namespace TrafficSimulator
         bool showgrid = false;
         bool start = false;
 
-        bool IsSet = false;
-
         private Image selectedimage;
         private Crossing selectedCrossinginpanel;
 
@@ -52,8 +50,7 @@ namespace TrafficSimulator
             {
                 string grid = gridcomboBox.SelectedItem.ToString();
                 WorkspaceDesign D = new WorkspaceDesign(grid, name, time);
-                this.controller = Controller.getController();
-                this.controller.setSettings(this.workpanel.Width, this.workpanel.Height, D);
+                this.controller = new Controller(this.workpanel.Width, this.workpanel.Height, D);
 
                 if (D.Grid == "Small")
                 {
@@ -82,8 +79,6 @@ namespace TrafficSimulator
                 buttonremove.Enabled = true;
                 buttonclear.Enabled = true;
                 setbutton.Enabled = true;
-
-                IsSet = false;
             }
             else
             {
@@ -94,14 +89,14 @@ namespace TrafficSimulator
 
         private void workpanel_Paint(object sender, PaintEventArgs e)
         {
-            //Graphics gr = e.Graphics;
+           
             if (showgrid == true)
             {
                 if (selectedCrossinginpanel != null)
                 {
                     e.Graphics.DrawRectangle(new Pen(Brushes.DarkCyan, 3), new Rectangle(selectedCrossinginpanel.StartPoint.X, selectedCrossinginpanel.StartPoint.Y,
                         Convert.ToInt32(workpanel.Width / controller.lines), Convert.ToInt32(workpanel.Height / controller.lines)));
-                } 
+                } //maybe the better way
 
                 this.controller.drawthedesigngrid(e.Graphics);
 
@@ -111,9 +106,9 @@ namespace TrafficSimulator
                 }
                 if (start == true)
                 {
-                    //draw cars
-                    controller.DrawLights(e.Graphics);
-                    controller.SetCars(e.Graphics);
+                    
+                    controller.DrawCars(e.Graphics);
+
                     
                 }
                 
@@ -230,63 +225,38 @@ namespace TrafficSimulator
 
         private void setbutton_Click(object sender, EventArgs e)
         {
-            if (controller.Design.allcreatedcrossings.Count != 0)
+            if (controller.Design.CheckIfIsValidToSetUpSimulator())
             {
-                this.controller.Design.Lanes = controller.Design.SetUpLanes(controller.Design.allcreatedcrossings);
-                controller.Design.SetNextLaneCrossingNeigbor();
-                controller.Design.setEnterancesLanes();
-
-                if (controller.Design.CheckIfIsValidToSetUpSimulator())
-                {
-                    SetupSimulator CarsDirectionStatistic = new SetupSimulator();
-                    CarsDirectionStatistic.controller = this.controller;
-                    CarsDirectionStatistic.ControlPlay = playbutton;
-                    CarsDirectionStatistic.ControlPause = pausebutton;
-                    CarsDirectionStatistic.ControlStop = stopbutton;
-                    CarsDirectionStatistic.Show();
-                    IsSet = true;
-                }
-                else
-                {
-                    StatuslistBox.Items.Add("All crossing need to have a path!!");
-                    StatuslistBox.Items.Add("Please fix the design first..😅");
-                }
+                SetupSimulator CarsDirectionStatistic = new SetupSimulator();
+                CarsDirectionStatistic.controller = this.controller;
+                CarsDirectionStatistic.ControlPlay = playbutton;
+                CarsDirectionStatistic.ControlPause = pausebutton;
+                CarsDirectionStatistic.ControlStop = stopbutton;
+                CarsDirectionStatistic.Show();
             }
             else
             {
-                StatuslistBox.Items.Add("Draw Crossing First!!");
+                StatuslistBox.Items.Add("All crossing need to have a path!!");
+                StatuslistBox.Items.Add("Please fix the design first..😅");
             }
         }
 
         private void playbutton_Click(object sender, EventArgs e)
         {
-            if (IsSet)
-            {
-                PBtype1.Enabled = false;
-                PBtype2.Enabled = false;
-                cursorbutton.Enabled = false;
-                buttonremove.Enabled = false;
-                buttonclear.Enabled = false;
-                setbutton.Enabled = false;
-                playbutton.Enabled = false;
-                gridbutton.Enabled = false;
-
-                this.controller.Design.Lanes = controller.Design.SetUpLanes(controller.Design.allcreatedcrossings);
-                controller.Design.SetNextLaneCrossingNeigbor();
-                controller.Design.setEnterancesLanes();
-
-                controller.Started = false;
-                timer1.Enabled = true;
-            }
-            else
-            {
-                StatuslistBox.Items.Add("Set The Crossing First!!");
-            }
+            PBtype1.Enabled = false;
+            PBtype2.Enabled = false;
+            cursorbutton.Enabled = false;
+            buttonremove.Enabled = false;
+            buttonclear.Enabled = false;
+            setbutton.Enabled = false;
+            playbutton.Enabled = false;
+            gridbutton.Enabled = false;
+            this.controller.Design.Lanes=controller.Design.SetUpLanes(controller.Design.allcreatedcrossings);
+            timer1.Enabled = true;
         }
 
         private void stopbutton_Click(object sender, EventArgs e)
         {
-            IsSet = false;
             PBtype1.Enabled = true;
             PBtype2.Enabled = true;
             cursorbutton.Enabled = true;

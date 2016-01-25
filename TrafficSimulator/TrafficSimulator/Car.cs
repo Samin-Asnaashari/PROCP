@@ -17,7 +17,6 @@ namespace TrafficSimulator
         public Color Color { get; set; }
         public Direction Direction { get; set; } //direction that wants to go 
         public Lane Lane { get; set; }
-        private static Random randonGen = new Random();
 
         //maybe for overview we need the time that car enter the simulator till exit
 
@@ -27,6 +26,7 @@ namespace TrafficSimulator
             this.Size = size;
             this.Direction = D;
 
+            Random randonGen = new Random();
             this.Color = Color.FromArgb(randonGen.Next(255), randonGen.Next(255), randonGen.Next(255));
         }
 

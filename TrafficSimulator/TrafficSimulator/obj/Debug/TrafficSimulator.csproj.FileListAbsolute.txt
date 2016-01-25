@@ -82,24 +82,37 @@ D:\Jaakko\Fontys\Assignments\Project\PROCP\TrafficSimulator\TrafficSimulator\obj
 D:\Jaakko\Fontys\Assignments\Project\PROCP\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.SetCrossing.resources
 D:\Jaakko\Fontys\Assignments\Project\PROCP\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.SetupSimulator.resources
 D:\Jaakko\Fontys\Assignments\Project\PROCP\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.csproj.GenerateResource.Cache
-D:\Jaakko\Fontys\Assignments\Project\PROCP\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.DebugWindow.resources
-D:\Jaakko\Fontys\Assignments\Backups\PROCP230116\TrafficSimulator\TrafficSimulator\bin\Debug\TrafficSimulator.exe.config
-D:\Jaakko\Fontys\Assignments\Backups\PROCP230116\TrafficSimulator\TrafficSimulator\obj\Debug\Interop.WMPLib.dll
-D:\Jaakko\Fontys\Assignments\Backups\PROCP230116\TrafficSimulator\TrafficSimulator\obj\Debug\AxInterop.WMPLib.dll
-D:\Jaakko\Fontys\Assignments\Backups\PROCP230116\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.csproj.ResolveComReference.cache
-D:\Jaakko\Fontys\Assignments\Backups\PROCP230116\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.exe
-D:\Jaakko\Fontys\Assignments\Backups\PROCP230116\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.pdb
-D:\Jaakko\Fontys\Assignments\Backups\PROCP230116\TrafficSimulator\TrafficSimulator\bin\Debug\TrafficSimulator.exe
-D:\Jaakko\Fontys\Assignments\Backups\PROCP230116\TrafficSimulator\TrafficSimulator\bin\Debug\TrafficSimulator.pdb
-D:\Jaakko\Fontys\Assignments\Backups\PROCP230116\TrafficSimulator\TrafficSimulator\bin\Debug\Interop.WMPLib.dll
-D:\Jaakko\Fontys\Assignments\Backups\PROCP230116\TrafficSimulator\TrafficSimulator\bin\Debug\AxInterop.WMPLib.dll
-D:\Jaakko\Fontys\Assignments\Backups\PROCP230116\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.csprojResolveAssemblyReference.cache
-D:\Jaakko\Fontys\Assignments\Backups\PROCP230116\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.DebugWindow.resources
-D:\Jaakko\Fontys\Assignments\Backups\PROCP230116\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.Form1.resources
-D:\Jaakko\Fontys\Assignments\Backups\PROCP230116\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.Help.resources
-D:\Jaakko\Fontys\Assignments\Backups\PROCP230116\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.Properties.Resources.resources
-D:\Jaakko\Fontys\Assignments\Backups\PROCP230116\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.SetCrossing.resources
-D:\Jaakko\Fontys\Assignments\Backups\PROCP230116\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.SetupSimulator.resources
-D:\Jaakko\Fontys\Assignments\Backups\PROCP230116\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.csproj.GenerateResource.Cache
-C:\Users\User\Desktop\UNIVERSITY\PROCP\PRO-CP\PROCP\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.csprojResolveAssemblyReference.cache
-C:\Users\User\Desktop\UNIVERSITY\PROCP\PRO-CP\PROCP\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.DebugWindow.resources
+C:\Users\Crs\Desktop\Procp\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\bin\Debug\TrafficSimulator.exe.config
+C:\Users\Crs\Desktop\Procp\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\obj\Debug\Interop.WMPLib.dll
+C:\Users\Crs\Desktop\Procp\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\obj\Debug\AxInterop.WMPLib.dll
+C:\Users\Crs\Desktop\Procp\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.csproj.ResolveComReference.cache
+C:\Users\Crs\Desktop\Procp\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.exe
+C:\Users\Crs\Desktop\Procp\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.pdb
+C:\Users\Crs\Desktop\Procp\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.csprojResolveAssemblyReference.cache
+C:\Users\Crs\Desktop\Procp\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.Form1.resources
+C:\Users\Crs\Desktop\Procp\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.Help.resources
+C:\Users\Crs\Desktop\Procp\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.Properties.Resources.resources
+C:\Users\Crs\Desktop\Procp\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.SetCrossing.resources
+C:\Users\Crs\Desktop\Procp\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.SetupSimulator.resources
+C:\Users\Crs\Desktop\Procp\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.csproj.GenerateResource.Cache
+C:\Users\Crs\Desktop\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\bin\Debug\TrafficSimulator.exe.config
+C:\Users\Crs\Desktop\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\obj\Debug\Interop.WMPLib.dll
+C:\Users\Crs\Desktop\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\obj\Debug\AxInterop.WMPLib.dll
+C:\Users\Crs\Desktop\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.csproj.ResolveComReference.cache
+C:\Users\Crs\Desktop\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.exe
+C:\Users\Crs\Desktop\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.csprojResolveAssemblyReference.cache
+C:\Users\Crs\Desktop\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.Form1.resources
+C:\Users\Crs\Desktop\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.Help.resources
+C:\Users\Crs\Desktop\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.Properties.Resources.resources
+C:\Users\Crs\Desktop\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.SetCrossing.resources
+C:\Users\Crs\Desktop\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.SetupSimulator.resources
+C:\Users\Crs\Desktop\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.csproj.GenerateResource.Cache
+C:\Users\Crs\Desktop\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\bin\Debug\TrafficSimulator.exe
+C:\Users\Crs\Desktop\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\bin\Debug\TrafficSimulator.pdb
+C:\Users\Crs\Desktop\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\bin\Debug\Interop.WMPLib.dll
+C:\Users\Crs\Desktop\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\bin\Debug\AxInterop.WMPLib.dll
+C:\Users\Crs\Desktop\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.pdb
+C:\Users\Crs\Desktop\Procp\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\bin\Debug\TrafficSimulator.exe
+C:\Users\Crs\Desktop\Procp\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\bin\Debug\TrafficSimulator.pdb
+C:\Users\Crs\Desktop\Procp\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\bin\Debug\Interop.WMPLib.dll
+C:\Users\Crs\Desktop\Procp\PROCP-master (2)\PROCP-master\TrafficSimulator\TrafficSimulator\bin\Debug\AxInterop.WMPLib.dll
