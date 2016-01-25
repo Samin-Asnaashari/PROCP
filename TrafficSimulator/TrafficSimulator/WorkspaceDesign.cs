@@ -19,11 +19,9 @@ namespace TrafficSimulator
         public string Name { get; set; }
         public DateTime Time { get; set; }
         public List<Crossing> allcreatedcrossings;
-        public Light light;
 
-        public List<Lane> Lanes;
         public List<Lane> EnterancesLanes;
-
+        public List<Lane> Lanes;
 
         public WorkspaceDesign(string grid, string name, DateTime time)
         {
@@ -31,8 +29,12 @@ namespace TrafficSimulator
             this.Name = name;
             this.Time = time;
             this.allcreatedcrossings = new List<Crossing>();
-          
+
+            EnterancesLanes = new List<Lane>();
+            Lanes = new List<Lane>();
         }
+
+        
 
         /// <summary>
         /// load a simulation deasign 
@@ -68,7 +70,6 @@ namespace TrafficSimulator
                 return false;
         }
 
-
         /// <summary>
         /// save as a design 
         /// </summary>
@@ -99,93 +100,165 @@ namespace TrafficSimulator
 
         }
 
-
         public bool CheckIfIsValidToSetUpSimulator() //needs to be fix 
         {
-            this.allcreatedcrossings.Sort();
-            if (allcreatedcrossings.Count == 1)
-            {
-                return true;
-            }
-            else
-            {
-                for (int i = 0; i < allcreatedcrossings.Count -1; i++)
-                {
-                    if (!(
-                        ((allcreatedcrossings[i].StartPoint.Y - allcreatedcrossings[i].Size) == allcreatedcrossings[i + 1].StartPoint.Y)
-                        &&
-                        (allcreatedcrossings[i].StartPoint.X == allcreatedcrossings[i + 1].StartPoint.X)
-
-                        ||
-                        ((allcreatedcrossings[i].StartPoint.X + allcreatedcrossings[i].Size) == allcreatedcrossings[i + 1].StartPoint.X)
-                        &&
-                        (allcreatedcrossings[i].StartPoint.Y == allcreatedcrossings[i + 1].StartPoint.Y)
-
-                        ||
-                        ((allcreatedcrossings[i].StartPoint.X - allcreatedcrossings[i].Size) == allcreatedcrossings[i + 1].StartPoint.X)
-                        &&
-                        (allcreatedcrossings[i].StartPoint.Y == allcreatedcrossings[i + 1].StartPoint.Y)
-
-                        ||
-                        ((allcreatedcrossings[i].StartPoint.Y + allcreatedcrossings[i].Size) == allcreatedcrossings[i + 1].StartPoint.Y)
-                        &&
-                        (allcreatedcrossings[i].StartPoint.X == allcreatedcrossings[i + 1].StartPoint.X)
-                      ))
+            ////this.allcreatedcrossings.Sort();
+            //if (allcreatedcrossings.Count == 1)
+            //{
+            //    return true;
+            //}
+            //else
+            //{
+            //    foreach (var citem in allcreatedcrossings)
+            //    {
+            //        int count = 0;
+            //        foreach (var litem in citem.Lanes)
+            //        {
+            //            if (litem.NextCrossingLaneNeighbor != null)
+            //            {
+            //                count++;
+            //            }
+            //        }
+            //        if (count == 0)
+            //        {
+            //            return false;
+            //        }
+            //        else return true;
+            //    }
+            //    return true;//??
+            //}
+                    for (int i = 0; i < allcreatedcrossings.Count -1; i++)
                     {
-                        return false;
+                        if (!(
+                            ((allcreatedcrossings[i].StartPoint.Y - allcreatedcrossings[i].Size) == allcreatedcrossings[i + 1].StartPoint.Y)
+                            &&
+                            (allcreatedcrossings[i].StartPoint.X == allcreatedcrossings[i + 1].StartPoint.X)
+
+                            ||
+                            ((allcreatedcrossings[i].StartPoint.X + allcreatedcrossings[i].Size) == allcreatedcrossings[i + 1].StartPoint.X)
+                            &&
+                            (allcreatedcrossings[i].StartPoint.Y == allcreatedcrossings[i + 1].StartPoint.Y)
+
+                            ||
+                            ((allcreatedcrossings[i].StartPoint.X - allcreatedcrossings[i].Size) == allcreatedcrossings[i + 1].StartPoint.X)
+                            &&
+                            (allcreatedcrossings[i].StartPoint.Y == allcreatedcrossings[i + 1].StartPoint.Y)
+
+                            ||
+                            ((allcreatedcrossings[i].StartPoint.Y + allcreatedcrossings[i].Size) == allcreatedcrossings[i + 1].StartPoint.Y)
+                            &&
+                            (allcreatedcrossings[i].StartPoint.X == allcreatedcrossings[i + 1].StartPoint.X)
+                          ))
+                        {
+                            return false;
+                        }
                     }
-                }
-            }
-            return true;
+                
+                return true;
         }
 
-       //needs to be fixed 
+        //needs to be fixed 
         public List<Lane> SetUpLanes(List<Crossing> All/*, out List<LaneWithOneDirection> T1,out List<LaneWithTwoDirection> T2,out List<EmptyLane> Empty*/)
         {
-            All.Sort();
+            //All.Sort();
             List<Lane> L = new List<Lane>();
-            foreach (var item in All)
+            //int crossCounter = 0;
+
+            foreach (var item in allcreatedcrossings)
             {
                 if (item.CType == 1)
                 {
-                    L.Add(new LaneWithOneDirection(1, new Point(item.StartPoint.X + ((Int32) (0.4 * item.Size)), item.StartPoint.Y),
-                        new Point(item.StartPoint.X + ((Int32)(0.4 * item.Size)), item.StartPoint.Y + ((Int32)((1 / 3) * item.Size))), Direction.south, 12, 0, light.Position));
-                    L.Add(new LaneWithTwoDirection(2, new Point(item.StartPoint.X + ((Int32)(0.5 * (item.Size))), item.StartPoint.Y),
-                        new Point(item.StartPoint.X + ((Int32)(0.5 * item.Size)), item.StartPoint.Y + ((Int32)((1 / 3) * item.Size))),Direction.south, 6, 9, light.Position));
-                    L.Add(new EmptyLane(3, new Point(item.StartPoint.X + ((Int32)(0.6 * item.Size)), item.StartPoint.Y + ((Int32)(1 / 3) * item.Size)),
-                       new Point(item.StartPoint.X + ((Int32)(0.6 * item.Size)), item.StartPoint.Y), Direction.north, 0, 0, light.Position));
+                    item.Lanes.Add(new LaneWithOneDirection(1, new Point(item.StartPoint.X + ((Int32) (0.4 * item.Size)), item.StartPoint.Y), 
+                        new Point(item.StartPoint.X + ((Int32)(0.4*item.Size)),item.StartPoint.Y + ((Int32)(0.3 * item.Size))),Direction.south, 12, 0));
+                    item.Lanes.Add(new LaneWithTwoDirection(2, new Point(item.StartPoint.X + ((Int32)(0.5 * (item.Size))), item.StartPoint.Y),
+                        new Point(item.StartPoint.X + ((Int32)(0.5 * item.Size)), item.StartPoint.Y + ((Int32)(0.3 * item.Size))),Direction.south, 6, 9));
+                    item.Lanes.Add(new EmptyLane(3, new Point(item.StartPoint.X + ((Int32)(0.6 * item.Size)), item.StartPoint.Y + ((Int32)(0.3 * item.Size))),
+                       new Point(item.StartPoint.X + ((Int32)(0.6 * item.Size)), item.StartPoint.Y),Direction.north, 0, 0));
 
-                    L.Add(new LaneWithOneDirection(4, new Point(item.StartPoint.X + item.Size, item.StartPoint.Y + ((Int32)(0.4 * item.Size))),
-                        new Point(item.StartPoint.X + ((Int32)((2 / 3) * item.Size)), item.StartPoint.Y + ((Int32)(0.4 * item.Size))), Direction.west, 3, 0, light.Position));
-                    L.Add(new LaneWithTwoDirection(5, new Point(item.StartPoint.X + item.Size, item.StartPoint.Y + ((Int32)(0.5 * item.Size))),
-                        new Point(item.StartPoint.X + ((Int32)((2 / 3) * item.Size)), item.StartPoint.Y + ((Int32)(0.5 * item.Size))), Direction.west, 9, 12, light.Position));
-                    L.Add(new EmptyLane(6, new Point(item.StartPoint.X + ((Int32)((2 / 3) * (item.Size))), item.StartPoint.Y + ((Int32)(0.6 * item.Size))),
-                       new Point(item.StartPoint.X + item.Size, item.StartPoint.Y + ((Int32)(0.6 * item.Size))), Direction.east, 0, 0, light.Position));
+                    item.Lanes.Add(new LaneWithOneDirection(4, new Point(item.StartPoint.X + item.Size, item.StartPoint.Y + ((Int32)(0.4 * item.Size))),
+                        new Point(item.StartPoint.X + ((Int32)(0.7 * item.Size)), item.StartPoint.Y + ((Int32)(0.4 * item.Size))),Direction.west, 3, 0));
+                    item.Lanes.Add(new LaneWithTwoDirection(5, new Point(item.StartPoint.X + item.Size, item.StartPoint.Y + ((Int32)(0.5 * item.Size))),
+                        new Point(item.StartPoint.X + ((Int32)(0.7 * item.Size)), item.StartPoint.Y + ((Int32)(0.5 * item.Size))),Direction.west, 9, 12));
+                    item.Lanes.Add(new EmptyLane(6, new Point(item.StartPoint.X + ((Int32)(0.7 * item.Size)), item.StartPoint.Y + ((Int32)(0.6 * item.Size))),
+                       new Point(item.StartPoint.X +item.Size, item.StartPoint.Y + ((Int32)(0.6 * item.Size))),Direction.east, 0, 0));
 
-                    L.Add(new LaneWithOneDirection(7, new Point(item.StartPoint.X + ((Int32)(0.6 * (item.Size))), item.StartPoint.Y + item.Size),
-                       new Point(item.StartPoint.X + ((Int32)(0.6 * item.Size)), item.StartPoint.Y + ((Int32)((2 / 3) * item.Size))), Direction.north, 6, 0, light.Position));
-                    L.Add(new LaneWithTwoDirection(8, new Point(item.StartPoint.X + ((Int32)(0.5 * item.Size)), item.StartPoint.Y + item.Size),
-                        new Point(item.StartPoint.X + ((Int32)((1 / 2) * item.Size)), item.StartPoint.Y + ((Int32)((2 / 3) * item.Size))), Direction.north, 3, 12, light.Position));
-                    L.Add(new EmptyLane(9, new Point(item.StartPoint.X + ((Int32)(0.4 * (item.Size))), item.StartPoint.Y + ((Int32)((2 / 3) * item.Size))),
-                       new Point(item.StartPoint.X + ((Int32)(0.4 * (item.Size))), item.StartPoint.Y * item.Size), Direction.south, 0, 0, light.Position));
+                    item.Lanes.Add(new LaneWithOneDirection(7, new Point(item.StartPoint.X + ((Int32)(0.6 * (item.Size))), item.StartPoint.Y + item.Size),
+                       new Point(item.StartPoint.X + ((Int32)(0.6 * item.Size)), item.StartPoint.Y + ((Int32)(0.7 * item.Size))),Direction.north,  6, 0));
+                    item.Lanes.Add(new LaneWithTwoDirection(8, new Point(item.StartPoint.X + ((Int32)(0.5 * item.Size)), item.StartPoint.Y + item.Size),
+                        new Point(item.StartPoint.X + ((Int32)(0.5 * item.Size)), item.StartPoint.Y + ((Int32)(0.7 * item.Size))),Direction.north, 12, 3));
+                    item.Lanes.Add(new EmptyLane(9, new Point(item.StartPoint.X + ((Int32)(0.4 * item.Size)), item.StartPoint.Y + ((Int32)(0.7 * item.Size))),
+                       new Point(item.StartPoint.X + ((Int32)(0.4* item.Size)), item.StartPoint.Y + item.Size),Direction.south, 0, 0));
 
-                    L.Add(new LaneWithOneDirection(10, new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)(0.6 * item.Size))),
-                      new Point(item.StartPoint.X + ((Int32)((1 / 3) * item.Size)), item.StartPoint.Y + ((Int32)(0.6 * item.Size))), Direction.east, 9, 0, light.Position));
-                    L.Add(new LaneWithTwoDirection(11, new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)(0.5 * item.Size))),
-                        new Point(item.StartPoint.X + ((Int32)((1 / 3) * item.Size)), item.StartPoint.Y + ((Int32)(0.5 * item.Size))), Direction.east, 3, 6, light.Position));
-                    L.Add(new EmptyLane(12, new Point(item.StartPoint.X + ((Int32)((1 / 3) * (item.Size))), item.StartPoint.Y + ((Int32)(0.4 * item.Size))),
-                       new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)(0.4 * item.Size))), Direction.west, 0, 0, light.Position));
+                    item.Lanes.Add(new LaneWithOneDirection(10, new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)(0.6 * item.Size))),
+                      new Point(item.StartPoint.X + ((Int32)(0.3 * item.Size)), item.StartPoint.Y + ((Int32)(0.6 * item.Size))),Direction.east, 9, 0));
+                    item.Lanes.Add(new LaneWithTwoDirection(11, new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)(0.5 * item.Size))),
+                        new Point(item.StartPoint.X + ((Int32)(0.3 * item.Size)), item.StartPoint.Y + ((Int32)(0.5 * item.Size))),Direction.east, 3, 6));
+                    item.Lanes.Add(new EmptyLane(12, new Point(item.StartPoint.X + ((Int32)(0.3 * item.Size)), item.StartPoint.Y + ((Int32)(0.4 * item.Size))),
+                       new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)(0.4 * item.Size))),Direction.west, 0, 0));
                 }
-                else if(item.CType == 2)
+                else if (item.CType == 2)
                 {
-                    //needs to be set 
-                }
-            }
+                    item.Lanes.Add(new LaneWithTwoDirection(1, new Point(item.StartPoint.X + ((Int32)(0.45 * item.Size)), item.StartPoint.Y),
+                        new Point(item.StartPoint.X + ((Int32)(0.45 * item.Size)), item.StartPoint.Y + ((Int32)(0.3 * item.Size))), Direction.south, 7, 10));
+                    item.Lanes.Add(new EmptyLane(2, new Point(item.StartPoint.X + ((Int32)(0.55 * item.Size)), item.StartPoint.Y + ((Int32)(0.3 * item.Size))),
+                        new Point(item.StartPoint.X + ((Int32)(0.55 * item.Size)), item.StartPoint.Y), Direction.north, 0, 0));
 
-            L.Sort();
+                    item.Lanes.Add(new LaneWithTwoDirection(3, new Point(item.StartPoint.X + item.Size, item.StartPoint.Y + ((Int32)(0.4 * item.Size))),
+                        new Point(item.StartPoint.X + ((Int32)(0.7 * item.Size)), item.StartPoint.Y + ((Int32)(0.4 * item.Size))), Direction.west, 2, 10));
+                    item.Lanes.Add(new LaneWithOneDirection(4, new Point(item.StartPoint.X + item.Size, item.StartPoint.Y + ((Int32)(0.5 * item.Size))),
+                        new Point(item.StartPoint.X + ((Int32)(0.7 * item.Size)), item.StartPoint.Y + ((Int32)(0.5 * item.Size))), Direction.west, 7, 0));
+                    item.Lanes.Add(new EmptyLane(5, new Point(item.StartPoint.X + ((Int32)(0.7 * item.Size)), item.StartPoint.Y + ((Int32)(0.6 * item.Size))),
+                        new Point(item.StartPoint.X + item.Size, item.StartPoint.Y + ((Int32)(0.6 * item.Size))), Direction.east, 0, 0));
+
+                    item.Lanes.Add(new LaneWithTwoDirection(6, new Point(item.StartPoint.X + ((Int32)(0.55 * item.Size)), item.StartPoint.Y + item.Size),
+                        new Point(item.StartPoint.X + ((Int32)(0.55 * item.Size)), item.StartPoint.Y + ((Int32)(0.7 * item.Size))), Direction.north, 2, 5));
+                    item.Lanes.Add(new EmptyLane(7, new Point(item.StartPoint.X + ((Int32)(0.45 * item.Size)), item.StartPoint.Y + ((Int32)(0.3 * item.Size))),
+                        new Point(item.StartPoint.X + ((Int32)(0.45 * item.Size)), item.StartPoint.Y), Direction.south, 0, 0));
+
+                    item.Lanes.Add(new LaneWithTwoDirection(8, new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)(0.6 * item.Size))),
+                        new Point(item.StartPoint.X + ((Int32)(0.3 * item.Size)), item.StartPoint.Y + ((Int32)(0.6 * item.Size))), Direction.east, 5, 7));
+                    item.Lanes.Add(new LaneWithOneDirection(9, new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)(0.5 * item.Size))),
+                        new Point(item.StartPoint.X + ((Int32)(0.3 * item.Size)), item.StartPoint.Y + ((Int32)(0.5 * item.Size))), Direction.east, 2, 0));
+                    item.Lanes.Add(new EmptyLane(10, new Point(item.StartPoint.X + ((Int32)(0.3 * item.Size)), item.StartPoint.Y + ((Int32)(0.4 * item.Size))),
+                        new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)(0.4 * item.Size))), Direction.north, 0, 0));
+                }
+
+                //crossCounter++;
+            }
             return L;
         }
-        
+
+
+        public void SetNextLaneCrossingNeigbor()
+        {
+            for (int i = 0; i < allcreatedcrossings.Count; i++)
+            {
+                for (int j = 0; j < allcreatedcrossings[i].Lanes.Count; j++)
+                {
+                    for (int k = 0; k < Lanes.Count; k++)
+                    {
+                        if (allcreatedcrossings[i].Lanes[j].Entrance == Lanes[k].Entrance)
+                        {
+                            allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Lanes[k];
+                        }
+                    }
+                }
+            }
+        }
+
+        public void setEnterancesLanes()
+        {
+            foreach (var citem in allcreatedcrossings)
+            {
+                foreach (var litem in citem.Lanes)
+                {
+                    if (litem.NextCrossingLaneNeighbor == null && !(litem is EmptyLane))
+                    {
+                        EnterancesLanes.Add(litem);
+                    }
+                }
+            }
+        }
 
     }
 }
