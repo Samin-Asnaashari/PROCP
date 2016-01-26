@@ -528,6 +528,19 @@ namespace TrafficSimulator
                 Crossing C = Design.allcreatedcrossings[i];
                 C.countDown();
             }
+
+            int s = CarSize();
+            for (int i = 0; i < Design.EnterancesLanes.Count; i++)
+            {
+                Car c = new Car(id, Design.EnterancesLanes[i].Entrance, Design.EnterancesLanes[i].DirectionIsTo, s);
+                //Console.WriteLine(id);
+                id++;
+                if (Design.EnterancesLanes[i].Cars.Count < 5 && c.CheckMove(Design.EnterancesLanes[i], c.Position))  //
+                {
+                    Design.EnterancesLanes[i].Cars.Add(c);
+                    Design.EnterancesLanes[i].CountCars++;
+                }
+            }
         }
     }
 }
