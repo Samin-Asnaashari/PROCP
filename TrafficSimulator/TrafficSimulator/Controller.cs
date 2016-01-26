@@ -30,6 +30,7 @@ namespace TrafficSimulator
         public Crossing C;
         public int tempCType;
         private static int id;
+        private int counter = 0;
 
 
         private Controller()
@@ -523,24 +524,29 @@ namespace TrafficSimulator
 
         public void countDownLights(object sender, ElapsedEventArgs e)
         {
-            for (int i = 0; i < Design.allcreatedcrossings.Count; i++)
+            if (counter % 2 == 0)
             {
-                Crossing C = Design.allcreatedcrossings[i];
-                C.countDown();
-            }
-
-            int s = CarSize();
-            for (int i = 0; i < Design.EnterancesLanes.Count; i++)
-            {
-                Car c = new Car(id, Design.EnterancesLanes[i].Entrance, Design.EnterancesLanes[i].DirectionIsTo, s);
-                //Console.WriteLine(id);
-                id++;
-                if (Design.EnterancesLanes[i].Cars.Count < 5 && c.CheckMove(Design.EnterancesLanes[i], c.Position))  //
+                for (int i = 0; i < Design.allcreatedcrossings.Count; i++)
                 {
-                    Design.EnterancesLanes[i].Cars.Add(c);
-                    Design.EnterancesLanes[i].CountCars++;
+                    Crossing C = Design.allcreatedcrossings[i];
+                    C.countDown();
+                }
+
+                int s = CarSize();
+                for (int i = 0; i < Design.EnterancesLanes.Count; i++)
+                {
+                    Car c = new Car(id, Design.EnterancesLanes[i].Entrance, Design.EnterancesLanes[i].DirectionIsTo, s);
+                    //Console.WriteLine(id);
+                    id++;
+                    if (Design.EnterancesLanes[i].Cars.Count < 5 && c.CheckMove(Design.EnterancesLanes[i], c.Position))  //
+                    {
+                        Design.EnterancesLanes[i].Cars.Add(c);
+                        Design.EnterancesLanes[i].CountCars++;
+                    }
                 }
             }
+
+            counter++;
         }
     }
 }
