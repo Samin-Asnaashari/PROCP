@@ -11,15 +11,16 @@ namespace TrafficSimulator
     [Serializable]
     public class Light
     {
+        public int LightID { get; set; }
         public Point Position { get; set; }
         public LightColor Color { get; set; }
-        
+
         //time
         //group
 
         public Light()
         {
-            this.Color = LightColor.green; //default for now
+            this.Color = LightColor.red; //default for now
         }
     }
     

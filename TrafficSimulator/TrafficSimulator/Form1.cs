@@ -114,9 +114,7 @@ namespace TrafficSimulator
                     //draw cars
                     controller.DrawLights(e.Graphics);
                     controller.SetCars(e.Graphics);
-                    
                 }
-                
             }
         }
 
@@ -230,11 +228,16 @@ namespace TrafficSimulator
 
         private void setbutton_Click(object sender, EventArgs e)
         {
+            controller.ClearSimulator();
             if (controller.Design.allcreatedcrossings.Count != 0)
             {
                 controller.Design.SetUpLanes(controller.Design.allcreatedcrossings);
                 controller.Design.SetNextLaneCrossingNeigborC1();
                 controller.Design.SetNextLaneCrossingNeigborC2();
+                foreach (Crossing item in controller.Design.allcreatedcrossings)
+                {
+                    controller.SetTheLights(item);
+                }
                 //controller.Design.setEnterancesLanes();
 
 
@@ -280,14 +283,24 @@ namespace TrafficSimulator
                 //controller.Design.SetNextLaneCrossingNeigborC1();
                 //controller.Design.SetNextLaneCrossingNeigborC2();
                 //controller.Design.setEnterancesLanes();
-           
 
+                this.controller.lightsTimer.Enabled = true;
                 timer1.Enabled = true;
             }
             else
             {
                 StatuslistBox.Items.Add("Set The Crossing First!!");
             }
+        }
+
+        private void pausebutton_Click(object sender, EventArgs e)
+        {
+            playbutton.Enabled = true;
+            start = false;
+            timer1.Enabled = false;
+            gridbutton.Enabled = true;
+            this.controller.lightsTimer.Enabled = false;
+            workpanel.Invalidate();
         }
 
         private void stopbutton_Click(object sender, EventArgs e)
@@ -303,6 +316,8 @@ namespace TrafficSimulator
             start = false;
             timer1.Enabled = false;
             gridbutton.Enabled = true;
+            this.controller.lightsTimer.Enabled = false;
+            controller.ClearSimulator();
             workpanel.Invalidate();
         }
 
@@ -499,7 +514,5 @@ namespace TrafficSimulator
             }
 
         }
-
-
     }
 }

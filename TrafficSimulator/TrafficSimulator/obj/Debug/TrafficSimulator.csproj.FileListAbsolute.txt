@@ -122,3 +122,21 @@ C:\Users\User\Desktop\UNIVERSITY\PROCP\Interface\New folder\PROCP\TrafficSimulat
 C:\Users\User\Desktop\UNIVERSITY\PROCP\Interface\New folder\PROCP\TrafficSimulator\TrafficSimulator\bin\Debug\Interop.WMPLib.dll
 C:\Users\User\Desktop\UNIVERSITY\PROCP\Interface\New folder\PROCP\TrafficSimulator\TrafficSimulator\bin\Debug\AxInterop.WMPLib.dll
 C:\Users\George\Documents\GitHub\PROCP\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.DebugWindow.resources
+D:\Jaakko\Fontys\Assignments\Backups\PROCP\TrafficSimulator\TrafficSimulator\bin\Debug\TrafficSimulator.exe.config
+D:\Jaakko\Fontys\Assignments\Backups\PROCP\TrafficSimulator\TrafficSimulator\obj\Debug\Interop.WMPLib.dll
+D:\Jaakko\Fontys\Assignments\Backups\PROCP\TrafficSimulator\TrafficSimulator\obj\Debug\AxInterop.WMPLib.dll
+D:\Jaakko\Fontys\Assignments\Backups\PROCP\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.csproj.ResolveComReference.cache
+D:\Jaakko\Fontys\Assignments\Backups\PROCP\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.exe
+D:\Jaakko\Fontys\Assignments\Backups\PROCP\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.pdb
+D:\Jaakko\Fontys\Assignments\Backups\PROCP\TrafficSimulator\TrafficSimulator\bin\Debug\TrafficSimulator.exe
+D:\Jaakko\Fontys\Assignments\Backups\PROCP\TrafficSimulator\TrafficSimulator\bin\Debug\TrafficSimulator.pdb
+D:\Jaakko\Fontys\Assignments\Backups\PROCP\TrafficSimulator\TrafficSimulator\bin\Debug\Interop.WMPLib.dll
+D:\Jaakko\Fontys\Assignments\Backups\PROCP\TrafficSimulator\TrafficSimulator\bin\Debug\AxInterop.WMPLib.dll
+D:\Jaakko\Fontys\Assignments\Backups\PROCP\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.csprojResolveAssemblyReference.cache
+D:\Jaakko\Fontys\Assignments\Backups\PROCP\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.DebugWindow.resources
+D:\Jaakko\Fontys\Assignments\Backups\PROCP\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.Form1.resources
+D:\Jaakko\Fontys\Assignments\Backups\PROCP\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.Help.resources
+D:\Jaakko\Fontys\Assignments\Backups\PROCP\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.Properties.Resources.resources
+D:\Jaakko\Fontys\Assignments\Backups\PROCP\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.SetCrossing.resources
+D:\Jaakko\Fontys\Assignments\Backups\PROCP\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.SetupSimulator.resources
+D:\Jaakko\Fontys\Assignments\Backups\PROCP\TrafficSimulator\TrafficSimulator\obj\Debug\TrafficSimulator.csproj.GenerateResource.Cache

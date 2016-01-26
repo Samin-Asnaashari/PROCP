@@ -19,6 +19,7 @@ namespace TrafficSimulator
         public string Name { get; set; }
         public DateTime Time { get; set; }
         public List<Crossing> allcreatedcrossings;
+        private static Random randomLaneChooser = new Random();
 
         public List<Lane> EnterancesLanes;
         //public List<Lane> Lanes;
@@ -198,7 +199,7 @@ namespace TrafficSimulator
                 }
                 else if (item.CType == 2)
                 {
-                    item.Lanes.Add(new LaneWithTwoDirection(1, new Point(item.StartPoint.X + ((Int32)(0.45 * item.Size)), item.StartPoint.Y),
+                    item.Lanes.Add(new LaneWithOneDirection(1, new Point(item.StartPoint.X + ((Int32)(0.45 * item.Size)), item.StartPoint.Y),
                         new Point(item.StartPoint.X + ((Int32)(0.45 * item.Size)), item.StartPoint.Y + ((Int32)(0.3 * item.Size))), Direction.south, 7, 10));
                     item.Lanes.Add(new EmptyLane(2, new Point(item.StartPoint.X + ((Int32)(0.55 * item.Size)), item.StartPoint.Y + ((Int32)(0.3 * item.Size))),
                         new Point(item.StartPoint.X + ((Int32)(0.55 * item.Size)), item.StartPoint.Y), Direction.north, 0, 0));
@@ -210,10 +211,10 @@ namespace TrafficSimulator
                     item.Lanes.Add(new EmptyLane(5, new Point(item.StartPoint.X + ((Int32)(0.7 * item.Size)), item.StartPoint.Y + ((Int32)(0.6 * item.Size))),
                         new Point(item.StartPoint.X + item.Size, item.StartPoint.Y + ((Int32)(0.6 * item.Size))), Direction.east, 0, 0));
 
-                    item.Lanes.Add(new LaneWithTwoDirection(6, new Point(item.StartPoint.X + ((Int32)(0.55 * item.Size)), item.StartPoint.Y + item.Size),
+                    item.Lanes.Add(new LaneWithOneDirection(6, new Point(item.StartPoint.X + ((Int32)(0.55 * item.Size)), item.StartPoint.Y + item.Size),
                         new Point(item.StartPoint.X + ((Int32)(0.55 * item.Size)), item.StartPoint.Y + ((Int32)(0.7 * item.Size))), Direction.north, 2, 5));
-                    item.Lanes.Add(new EmptyLane(7, new Point(item.StartPoint.X + ((Int32)(0.45 * item.Size)), item.StartPoint.Y + ((Int32)(0.3 * item.Size))),
-                        new Point(item.StartPoint.X + ((Int32)(0.45 * item.Size)), item.StartPoint.Y), Direction.south, 0, 0));
+                    item.Lanes.Add(new EmptyLane(7, new Point(item.StartPoint.X + ((Int32)(0.45 * item.Size)), item.StartPoint.Y + ((Int32)(0.7 * item.Size))),
+                        new Point(item.StartPoint.X + ((Int32)(0.45 * item.Size)), item.StartPoint.Y + item.Size), Direction.south, 0, 0));
 
                     item.Lanes.Add(new LaneWithTwoDirection(8, new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)(0.6 * item.Size))),
                         new Point(item.StartPoint.X + ((Int32)(0.3 * item.Size)), item.StartPoint.Y + ((Int32)(0.6 * item.Size))), Direction.east, 5, 7));
@@ -455,7 +456,9 @@ namespace TrafficSimulator
                                 }
                                 else if (a == 2)
                                 {
-                                    Lane Next = C.Lanes.Find(x => x.LaneID == 7);
+                                    int randomInt = randomLaneChooser.Next(7, 9);
+
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == randomInt);
                                     allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
                                 }
                             }
@@ -531,7 +534,9 @@ namespace TrafficSimulator
                                 }
                                 else if (a == 7)
                                 {
-                                    Lane Next = C.Lanes.Find(x => x.LaneID == 1);
+                                    int randomInt = randomLaneChooser.Next(1, 3);
+
+                                    Lane Next = C.Lanes.Find(x => x.LaneID == randomInt);
                                     allcreatedcrossings[i].Lanes[j].NextCrossingLaneNeighbor = Next;
                                 }
                             }

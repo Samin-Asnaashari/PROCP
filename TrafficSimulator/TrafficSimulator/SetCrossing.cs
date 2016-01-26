@@ -63,6 +63,7 @@ namespace TrafficSimulator
                 controller.C.Groups.Add(Convert.ToInt32(textBox3.Text));
                 controller.C.Groups.Add(Convert.ToInt32(textBox4.Text));
                 controller.C.Groups.Add(Convert.ToInt32(textBox5.Text));
+                controller.C.LightCounter = 0;
             }
             else
             {
@@ -76,6 +77,7 @@ namespace TrafficSimulator
                 controller.C.Groups.Add(Convert.ToInt32(textBox8.Text));
                 controller.C.Groups.Add(Convert.ToInt32(textBox9.Text));
                 controller.C.Groups.Add(Convert.ToInt32(textBox10.Text));
+                controller.C.LightCounter = 0;
             }
         }
     }

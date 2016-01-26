@@ -59,7 +59,7 @@ namespace TrafficSimulator
             Connections.Add(c1);
             Connections.Add(c2);
 
-            Light.Color = LightColor.green; //change this later
+            Light.Color = LightColor.red; //change this later
         }
     }
     [Serializable]
