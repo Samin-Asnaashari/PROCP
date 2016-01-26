@@ -44,6 +44,7 @@ namespace TrafficSimulator
 
         private void gridbutton_Click(object sender, EventArgs e)
         {
+            OverviewlistBox.Items.Clear();
             object obj = gridcomboBox.SelectedItem;
             string name = tbname.Text;
             DateTime time = dateTimePicker1.Value;
@@ -92,6 +93,7 @@ namespace TrafficSimulator
             }
         }
 
+        int Count = 0;
         private void workpanel_Paint(object sender, PaintEventArgs e)
         {
             //Graphics gr = e.Graphics;
@@ -114,6 +116,21 @@ namespace TrafficSimulator
                     //draw cars
                     controller.DrawLights(e.Graphics);
                     controller.SetCars(e.Graphics);
+                    if (Count == 5)
+                    {
+                        OverviewlistBox.Items.Clear();
+                        foreach (var citem in controller.Design.allcreatedcrossings)
+                        {
+                            foreach (var litem in citem.Lanes)
+                            {
+                                OverviewlistBox.Items.Add("Lane :" + litem.LaneID);
+                                OverviewlistBox.Items.Add("---Entrance: " + litem.Entrance.ToString() + " Intersection" + litem.Intersection.ToString());
+                                OverviewlistBox.Items.Add("---NR of Cars: " + litem.Cars.Count);
+                                OverviewlistBox.Items.Add("---Light: " + litem.Light.Color.ToString());
+                            }
+                        }
+                        Count = 0;
+                    }
                 }
             }
         }
@@ -396,6 +413,7 @@ namespace TrafficSimulator
         {
             //timer1.Stop();
             start = true;
+            Count++;
             workpanel.Invalidate();
             //timer1.Start();
         }
@@ -441,6 +459,7 @@ namespace TrafficSimulator
                 Controller loadController = (Controller)(bf.Deserialize(fs));
                 this.controller = loadController;
                 this.controller.Design.allcreatedcrossings = loadController.Design.allcreatedcrossings;
+                //OverviewlistBox.Items.Clear();
                 return true;
             }
             else
@@ -458,6 +477,7 @@ namespace TrafficSimulator
         {
             if (showgrid == false)
             {
+                //OverviewlistBox.Items.Clear();
                 this.tbname.Clear();
                 this.gridcomboBox.Invalidate();
                 PBtype1.Enabled = false;
@@ -499,6 +519,8 @@ namespace TrafficSimulator
                     {
                         this.controller.Design.allcreatedcrossings.Clear();
                     }
+
+                OverviewlistBox.Items.Clear();
                 showgrid = false;
                 this.tbname.Clear();
                 this.gridcomboBox.Invalidate();

@@ -20,7 +20,7 @@ namespace TrafficSimulator
 
         private static Controller instance;
         //private DebugWindow debug;
-        private Random random;
+        private Random random;       
         public System.Timers.Timer lightsTimer;
         public bool Started;
         public WorkspaceDesign Design;
@@ -29,6 +29,8 @@ namespace TrafficSimulator
         public int lines;
         public Crossing C;
         public int tempCType;
+        private static int id;
+
 
         private Controller()
         {
@@ -40,6 +42,8 @@ namespace TrafficSimulator
            //debug.Show();
             lines = 0;
             tempCType = 0;
+
+            id = 1;
         }
 
         public static Controller getController()
@@ -188,33 +192,34 @@ namespace TrafficSimulator
         //if red wait 
         public void SetCars(Graphics gr)
         {
-            AddCar();
+            //enter new cars from entrances 
+                AddNewCar();
 
-            List<Crossing> crossings = Design.allcreatedcrossings;
+                List<Crossing> crossings = Design.allcreatedcrossings;
 
             //extra
-            if (!Started)
-            {
-                Started = true;
+            //if (!Started)
+            //{
+            //    Started = true;
 
-                for (int i = 0; i < crossings.Count; i++)
-                {
-                    List<Lane> lanes = crossings[i].Lanes;
-                    for (int j = 0; j < lanes.Count; j++)
-                    {
-                        Lane lane = lanes[j];
-                        // debug.addLog("Lane " + lane.LaneID + " Entrance point: " + lane.Entrance.ToString() + "\n" + "Lane " + lane.LaneID + " Intersection point: " + lane.Intersection.ToString() + "\n");
-                        if (lane.NextCrossingLaneNeighbor != null)
-                        {
-                            //debug.addLog("Lane " + lane.LaneID + " Neighbor lane: " + lane.NextCrossingLaneNeighbor.LaneID);
-                        }
-                        else
-                        {
-                            //debug.addLog("Lane " + lane.LaneID + " Neighbor lane: null");
-                        }
-                    }
-                }
-            }
+            //    for (int i = 0; i < crossings.Count; i++)
+            //    {
+            //        List<Lane> lanes = crossings[i].Lanes;
+            //        for (int j = 0; j < lanes.Count; j++)
+            //        {
+            //            Lane lane = lanes[j];
+            //             debug.addLog("Lane " + lane.LaneID + " Entrance point: " + lane.Entrance.ToString() + "\n" + "Lane " + lane.LaneID + " Intersection point: " + lane.Intersection.ToString() + "\n");
+            //             (lane.NextCrossingLaneNeighbor != null)
+            //            {
+            //            debug.addLog("Lane " + lane.LaneID + " Neighbor lane: " + lane.NextCrossingLaneNeighbor.LaneID);
+            //            }
+            //            else
+            //            {
+            //            debug.addLog("Lane " + lane.LaneID + " Neighbor lane: null");
+            //            }
+            //        }
+            //    }
+            //}
 
             for (int i = 0; i < crossings.Count; i++)
             {
@@ -224,7 +229,7 @@ namespace TrafficSimulator
                     {
                         if (crossings[i].Lanes[j].Cars[k].Position != crossings[i].Lanes[j].Intersection)
                         {
-                            crossings[i].Lanes[j].Cars[k].MoveTheCar(crossings[i].Lanes[j].DirectionIsTo);
+                            crossings[i].Lanes[j].Cars[k].MoveTheCar(crossings[i].Lanes[j].DirectionIsTo, crossings[i].Lanes[j]);
                         }
                         else
                         {
@@ -242,14 +247,17 @@ namespace TrafficSimulator
                                         if (crossings[i].Lanes[l].LaneID == crossings[i].Lanes[j].Connections[0])
                                         {
                                             Car car = crossings[i].Lanes[j].Cars[k];
-                                            car.Position = crossings[i].Lanes[l].Entrance;
-                                            car.Direction = crossings[i].Lanes[l].DirectionIsTo;
-                                            crossings[i].Lanes[l].Cars.Add(car);
-                                            crossings[i].Lanes[l].CountCars++;
+                                            if (crossings[i].Lanes[l].Cars.Count<5)
+                                            {
+                                                car.Position = crossings[i].Lanes[l].Entrance;
+                                                car.Direction = crossings[i].Lanes[l].DirectionIsTo;
+                                                crossings[i].Lanes[l].Cars.Add(car);
+                                                crossings[i].Lanes[l].CountCars++;
+                                            }
                                         }
                                     }
 
-                                    crossings[i].Lanes[j].Cars.Remove(crossings[i].Lanes[j].Cars[k]);
+                                    crossings[i].Lanes[j].Cars.Remove(crossings[i].Lanes[j].Cars[k]); 
                                 }
                             }
                             else if (crossings[i].Lanes[j] is LaneWithTwoDirection)
@@ -266,13 +274,17 @@ namespace TrafficSimulator
                                            // debug.addLog("Connection Lane ID: " + crossings[i].Lanes[l].LaneID);
                                            //debug.addLog("Car of LaneID " + crossings[i].Lanes[j].LaneID + " went to LaneID " + crossings[i].Lanes[j].Connections[randomInt]);
                                             Car car = crossings[i].Lanes[j].Cars[k];
-                                            car.Position = crossings[i].Lanes[l].Entrance;
-                                            car.Direction = crossings[i].Lanes[l].DirectionIsTo;
-                                            crossings[i].Lanes[l].Cars.Add(car);
-                                            crossings[i].Lanes[l].CountCars++;
+                                            if (crossings[i].Lanes[l].Cars.Count<5)
+                                            {
+                                                car.Position = crossings[i].Lanes[l].Entrance;
+                                                car.Direction = crossings[i].Lanes[l].DirectionIsTo;
+                                                crossings[i].Lanes[l].Cars.Add(car);
+                                                crossings[i].Lanes[l].CountCars++;
+                                            }
                                         }
                                     }
                                     //Design.Lanes[j + 1].Cars.Add(Design.Lanes[i].Cars[j]); //if is possible add it
+
                                     crossings[i].Lanes[j].Cars.Remove(crossings[i].Lanes[j].Cars[k]);
 
                                     //Design.Lanes[Design.Lanes[i].Connections[0]].Cars.Add(Design.Lanes[i].Cars[j]);
@@ -282,11 +294,16 @@ namespace TrafficSimulator
                             {
                                 if (crossings[i].Lanes[j].NextCrossingLaneNeighbor != null)
                                 {
-                                    crossings[i].Lanes[j].NextCrossingLaneNeighbor.Cars.Add(crossings[i].Lanes[j].Cars[k]);
-                                    if (crossings[i].CType == 2)
+
+                                    if (crossings[i].Lanes[j].NextCrossingLaneNeighbor.Cars.Count < 5)
                                     {
-                                        //debug.addLog("CType 2 intersection");
+                                        crossings[i].Lanes[j].NextCrossingLaneNeighbor.Cars.Add(crossings[i].Lanes[j].Cars[k]);
                                     }
+
+                                    //if (crossings[i].CType == 2)
+                                    //{
+                                    //    debug.addLog("CType 2 intersection");
+                                    //}
                                 }
                                 crossings[i].Lanes[j].Cars.Remove(crossings[i].Lanes[j].Cars[k]);
                             }
@@ -306,18 +323,7 @@ namespace TrafficSimulator
                 Design.allcreatedcrossings[i].Lanes.Clear();
             }
         }
-
-        public bool IsCarInThatPosition(Lane L, Car nextcar)
-        {
-            if (L.Cars.Find(x => x.Position == nextcar.Position) != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        
 
         public void DrawCars(Graphics gr)
         {
@@ -327,22 +333,24 @@ namespace TrafficSimulator
                 {
                     foreach (var item in litem.Cars)
                     {
+                        if(item.CheckMove(litem,item.Position))  //
                         item.DrawCar(gr);
                     }
                 }
             }
         }
 
-        public void AddCar()
+        public void AddNewCar()
         {
             int s = CarSize();
             for (int i = 0; i < Design.EnterancesLanes.Count; i++)
             {
-                if (Design.EnterancesLanes[i].Cars.Count < 1)
+                Car c = new Car(id,Design.EnterancesLanes[i].Entrance, Design.EnterancesLanes[i].DirectionIsTo, s);
+                //Console.WriteLine(id);
+                id++;
+                if (Design.EnterancesLanes[i].Cars.Count < 1 && c.CheckMove(Design.EnterancesLanes[i],c.Position))  //
                 {
-                    Car c = new Car(Design.EnterancesLanes[i].Entrance, Design.EnterancesLanes[i].DirectionIsTo, s);
                     Design.EnterancesLanes[i].Cars.Add(c);
-
                     Design.EnterancesLanes[i].CountCars++;
                 }
             }
