@@ -169,59 +169,59 @@ namespace TrafficSimulator
             {
                 if (item.CType == 1)
                 {
-                    item.Lanes.Add(new LaneWithOneDirection(1, new Point(item.StartPoint.X + ((Int32) (0.4 * item.Size)), item.StartPoint.Y), 
-                        new Point(item.StartPoint.X + ((Int32)(0.4*item.Size)),item.StartPoint.Y + ((Int32)(0.3 * item.Size))),Direction.south, 12, 0));
-                    item.Lanes.Add(new LaneWithTwoDirection(2, new Point(item.StartPoint.X + ((Int32)(0.5 * (item.Size))), item.StartPoint.Y),
-                        new Point(item.StartPoint.X + ((Int32)(0.5 * item.Size)), item.StartPoint.Y + ((Int32)(0.3 * item.Size))),Direction.south, 6, 9));
-                    item.Lanes.Add(new EmptyLane(3, new Point(item.StartPoint.X + ((Int32)(0.6 * item.Size)), item.StartPoint.Y + ((Int32)(0.3 * item.Size))),
-                       new Point(item.StartPoint.X + ((Int32)(0.6 * item.Size)), item.StartPoint.Y),Direction.north, 0, 0));
+                    item.Lanes.Add(new LaneWithOneDirection(1, new Point(item.StartPoint.X + ((Int32) (0.36 * item.Size)), item.StartPoint.Y), 
+                        new Point(item.StartPoint.X + ((Int32)(0.36*item.Size)),item.StartPoint.Y + ((Int32)(0.3 * item.Size))),Direction.south, 12, 0));
+                    item.Lanes.Add(new LaneWithTwoDirection(2, new Point(item.StartPoint.X + ((Int32)(0.47 * (item.Size))), item.StartPoint.Y),
+                        new Point(item.StartPoint.X + ((Int32)(0.47 * item.Size)), item.StartPoint.Y + ((Int32)(0.3 * item.Size))),Direction.south, 6, 9));
+                    item.Lanes.Add(new EmptyLane(3, new Point(item.StartPoint.X + ((Int32)(0.59 * item.Size)), item.StartPoint.Y + ((Int32)(0.3 * item.Size))),
+                       new Point(item.StartPoint.X + ((Int32)(0.59 * item.Size)), item.StartPoint.Y),Direction.north, 0, 0));
 
-                    item.Lanes.Add(new LaneWithOneDirection(4, new Point(item.StartPoint.X + item.Size, item.StartPoint.Y + ((Int32)(0.4 * item.Size))),
-                        new Point(item.StartPoint.X + ((Int32)(0.7 * item.Size)), item.StartPoint.Y + ((Int32)(0.4 * item.Size))),Direction.west, 3, 0));
-                    item.Lanes.Add(new LaneWithTwoDirection(5, new Point(item.StartPoint.X + item.Size, item.StartPoint.Y + ((Int32)(0.5 * item.Size))),
-                        new Point(item.StartPoint.X + ((Int32)(0.7 * item.Size)), item.StartPoint.Y + ((Int32)(0.5 * item.Size))),Direction.west, 9, 12));
-                    item.Lanes.Add(new EmptyLane(6, new Point(item.StartPoint.X + ((Int32)(0.7 * item.Size)), item.StartPoint.Y + ((Int32)(0.6 * item.Size))),
-                       new Point(item.StartPoint.X +item.Size, item.StartPoint.Y + ((Int32)(0.6 * item.Size))),Direction.east, 0, 0));
+                    item.Lanes.Add(new LaneWithOneDirection(4, new Point(item.StartPoint.X + item.Size, item.StartPoint.Y + ((Int32)(0.37 * item.Size))),
+                        new Point(item.StartPoint.X + ((Int32)(0.7 * item.Size)), item.StartPoint.Y + ((Int32)(0.37 * item.Size))),Direction.west, 3, 0));
+                    item.Lanes.Add(new LaneWithTwoDirection(5, new Point(item.StartPoint.X + item.Size, item.StartPoint.Y + ((Int32)(0.48 * item.Size))),
+                        new Point(item.StartPoint.X + ((Int32)(0.7 * item.Size)), item.StartPoint.Y + ((Int32)(0.48 * item.Size))),Direction.west, 9, 12));
+                    item.Lanes.Add(new EmptyLane(6, new Point(item.StartPoint.X + ((Int32)(0.7 * item.Size)), item.StartPoint.Y + ((Int32)(0.57 * item.Size))),
+                       new Point(item.StartPoint.X +item.Size, item.StartPoint.Y + ((Int32)(0.57 * item.Size))),Direction.east, 0, 0));
 
-                    item.Lanes.Add(new LaneWithOneDirection(7, new Point(item.StartPoint.X + ((Int32)(0.6 * (item.Size))), item.StartPoint.Y + item.Size),
-                       new Point(item.StartPoint.X + ((Int32)(0.6 * item.Size)), item.StartPoint.Y + ((Int32)(0.7 * item.Size))),Direction.north,  6, 0));
-                    item.Lanes.Add(new LaneWithTwoDirection(8, new Point(item.StartPoint.X + ((Int32)(0.5 * item.Size)), item.StartPoint.Y + item.Size),
-                        new Point(item.StartPoint.X + ((Int32)(0.5 * item.Size)), item.StartPoint.Y + ((Int32)(0.7 * item.Size))),Direction.north, 12, 3));
-                    item.Lanes.Add(new EmptyLane(9, new Point(item.StartPoint.X + ((Int32)(0.4 * item.Size)), item.StartPoint.Y + ((Int32)(0.7 * item.Size))),
-                       new Point(item.StartPoint.X + ((Int32)(0.4* item.Size)), item.StartPoint.Y + item.Size),Direction.south, 0, 0));
+                    item.Lanes.Add(new LaneWithOneDirection(7, new Point(item.StartPoint.X + ((Int32)(0.59 * (item.Size))), item.StartPoint.Y + item.Size),
+                       new Point(item.StartPoint.X + ((Int32)(0.59 * item.Size)), item.StartPoint.Y + ((Int32)(0.7 * item.Size))),Direction.north,  6, 0));
+                    item.Lanes.Add(new LaneWithTwoDirection(8, new Point(item.StartPoint.X + ((Int32)(0.47 * item.Size)), item.StartPoint.Y + item.Size),
+                        new Point(item.StartPoint.X + ((Int32)(0.47 * item.Size)), item.StartPoint.Y + ((Int32)(0.7 * item.Size))),Direction.north, 12, 3));
+                    item.Lanes.Add(new EmptyLane(9, new Point(item.StartPoint.X + ((Int32)(0.36 * item.Size)), item.StartPoint.Y + ((Int32)(0.7 * item.Size))),
+                       new Point(item.StartPoint.X + ((Int32)(0.36* item.Size)), item.StartPoint.Y + item.Size),Direction.south, 0, 0));
 
-                    item.Lanes.Add(new LaneWithOneDirection(10, new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)(0.6 * item.Size))),
-                      new Point(item.StartPoint.X + ((Int32)(0.3 * item.Size)), item.StartPoint.Y + ((Int32)(0.6 * item.Size))),Direction.east, 9, 0));
-                    item.Lanes.Add(new LaneWithTwoDirection(11, new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)(0.5 * item.Size))),
-                        new Point(item.StartPoint.X + ((Int32)(0.3 * item.Size)), item.StartPoint.Y + ((Int32)(0.5 * item.Size))),Direction.east, 3, 6));
-                    item.Lanes.Add(new EmptyLane(12, new Point(item.StartPoint.X + ((Int32)(0.3 * item.Size)), item.StartPoint.Y + ((Int32)(0.4 * item.Size))),
-                       new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)(0.4 * item.Size))),Direction.west, 0, 0));
+                    item.Lanes.Add(new LaneWithOneDirection(10, new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)(0.57 * item.Size))),
+                      new Point(item.StartPoint.X + ((Int32)(0.3 * item.Size)), item.StartPoint.Y + ((Int32)(0.57 * item.Size))),Direction.east, 9, 0));
+                    item.Lanes.Add(new LaneWithTwoDirection(11, new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)(0.48 * item.Size))),
+                        new Point(item.StartPoint.X + ((Int32)(0.3 * item.Size)), item.StartPoint.Y + ((Int32)(0.48 * item.Size))),Direction.east, 3, 6));
+                    item.Lanes.Add(new EmptyLane(12, new Point(item.StartPoint.X + ((Int32)(0.3 * item.Size)), item.StartPoint.Y + ((Int32)(0.37 * item.Size))),
+                       new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)(0.37 * item.Size))),Direction.west, 0, 0));
                 }
                 else if (item.CType == 2)
                 {
-                    item.Lanes.Add(new LaneWithOneDirection(1, new Point(item.StartPoint.X + ((Int32)(0.45 * item.Size)), item.StartPoint.Y),
-                        new Point(item.StartPoint.X + ((Int32)(0.45 * item.Size)), item.StartPoint.Y + ((Int32)(0.3 * item.Size))), Direction.south, 7, 10));
-                    item.Lanes.Add(new EmptyLane(2, new Point(item.StartPoint.X + ((Int32)(0.55 * item.Size)), item.StartPoint.Y + ((Int32)(0.3 * item.Size))),
-                        new Point(item.StartPoint.X + ((Int32)(0.55 * item.Size)), item.StartPoint.Y), Direction.north, 0, 0));
+                    item.Lanes.Add(new LaneWithOneDirection(1, new Point(item.StartPoint.X + ((Int32)(0.40 * item.Size)), item.StartPoint.Y),
+                        new Point(item.StartPoint.X + ((Int32)(0.40 * item.Size)), item.StartPoint.Y + ((Int32)(0.3 * item.Size))), Direction.south, 7, 10));
+                    item.Lanes.Add(new EmptyLane(2, new Point(item.StartPoint.X + ((Int32)(0.57 * item.Size)), item.StartPoint.Y + ((Int32)(0.3 * item.Size))),
+                        new Point(item.StartPoint.X + ((Int32)(0.57 * item.Size)), item.StartPoint.Y), Direction.north, 0, 0));
 
-                    item.Lanes.Add(new LaneWithTwoDirection(3, new Point(item.StartPoint.X + item.Size, item.StartPoint.Y + ((Int32)(0.4 * item.Size))),
-                        new Point(item.StartPoint.X + ((Int32)(0.7 * item.Size)), item.StartPoint.Y + ((Int32)(0.4 * item.Size))), Direction.west, 2, 10));
-                    item.Lanes.Add(new LaneWithOneDirection(4, new Point(item.StartPoint.X + item.Size, item.StartPoint.Y + ((Int32)(0.5 * item.Size))),
-                        new Point(item.StartPoint.X + ((Int32)(0.7 * item.Size)), item.StartPoint.Y + ((Int32)(0.5 * item.Size))), Direction.west, 7, 0));
-                    item.Lanes.Add(new EmptyLane(5, new Point(item.StartPoint.X + ((Int32)(0.7 * item.Size)), item.StartPoint.Y + ((Int32)(0.6 * item.Size))),
-                        new Point(item.StartPoint.X + item.Size, item.StartPoint.Y + ((Int32)(0.6 * item.Size))), Direction.east, 0, 0));
+                    item.Lanes.Add(new LaneWithTwoDirection(3, new Point(item.StartPoint.X + item.Size, item.StartPoint.Y + ((Int32)(0.37 * item.Size))),
+                        new Point(item.StartPoint.X + ((Int32)(0.7 * item.Size)), item.StartPoint.Y + ((Int32)(0.37 * item.Size))), Direction.west, 2, 10));
+                    item.Lanes.Add(new LaneWithOneDirection(4, new Point(item.StartPoint.X + item.Size, item.StartPoint.Y + ((Int32)(0.48 * item.Size))),
+                        new Point(item.StartPoint.X + ((Int32)(0.7 * item.Size)), item.StartPoint.Y + ((Int32)(0.48 * item.Size))), Direction.west, 7, 0));
+                    item.Lanes.Add(new EmptyLane(5, new Point(item.StartPoint.X + ((Int32)(0.7 * item.Size)), item.StartPoint.Y + ((Int32)(0.57 * item.Size))),
+                        new Point(item.StartPoint.X + item.Size, item.StartPoint.Y + ((Int32)(0.57 * item.Size))), Direction.east, 0, 0));
 
-                    item.Lanes.Add(new LaneWithOneDirection(6, new Point(item.StartPoint.X + ((Int32)(0.55 * item.Size)), item.StartPoint.Y + item.Size),
-                        new Point(item.StartPoint.X + ((Int32)(0.55 * item.Size)), item.StartPoint.Y + ((Int32)(0.7 * item.Size))), Direction.north, 2, 5));
-                    item.Lanes.Add(new EmptyLane(7, new Point(item.StartPoint.X + ((Int32)(0.45 * item.Size)), item.StartPoint.Y + ((Int32)(0.7 * item.Size))),
-                        new Point(item.StartPoint.X + ((Int32)(0.45 * item.Size)), item.StartPoint.Y + item.Size), Direction.south, 0, 0));
+                    item.Lanes.Add(new LaneWithOneDirection(6, new Point(item.StartPoint.X + ((Int32)(0.57 * item.Size)), item.StartPoint.Y + item.Size),
+                        new Point(item.StartPoint.X + ((Int32)(0.57 * item.Size)), item.StartPoint.Y + ((Int32)(0.7 * item.Size))), Direction.north, 2, 5));
+                    item.Lanes.Add(new EmptyLane(7, new Point(item.StartPoint.X + ((Int32)(0.40 * item.Size)), item.StartPoint.Y + ((Int32)(0.7 * item.Size))),
+                        new Point(item.StartPoint.X + ((Int32)(0.40 * item.Size)), item.StartPoint.Y + item.Size), Direction.south, 0, 0));
 
-                    item.Lanes.Add(new LaneWithTwoDirection(8, new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)(0.6 * item.Size))),
-                        new Point(item.StartPoint.X + ((Int32)(0.3 * item.Size)), item.StartPoint.Y + ((Int32)(0.6 * item.Size))), Direction.east, 5, 7));
-                    item.Lanes.Add(new LaneWithOneDirection(9, new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)(0.5 * item.Size))),
-                        new Point(item.StartPoint.X + ((Int32)(0.3 * item.Size)), item.StartPoint.Y + ((Int32)(0.5 * item.Size))), Direction.east, 2, 0));
-                    item.Lanes.Add(new EmptyLane(10, new Point(item.StartPoint.X + ((Int32)(0.3 * item.Size)), item.StartPoint.Y + ((Int32)(0.4 * item.Size))),
-                        new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)(0.4 * item.Size))), Direction.north, 0, 0));
+                    item.Lanes.Add(new LaneWithTwoDirection(8, new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)(0.57 * item.Size))),
+                        new Point(item.StartPoint.X + ((Int32)(0.3 * item.Size)), item.StartPoint.Y + ((Int32)(0.57 * item.Size))), Direction.east, 5, 7));
+                    item.Lanes.Add(new LaneWithOneDirection(9, new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)(0.48 * item.Size))),
+                        new Point(item.StartPoint.X + ((Int32)(0.3 * item.Size)), item.StartPoint.Y + ((Int32)(0.48 * item.Size))), Direction.east, 2, 0));
+                    item.Lanes.Add(new EmptyLane(10, new Point(item.StartPoint.X + ((Int32)(0.3 * item.Size)), item.StartPoint.Y + ((Int32)(0.37 * item.Size))),
+                        new Point(item.StartPoint.X, item.StartPoint.Y + ((Int32)(0.37 * item.Size))), Direction.north, 0, 0));
                 }
 
                 //crossCounter++;
